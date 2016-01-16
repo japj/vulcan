@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="Test_AstLower_IsNullPatcher" Type="ETL">
+      <Tasks>
+        <ETL Name="Test_AstLower_IsNullPatcher">
+          <Transformations>
+            <QuerySource Name="QuerySource" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body>
+                  SELECT CAST(1 AS INT) AS TestInt, CAST('12/01/1999' AS DATETIME) AS TestDate, 'Test' AS TestString
+                </Body>
+              </Query>
+            </QuerySource>
+            <IsNullPatcher Name="Patch Nulls">
+              <Columns>
+                <Column Name="TestInt">-1</Column>
+                <Column Name="TestDate">(DT_DBTIMESTAMP)"12/12/1999"</Column>
+                <Column Name="TestString">"UNKNOWN"</Column>
+              </Columns>
+            </IsNullPatcher>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="master" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>SELECT name, schema_id, create_date FROM sys.tables</Body>
+              </Query>
+            </QuerySource>
+            <ConditionalSplit Name="TestCS1">
+              <OutputPaths>
+                <OutputPath Name="TestOutput1">
+                  <Expression>
+                    [name] == "TestValue"
+                  </Expression>
+                </OutputPath>
+                <OutputPath Name="TestOutput2">
+                  <Expression>
+                    [name] == "TestValue" &amp;&amp; [create_date] > (DT_DBTIMESTAMP)"12/01/2000"
+                  </Expression>
+                </OutputPath>
+              </OutputPaths>
+            </ConditionalSplit>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

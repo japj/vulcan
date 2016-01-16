@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PhaseWorkflows DefaultWorkflow="Compile" xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanPhaseWorkflows.xsd">
+  <PhaseWorkflow Name="Compile">
+    <Phases>
+      <Phase PhaseName="XmlSchemaValidatorPhase" WorkflowUniqueName="ValidateInput"/>
+      <Phase PhaseName="XmlXsltTransformPhase" WorkflowUniqueName="Preprocess"/>
+      <Phase PhaseName="XmlSchemaValidatorPhase" WorkflowUniqueName="ValidateAfterPreprocess"/>
+      <Phase PhaseName="XmlToAstParserPhase" WorkflowUniqueName="Parse">
+        <Parameters>
+          <Parameter Name="DefaultXmlNamespace" Type="String">http://tempuri.org/vulcan2.xsd</Parameter>
+        </Parameters>
+      </Phase>
+      <Phase PhaseName="AdvancedFeaturesPhase" WorkflowUniqueName="AdvancedFeatures" />
+      <Phase PhaseName="AstToPhysicalLoweringPhase" WorkflowUniqueName="Lower"/>
+      <Phase PhaseName="SSIS2008EmitterPhase" WorkflowUniqueName="EmitSSIS"/>
+    </Phases>
+    <IRFlowVectors>
+      <IRFlowVector SourceWorkflowUniqueName="ValidateInput" SinkWorkflowUniqueName="Preprocess" />
+      <IRFlowVector SourceWorkflowUniqueName="Preprocess" SinkWorkflowUniqueName="ValidateAfterPreprocess" />
+      <IRFlowVector SourceWorkflowUniqueName="ValidateAfterPreprocess" SinkWorkflowUniqueName="Parse" />
+      <IRFlowVector SourceWorkflowUniqueName="Parse" SinkWorkflowUniqueName="AdvancedFeatures" />
+      <IRFlowVector SourceWorkflowUniqueName="AdvancedFeatures" SinkWorkflowUniqueName="Lower" />
+      <IRFlowVector SourceWorkflowUniqueName="Lower" SinkWorkflowUniqueName="EmitSSIS" />
+    </IRFlowVectors>
+  </PhaseWorkflow>
+</PhaseWorkflows>

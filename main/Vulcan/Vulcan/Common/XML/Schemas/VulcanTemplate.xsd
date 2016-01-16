@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Template" targetNamespace="http://schemas.microsoft.com/detego/2007/07/07/VulcanTemplate.xsd" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanTemplate.xsd" xmlns:mstns="http://schemas.microsoft.com/detego/2007/07/07/VulcanTemplate.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Templates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xml:space="preserve" name="Template" type="templateType" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="templateType">
+    <xs:sequence>
+      <xs:element name="Map" type="templateMapType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="TemplateData" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" use="required" />
+    <xs:attribute name="Type" use="optional" type="templateTypeType" default="Simple" />
+  </xs:complexType>
+  <xs:complexType name="templateInputMapType">
+    <xs:sequence>
+      <xs:element name="Map" type="templateInputMapType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="templateMapType">
+    <xs:sequence>
+    </xs:sequence>
+    <xs:attribute name="Source" type="xs:string" use="required" />
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="templateTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Simple" />
+      <xs:enumeration value="XML" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

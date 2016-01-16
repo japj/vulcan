@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" />
+        <Column Name="Column2" Type="Int32" />
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PrimaryKey1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+      <Sources>
+        <StaticSource Name="StaticSource" EmitMergePackage="false">
+          <Rows>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="Column1" Value="0" />
+                <ColumnValue ColumnName="Column2" Value="1" />
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="Column1" Value="2" />
+                <ColumnValue ColumnName="Column2" Value="3" />
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="Column1" Value="4" />
+                <ColumnValue ColumnName="Column2" Value="5" />
+              </ColumnValues>
+            </Row>
+          </Rows>
+        </StaticSource>
+      </Sources>
+    </Table>
+  </Tables>
+</Vulcan>

@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Ssis2008Emitter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DetegoPackageConfigurationRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\PackageConfigurations</Value>
+    </Setting>
+    <Setting Name="SubpathSsis2008EmitterContent" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Ssis2008Emitter.Content</Value>
+    </Setting>
+    <Setting Name="SubpathPackageConfigurationProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PackageConfigurations</Value>
+    </Setting>
+    <Setting Name="SubpathTableProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Tables</Value>
+    </Setting>
+    <Setting Name="SubpathSchemaProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Schemas</Value>
+    </Setting>
+    <Setting Name="SubpathPrincipalProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Principals</Value>
+    </Setting>
+    <Setting Name="SubpathStaticSourceProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">StaticSources</Value>
+    </Setting>
+    <Setting Name="DetegoProjectLocationRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\codeplex</Value>
+    </Setting>
+    <Setting Name="SubpathVulcanTemplateFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TOOLS\VULCAN\Common\XML\Templates</Value>
+    </Setting>
+    <Setting Name="SubpathETLProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ETL</Value>
+    </Setting>
+    <Setting Name="SubpathFactTableProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FactTables</Value>
+    </Setting>
+    <Setting Name="SubpathTestProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="SubpathDTProjectTemplateFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DataTransformationsProject.dtproj</Value>
+    </Setting>
+    <Setting Name="SubpathTemplateSchemaFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VulcanTemplate.xsd</Value>
+    </Setting>
+    <Setting Name="SubpathDimensionProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dimensions</Value>
+    </Setting>
+    <Setting Name="SubpathDataWarehouseInitProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DataWarehouseInit</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <!--Container Basic-->
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <Container Name="TestContainer1">  
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB"/>
+  </Connections>
+  <PersistentVariables>
+    <PersistentVariable Name="testInt32" TypeCode="Int32">
+    </PersistentVariable>
+  </PersistentVariables>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Variables>
+        <Variable Name="TestVariable1" TypeCode="Int32" Value="0" />
+      </Variables>
+      <Tasks>
+        <ReadPersistentVariable Name="ReadPersistantVariable1" ConnectionName="TestConnection1" PersistentVariableName="testInt32" TargetVariableName="TestVariable1" />
+        <WritePersistentVariable Name="WritePersistentVariable1" ConnectionName="TestConnection1" PersistentVariableName="testInt32" SourceVariableName="TestVariable1" />
+        <CommitPersistentVariable Name="CommitPersistantVariable1" ConnectionName="TestConnection1" PersistentVariableName="testInt32" />
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F702A15-96E4-4343-9922-34A0D671249A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ssis2008Emitter</RootNamespace>
+    <AssemblyName>SSIS2008Emitter</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Tools\vulcan\anycpu_d\PhasePlugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Tools\vulcan\anycpu\PhasePlugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\Tools\vulcan\x86_d\PhasePlugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\Tools\vulcan\x86\PhasePlugins\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SQLServer.DTSRuntimeWrap, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86" />
+    <Reference Include="Microsoft.SqlServer.Exec80PackageTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SQLServer.ManagedDTS, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86" />
+    <Reference Include="Microsoft.SqlServer.ExecPackageTaskWrap, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Emitters\Framework\SsisConnectionConfiguration.cs" />
+    <Compile Include="Emitters\PhysicalIRMappingAttribute.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\MergeEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\InsertDefaultValuesEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\LogPlatformEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\PlatformEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\SelectEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\StoredProcPlatformEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\TablePlatformEmitter.cs" />
+    <Compile Include="Emitters\TSQL\PlatformEmitter\TemplatePlatformEmitter.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\ColumnsBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\ConstraintsBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\IndexesBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\KeysBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\SPColumnsBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\SQLBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SQLBuilder\StoredProcColumnsBuilder.cs" />
+    <Compile Include="Emitters\TSQL\SsisEmitterNames.cs" />
+    <Compile Include="Emitters\TSQL\TemplateEmitter.cs" />
+    <Compile Include="Emitters\TSQL\TemplateManager.cs" />
+    <Compile Include="Emitters\TSQL\TextEmitter\TextEmitter.cs" />
+    <Compile Include="Emitters\TSQL\TextEmitter\TextTarget.cs" />
+    <Compile Include="Emitters\TSQL\TypeTranslator.cs" />
+    <Compile Include="IR\PhysicalIR.cs" />
+    <Compile Include="IR\Common\LogicalObject.cs" />
+    <Compile Include="IR\Common\LogicalReference.cs" />
+    <Compile Include="IR\Common\Paths.cs" />
+    <Compile Include="IR\DataFlow\Transformations.cs" />
+    <Compile Include="IR\Framework\PackageConfiguration.cs" />
+    <Compile Include="IR\Task\Task.cs" />
+    <Compile Include="IR\TSQL\Columns.cs" />
+    <Compile Include="IR\TSQL\Constraints.cs" />
+    <Compile Include="IR\TSQL\Dimension.cs" />
+    <Compile Include="IR\TSQL\FactTable.cs" />
+    <Compile Include="IR\TSQL\Indexes.cs" />
+    <Compile Include="IR\TSQL\StoredProc.cs" />
+    <Compile Include="IR\TSQL\Table.cs" />
+    <Compile Include="IR\TSQL\TablePattern.cs" />
+    <Compile Include="Phases\AstToPhysicalLoweringPhase.cs" />
+    <Compile Include="Phases\SSISEmitterException.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Phases\AstLoweringExtensionMethods.cs" />
+    <Compile Include="Emitters\DataFlow\SsisComponent.cs" />
+    <Compile Include="Emitters\DataFlow\SsisConditionalSplitComponent.cs" />
+    <Compile Include="IR\Framework\Connection.cs" />
+    <Compile Include="IR\DataFlow\ConditionalSplit.cs" />
+    <Compile Include="IR\DataFlow\DerivedColumns.cs" />
+    <Compile Include="IR\DataFlow\Lookup.cs" />
+    <Compile Include="IR\DataFlow\OLEDBCommand.cs" />
+    <Compile Include="IR\DataFlow\OLEDBDestination.cs" />
+    <Compile Include="IR\DataFlow\OLEDBSource.cs" />
+    <Compile Include="IR\DataFlow\TermLookup.cs" />
+    <Compile Include="IR\DataFlow\UnionAll.cs" />
+    <Compile Include="IR\Framework\Package.cs" />
+    <Compile Include="IR\Task\ExecutePackageTask.cs" />
+    <Compile Include="IR\Task\PipelineTask.cs" />
+    <Compile Include="IR\Task\Sequence.cs" />
+    <Compile Include="IR\Task\SQLTask.cs" />
+    <Compile Include="IR\Framework\Variable.cs" />
+    <Compile Include="Emitters\SSISEmitterContext.cs" />
+    <Compile Include="Emitters\Framework\SsisConnection.cs" />
+    <Compile Include="Emitters\ISSISEmitter.cs" />
+    <Compile Include="Emitters\Task\SsisContainer.cs" />
+    <Compile Include="Emitters\DataFlow\SsisDerivedColumnsComponent.cs" />
+    <Compile Include="Emitters\Task\SsisPipelineTask.cs" />
+    <Compile Include="Emitters\Task\SsisExecutable.cs" />
+    <Compile Include="Emitters\Task\SsisExecutePackage.cs" />
+    <Compile Include="Emitters\DataFlow\SsisLookupComponent.cs" />
+    <Compile Include="Emitters\DataFlow\SsisOleDbCommandComponent.cs" />
+    <Compile Include="Emitters\DataFlow\SsisOleDbDestination.cs" />
+    <Compile Include="Emitters\Framework\SsisPackage.cs" />
+    <Compile Include="Emitters\Task\SsisSequence.cs" />
+    <Compile Include="Emitters\DataFlow\SsisSourceComponent.cs" />
+    <Compile Include="Emitters\Task\SsisSqlTask.cs" />
+    <Compile Include="Emitters\TSQL\SsisStoredProcEmitter.cs" />
+    <Compile Include="Emitters\Task\SsisTaskEmitter.cs" />
+    <Compile Include="Emitters\DataFlow\SsisTermLookupComponent.cs" />
+    <Compile Include="Emitters\DataFlow\SsisUnionAllComponent.cs" />
+    <Compile Include="Emitters\Framework\SsisVariable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Phases\SSIS2008EmitterPhase.cs" />
+    <Compile Include="Emitters\Common\ErrorEventHandler.cs" />
+    <Compile Include="Emitters\Common\ExpressionPathBuilder.cs" />
+    <Compile Include="Emitters\Framework\SsisProject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Ssis2008Emitter.Content\DataTransformationsProject.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Ssis2008Emitter.Content\VulcanTemplate.xsx">
+      <DependentUpon>VulcanTemplate.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Ssis2008Emitter.Content\VulcanTemplate.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <Content Include="Ssis2008Emitter.Content\SQLTemplates.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VulcanEngine\VulcanEngine.csproj">
+      <Project>{68775410-5104-407B-B552-6703EE4158EF}</Project>
+      <Name>VulcanEngine</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

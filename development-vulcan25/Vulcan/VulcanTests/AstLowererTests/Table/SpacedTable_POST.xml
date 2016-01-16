@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="tempdb" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Packages>
+    <Package Name="Work Item History" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="Work Item History" ConnectionName="Conn1">
+          <Query>
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[Work Item History]') AND type IN (N'U'))
+              DROP TABLE [Work Item History]
+              GO
+
+              CREATE TABLE [Work Item History]
+              (
+              -- Columns Definition
+              [__ID] int NOT NULL
+              ,[Logical Tracking ID] nvarchar(80) NOT NULL
+              ,[Created By] int NOT NULL
+              ,[Area] int NOT NULL
+              ,[Iteration] int NOT NULL
+              ,[Team Project] int NOT NULL
+              ,[System_RevisedDate] datetime NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [PK__Work Item Histor__7D439ABD] PRIMARY KEY CLUSTERED
+              (
+              [__ID] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [UK_LogicalTracking ID]  UNIQUE NONCLUSTERED
+              (
+              [Logical Tracking ID] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = PAGE)
+              GO
+
+              -------------------------------------------------------------------
+
+              CREATE  NONCLUSTERED INDEX [IX _ Foo] ON [Work Item History]
+              (
+              [Team Project] Asc
+              )
+
+              WITH
+              (
+              PAD_INDEX = OFF,
+              SORT_IN_TEMPDB = OFF,
+              DROP_EXISTING = OFF,
+              IGNORE_DUP_KEY = OFF,
+              ONLINE = OFF
+              )
+              ON [PRIMARY]
+              GO
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

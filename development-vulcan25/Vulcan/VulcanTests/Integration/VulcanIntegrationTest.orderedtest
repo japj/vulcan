@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OrderedTest name="VulcanIntegrationTest" storage="c:\codeplex\development-vulcan25\vulcan\vulcantests\integration\vulcanintegrationtest.orderedtest" id="6b2803af-d6f8-4f07-997a-c7c552e268b0" continueAfterFailure="true" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Execution timeOut="2147483647" id="1aa85310-64cf-415d-800c-862266c525cb" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <TestLinks>
+    <TestLink id="14a9059e-75b4-4d6d-bb50-378aff5e067a" name="BuildVulcanDataWarehouse" storage="buildvulcandatawarehouse.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="0aefc7c2-946e-4a7c-97c3-42ce90cd1428" name="buildtesttables" storage="buildtesttables.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="a7b23caa-2bfc-47fe-93bf-a564a726d0fb" name="BuildTaskTests" storage="buildtasktests.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="9f86de78-36d8-4982-9693-1ff661731f7e" name="BuildDataflow" storage="builddataflow.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="67626956-0778-4037-9671-08fbe84878e0" name="ETLLookup" storage="etllookup.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="33e05cbb-2d77-4b16-b60c-a5767d210ae5" name="ETLStagingTest" storage="etlstagingtest.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="c8b7e593-249a-4b0d-a063-4feb6109eadc" name="ETLMerge" storage="etlmerge.generictest" type="Microsoft.VisualStudio.TestTools.TestTypes.Generic.GenericTest, Microsoft.VisualStudio.QualityTools.Tips.GenericTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VulcanConfigurations" targetNamespace="http://schemas.microsoft.com/detego/2007/07/07/VulcanConfig.xsd" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanConfig.xsd" xmlns:mstns="http://schemas.microsoft.com/detego/2007/07/07/VulcanConfig.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="VulcanConfig">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string" />
+                <xs:element name="Description" type="xs:string" />
+                <xs:element name="Package" type="packageBaseType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="packageConfigurationType">
+        <xs:sequence>
+            <xs:element name="Filename" type="xs:string" />
+            <xs:element name="CreateNew" type="xs:boolean" default="false" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="connectionType">
+        <xs:sequence>
+            <xs:element name="Type" type="connectionTypeType" />
+            <xs:element name="CreateConfiguration" type="xs:boolean" default="false" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attribute name="RetainSameConnection" type="xs:boolean" default="false" use="optional" />
+    </xs:complexType>
+    <xs:simpleType name="connectionTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OLEDB" />
+            <xs:enumeration value="File" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="variableType">
+        <xs:sequence>
+            <xs:element name="Type" type="variableTypeFacet" />
+            <xs:element name="Value" type="xs:anyType">
+            </xs:element>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:simpleType name="variableTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Int32" />
+            <xs:enumeration value="String" />
+            <xs:enumeration value="Object" />
+            <xs:enumeration value="Boolean" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="packageBaseType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="Template" type="templateXmlType" />
+            <xs:element name="PackageConfiguration" type="packageConfigurationType" />
+            <xs:element name="Connection" type="connectionType" />
+            <xs:element name="Variable" type="variableType" />
+            <xs:element name="Patterns" type="patternsType" />
+        </xs:choice>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attribute name="PackageType" type="packageTypeFacet" use="required" />
+    </xs:complexType>
+    <xs:complexType name="dimensionsType">
+        <xs:sequence>
+            <xs:element name="Connection" type="connectionReferenceType" />
+            <xs:element name="Dimension" type="dimensionType" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="precedenceConstrainedObjectType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="NextExecutable" minOccurs="0" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="dimensionType">
+        <xs:sequence>
+            <xs:element name="Table" type="tableType" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="columnType" abstract="true">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="columnsType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="Column" type="sqlColumnType" />
+            <xs:element name="Dimension" type="dimTableMapType" />
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="fkConstraintType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="LocalColumn" type="refColumnType" />
+            <xs:element name="ForeignColumn" type="fkForeignColumnType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="constraintsType">
+        <xs:sequence>
+            <xs:element name="PrimaryKeyConstraint" type="pkConstraintType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Constraint" type="constraintType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="ForeignKeyConstraint" type="fkConstraintType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tableType">
+        <xs:sequence>
+            <xs:element name="Columns" type="columnsType" />
+            <xs:element name="KeyColumn" type="keyColumnType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Constraints" type="constraintsType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Indexes" type="indexesType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="CheckAndInsertUniqueColumn" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="InsertOrUpdateUniqueColumn" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="DefaultValues" type="defaultValuesType" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="defaultValuesType">
+        <xs:sequence>
+            <xs:element name="Value" type="xs:string" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="indexType">
+        <xs:sequence>
+            <xs:element name="Column" type="refColumnType" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="PadIndex" type="xs:boolean" default="false" />
+        <xs:attribute name="SortInTempdb" type="xs:boolean" default="false" />
+        <xs:attribute name="DropExisting" type="xs:boolean" default="false" />
+        <xs:attribute name="IgnoreDupKey" type="xs:boolean" default="false" />
+        <xs:attribute name="Online" type="xs:boolean" default="false" />
+        <xs:attribute name="Clustered" type="xs:boolean" default="false" />
+        <xs:attribute name="Unique" type="xs:boolean" default="false" />
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+    </xs:complexType>
+    <xs:simpleType name="sortOrderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ASC" />
+            <xs:enumeration value="DESC" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="indexesType">
+        <xs:sequence>
+            <xs:element name="Index" type="indexType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="logType">
+        <xs:complexContent>
+            <xs:extension base="patternsType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="namedType" />
+                <xs:attribute name="Connection" type="xs:string" use="required" />
+                <xs:attribute name="PreviousLogEntryVariablePrefix" type="xs:string" use="required" />
+                <xs:attribute name="SourceColumn" type="xs:string" use="optional" />
+                <xs:attribute name="DestinationColumn" type="xs:string" use="optional" />
+                <xs:attribute name="Table" type="xs:string" use="optional" />
+                <xs:attribute name="TableConnection" type="xs:string" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="helperTablePatternType">
+        <xs:sequence>
+            <xs:element name="Table" type="tableType" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="helperTablesType">
+        <xs:sequence>
+            <xs:element name="Connection" type="connectionReferenceType" />
+            <xs:element name="HelperTable" type="helperTablePatternType" maxOccurs="unbounded" minOccurs="1" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attributeGroup ref="executeDuringDesignTimeType" />
+    </xs:complexType>
+    <xs:complexType name="etlPatternType">
+        <xs:sequence>
+            <xs:element name="SourceConnection" type="connectionReferenceType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="XMLSource" type="xmlSourceType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Query" type="xs:string" />
+            <xs:element name="Parameter" type="parameterMappingType" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="Transformations" type="etlTransformationType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Destination" type="etlDestinationType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="DelayValidation" type="xs:boolean" default="false" use="optional" />
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="xmlSourceType">
+        <xs:attribute name="XMLLocation" type="xs:string" use="required"/>
+        <xs:attribute name="XSDLocation" type="xs:string" use="required"/>
+        <xs:attribute name="UseInlineSchema" type="xs:boolean" use="optional" default="false"/>
+        <xs:attributeGroup ref="namedType"/>
+    </xs:complexType>
+    <xs:complexType name="derivedColumnsColumnsType">
+        <xs:sequence>
+            <xs:element name="Column" type="dataFlowColumnType" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="sqlColumnType">
+        <xs:complexContent>
+            <xs:extension base="columnType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="Type" type="xs:string" use="required" />
+                <xs:attribute name="IsNullable" type="xs:boolean" default="false" />
+                <xs:attribute name="Default" type="xs:string" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="dataFlowColumnType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Type" type="dataFlowTypeType" use="required" />
+                <xs:attribute name="Length" type="xs:int" default="0" />
+                <xs:attribute name="Precision" type="xs:int" default="0" />
+                <xs:attribute name="Scale" type="xs:int" default="0" />
+                <xs:attribute name="Codepage" type="xs:int" default="0" />
+                <xs:attributeGroup ref="namedType" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="dataFlowTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BOOL" />
+            <xs:enumeration value="WSTR" />
+            <xs:enumeration value="STR" />
+            <xs:enumeration value="FLOAT" />
+            <xs:enumeration value="DOUBLE" />
+            <xs:enumeration value="INT32" />
+            <xs:enumeration value="INT64" />
+            <xs:enumeration value="UINT32" />
+            <xs:enumeration value="UINT64" />
+            <xs:enumeration value="DATE" />
+            <xs:enumeration value="TIME" />
+            <xs:enumeration value="TIMESTAMP" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="etlTransformationType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="DerivedColumns" type="derivedColumnsColumnsType" />
+            <xs:element name="Lookup" type="lookupType" />
+            <xs:element name="OLEDBCommand" type="oleDbCommandType" />
+            <xs:element name="IsNullPatcher" type="isNullPatcher" />
+            <xs:element name="Template" type="templateXmlType" />
+            <xs:element name="TermLookup" type="termLookup"/>
+            <xs:element name="ConditionalSplit" type="conditionalSplit"/>
+            <xs:element name="UnionAll" type="unionAll"/>
+            <xs:element name="Sort" type="sortType"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="sortType">
+        <xs:sequence>
+            <xs:element name="InputColumn" type="sortInputColumnType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType"/>
+        <xs:attribute name="EliminateDuplicates" type="xs:boolean" default="false" use="optional"/>
+        <xs:attribute name="MaximumThreads" type="xs:integer" default="-1" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="sortInputColumnType">
+        <xs:sequence>
+            <xs:element name="ComparisonFlag" type="comparisonFlagType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="InputColumnUsageType" type="sortInputColumnUsageTypeType" use="optional" default="PassThrough"/>
+        <xs:attribute name="InputColumnName" type="xs:string" use="required"/>
+        <xs:attribute name="SortType" type="sortOrderType" default="ASC" use="optional"/>
+    </xs:complexType>
+    <xs:simpleType name="comparisonFlagType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IgnoreCase" />
+            <xs:enumeration value="IgnoreKanaType" />
+            <xs:enumeration value="IgnoreNonspacingCharacters" />
+            <xs:enumeration value="IgnoreCharacterWidth" />
+            <xs:enumeration value="IgnoreSymbols" />
+            <xs:enumeration value="SortPunctuationAsSymbols" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="sortInputColumnUsageTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PassThrough" />
+            <xs:enumeration value="SortColumn" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="unionAll">
+        <xs:sequence>
+            <xs:element name="SourceComponent" type="unionAllSourceComponent" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType"/>
+    </xs:complexType>
+    <xs:complexType name="unionAllSourceComponent">
+        <xs:sequence>
+            <xs:element name="Map" type="mapType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="SourceComponentName" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="conditionalSplit">
+        <xs:sequence>
+            <xs:element name="Outputs" type="conditionalSplitOutputs" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType"/>
+    </xs:complexType>
+    <xs:complexType name="conditionalSplitOutputs">
+        <xs:sequence>
+            <xs:element name="DefaultOutput" type="conditionalDefaultSplitOutput" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Output" type="conditionalSplitOutput" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="conditionalDefaultSplitOutput">
+        <xs:sequence>
+            <xs:element name="ConditionalSplitOutputPath" type="conditionalSplitOutputPath" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="conditionalSplitOutput">
+        <xs:sequence>
+            <xs:element name="Expression" type="xs:string" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="ConditionalSplitOutputPath" type="conditionalSplitOutputPath" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="conditionalSplitOutputPath">
+        <xs:sequence>
+            <xs:element name="Transformations" type="etlTransformationType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Destination" type="etlDestinationType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="termLookup">
+        <xs:sequence>
+            <xs:element name="InputColumn" type="termLookColumnType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="ConnectionName" type="xs:string"  use="required"/>
+        <xs:attribute name="IsCaseSensitive" type="xs:boolean" use="optional" default="false" />
+        <xs:attribute name="RefTermColumn" type="xs:string" use="required" />
+        <xs:attribute name="RefTermTable" type="xs:string" use="required"/>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="termLookColumnType">
+        <xs:attribute name="InputColumnUsageType" type="inputColumnUsageTypeType" use="optional" default="PassThrough"/>
+        <xs:attribute name="InputColumnName" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:simpleType name="inputColumnUsageTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PassThrough" />
+            <xs:enumeration value="Lookup" />
+            <xs:enumeration value="BothPassThroughAndLookup" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="lookupType">
+        <xs:sequence>
+            <xs:element name="Connection" type="connectionReferenceType" />
+            <xs:choice>
+                <xs:element name="Table" type="xs:string" />
+                <xs:element name="Query" type="xs:string" />
+            </xs:choice>
+            <xs:element name="Input" type="lookupTypeJoinType" maxOccurs="unbounded" />
+            <xs:element name="Output" type="lookupTypeJoinType" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="connectionReferenceType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="lookupTypeJoinType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="JoinToReferenceColumn" type="xs:string" />
+                <xs:element name="CopyFromReferenceColumn" type="xs:string" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="oleDbCommandType">
+        <xs:sequence>
+            <xs:element name="DestinationConnection" type="connectionReferenceType" />
+            <xs:element name="Command" type="xs:string" />
+            <xs:element name="Map" type="mapType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="mapType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Source" type="xs:string" use="required" />
+        <xs:attribute name="Destination" type="xs:string" use="optional" />
+    </xs:complexType>
+    <xs:complexType name="isNullPatcher">
+        <xs:sequence>
+            <xs:element name="Column" type="isNullPatcherColumnType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="isNullPatcherColumnType">
+        <xs:complexContent>
+            <xs:extension base="columnType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="DefaultValue" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="etlDestinationType">
+        <xs:complexContent>
+            <xs:extension base="connectionReferenceType">
+                <xs:sequence>
+                    <xs:element name="Map" type="mapType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="ConnectionName" type="xs:string" use="required" />
+                <xs:attribute name="Table" type="xs:string" use="required" />
+                <xs:attribute name="AccessMode" type="etlDestinationAccessModelFacet" default="Table" use="optional" />
+                <xs:attribute name="TableLock" type="xs:boolean" use="optional" default="true" />
+                <xs:attribute name="CheckConstraints" type="xs:boolean" use="optional" default="true" />
+                <xs:attribute name="KeepIdentity" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="KeepNulls" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="RowsPerBatch" type="xs:integer" use="optional" default="0" />
+                <xs:attribute name="MaximumInsertCommitSize" type="xs:integer" use="optional" default="0" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="storedProcType">
+        <xs:sequence>
+            <xs:element name="Connection" type="connectionReferenceType" />
+            <xs:element name="Columns" type="storedProcColumnsType" />
+            <xs:element name="Body" type="xs:string" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attributeGroup ref="executeDuringDesignTimeType" />
+    </xs:complexType>
+    <xs:complexType name="storedProcColumnType">
+        <xs:complexContent>
+            <xs:extension base="columnType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="IsOutput" type="xs:boolean" default="false" />
+                <xs:attribute name="Type" type="xs:string" use="required" />
+                <xs:attribute name="Default" type="xs:string" use="optional" default="" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="storedProcColumnsType">
+        <xs:sequence>
+            <xs:element name="Column" type="storedProcColumnType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="containerType">
+        <xs:complexContent>
+            <xs:extension base="patternsType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="namedType" />
+                <xs:attribute name="ConstraintMode" type="constraintModeFacet" default="Linear" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="patternsType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="Template" type="templateXmlType" />
+            <xs:element name="Logtainer" type="logType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="LogUpdate" type="logUpdateType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Dimensions" type="dimensionsType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="HelperTables" type="helperTablesType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="ETL" type="etlPatternType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="StoredProc" type="storedProcType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Container" type="containerType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="ExecuteSQL" type="executeSqlPattern" />
+            <xs:element name="FileSystemTask" type="fileSystemPattern" />
+            <xs:element name="FactTable" type="factTablePattern" />
+            <xs:element name="ExecutePackage" type="executePackagePatternType" />
+            <xs:element name="FTPTask" type="fTPTaskType" />
+        </xs:choice>
+    </xs:complexType>
+    <xs:attributeGroup name="namedType">
+        <xs:attribute name="Name" type="xs:string" use="required" />
+    </xs:attributeGroup>
+    <xs:complexType name="fTPTaskType">
+        <xs:sequence>
+            <xs:element name="RemoteParameters" type="remoteParametersType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="LocalParameters" type="localParametersType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType"/>
+        <xs:attribute name="OverwriteFileAtDestination" type="xs:boolean" use ="optional" default="true"/>
+        <xs:attribute name="Operation" type="fTPOperationType" use="optional" default="Receive"/>
+        <xs:attribute name="StopOnFailure" type="xs:boolean" use="optional" default="true"/>
+    </xs:complexType>
+    <xs:complexType name="remoteParametersType">
+        <xs:sequence>
+            <xs:element name="ServerName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Port" type="xs:integer" minOccurs="0" maxOccurs="1" default="21"/>
+            <xs:element name="UserName" type="xs:string" minOccurs="0" maxOccurs="1" default=""/>
+            <xs:element name="Password" type="xs:string" minOccurs="0" maxOccurs="1" default=""/>
+            <xs:element name="RemoteRelativePath" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="IsRemotePathVariable" type="xs:boolean" default="false" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="localParametersType">
+        <xs:sequence>
+            <xs:element name="LocalPath" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="IsLocalPathVariable" type="xs:boolean" default="false" use="optional"/>
+    </xs:complexType>
+    <xs:simpleType name="fTPOperationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Receive" />
+            <xs:enumeration value="Send" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="templateXmlType">
+        <xs:sequence />
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:anyAttribute namespace="##local" processContents="skip" />
+    </xs:complexType>
+    <xs:complexType name="executeSqlPattern">
+        <xs:sequence>
+            <xs:element name="Connection" type="connectionReferenceType" />
+            <xs:element name="Body" type="xs:string" />
+            <xs:element name="Result" type="parameterMappingType" maxOccurs="unbounded" minOccurs="0" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attributeGroup ref="executeDuringDesignTimeType" />
+        <xs:attribute name="Type" type="executeSqlTaskTypeFacet" use="optional" default="File" />
+        <xs:attribute name="ResultSet" type="resultSetFacet" default="None" use="optional" />
+    </xs:complexType>
+    <xs:complexType name="fileSystemPattern">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attribute name="Operation" type="fileSystemPatternOperationType" use="required" />
+        <xs:attribute name="SourcePath" type="xs:string" use="required" />
+        <xs:attribute name="DestinationPath" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="fileSystemPatternOperationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CopyDirectory" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="factTablePattern">
+        <xs:sequence>
+            <xs:element name="Connection" type="connectionReferenceType" />
+            <xs:element name="Table" type="tableType" />
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+    </xs:complexType>
+    <xs:complexType name="dimTableMapType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="namedType" />
+        <xs:attribute name="OutputName" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="packageTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Dimension" />
+            <xs:enumeration value="FactTable" />
+            <xs:enumeration value="ETL" />
+            <xs:enumeration value="DataWarehouseInit" />
+            <xs:enumeration value="Test" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="pkConstraintType">
+        <xs:complexContent>
+            <xs:extension base="indexType">
+                <xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="fkForeignColumnType">
+        <xs:complexContent>
+            <xs:extension base="refColumnType">
+                <xs:sequence />
+                <xs:attribute name="Table" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="refColumnType">
+        <xs:complexContent>
+            <xs:extension base="columnType">
+                <xs:sequence />
+                <xs:attribute name="SortOrder" type="sortOrderType" use="optional" default="ASC" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="parameterMappingType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="VariableName" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="executeSqlTaskTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Expression" />
+            <xs:enumeration value="File" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="resultSetFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None" />
+            <xs:enumeration value="SingleRow" />
+            <xs:enumeration value="Full" />
+            <xs:enumeration value="XML" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="executePackagePatternType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="RelativePath" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="etlDestinationAccessModelFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Table" />
+            <xs:enumeration value="TableFastLoad" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:attributeGroup name="executeDuringDesignTimeType">
+        <xs:attribute name="ExecuteDuringDesignTime" type="xs:boolean" use="optional" default="false" />
+    </xs:attributeGroup>
+    <xs:complexType name="constraintType">
+        <xs:complexContent>
+            <xs:extension base="indexType">
+                <xs:sequence />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="keyColumnType">
+        <xs:sequence />
+        <xs:attributeGroup ref="namedType" />
+        <xs:attribute name="Type" type="keyColumnFacet" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="keyColumnFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Identity" />
+            <xs:enumeration value="PrimaryKey" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="constraintModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Linear" />
+            <xs:enumeration value="Parallel" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="logUpdateType">
+        <xs:complexContent>
+            <xs:extension base="patternsType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="Status" type="logUpdateStatusFacet" use="optional" default="In Progress" />
+                <xs:attribute name="FirstOrLast" type="logUpdateFirstOrLastFacet" use="required" />
+                <xs:attribute name="Notes" type="xs:string" use="optional" default="N/A" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="logUpdateFirstOrLastFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="First" />
+            <xs:enumeration value="Last" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="logUpdateStatusFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Success" />
+            <xs:enumeration value="In Progress" />
+            <xs:enumeration value="Failure" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="queryType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Connection" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

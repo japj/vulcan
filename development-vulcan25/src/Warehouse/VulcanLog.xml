@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="VulcanLog" Type="Warehouse">
+      <Tasks>
+        <Container Name="VulcanLog Creation">
+          <Tasks>
+            <ExecuteSQL Name="Drop_VulcanLog" ConnectionName="Server">
+              <Query>
+                <Body>
+                  EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'VulcanLog'
+                  GO
+
+                  USE [master]
+                  GO
+
+                  IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'VulcanLog')
+                  ALTER DATABASE [VulcanLog] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+                  GO
+
+                  IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'VulcanLog')
+                  DROP DATABASE [VulcanLog]
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+            <ExecuteSQL Name="DDL_VulcanLog" ConnectionName="Server" ExecuteDuringDesignTime="false" ResultSet="None">
+              <Query>
+                <Body>
+                  EXECUTE ('CREATE DATABASE [VulcanLog]');
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+            <ExecuteSQL Name="CLR_VulcanLog" ConnectionName="Server" ExecuteDuringDesignTime="false" ResultSet="None">
+              <Query>
+                <Body>
+                  USE [VulcanLog]
+                  GO
+
+                  EXEC sp_configure 'clr enabled', 1
+                  GO
+
+                  RECONFIGURE
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+  <Tables>
+
+    <Table Name="PackageRunLog" ConnectionName="VulcanLog">
+      <Columns>
+        <Column Name="ID" Type="Int64" IsNullable="false" />
+        <Column Name="Package" Type="String" Length="255" IsNullable="false" />
+        <Column Name="PackageGuid" Type="Guid" CustomType="uniqueidentifier" IsNullable="false" />
+        <Column Name="ParentPackageGuid" Type="Guid" CustomType="uniqueidentifier" IsNullable="true" />
+        <Column Name="Source" Type="String" Length="255" IsNullable="true" />
+        <Column Name="SourceGuid" Type="Guid" CustomType="uniqueidentifier" IsNullable="true" />
+        <Column Name="Computer" Type="String" Length="255" IsNullable="false" />
+        <Column Name="Operator" Type="String" Length="255" IsNullable="false" />
+        <Column Name="Event" Type="String" Length="255" IsNullable="false" />
+        <Column Name="Message" Type="String" Length="9999" IsNullable="true" />
+        <Column Name="ExecutionGuid" Type="Guid" CustomType="uniqueidentifier" IsNullable="true" />
+        <Column Name="InsertTime" Type="DateTimeOffset" CustomType="datetimeoffset" IsNullable="false" Default="SYSDATETIMEOFFSET()" />
+        <Column Name="UpdateTime" Type="DateTimeOffset" CustomType="datetimeoffset" IsNullable="false" Default="SYSDATETIMEOFFSET()" />
+      </Columns>
+      <Keys>
+        <Identity Name="PK_PackageRunLog_PackageRunID" Clustered="true">
+          <Columns>
+            <Column ColumnName="ID" SortOrder="Asc" />
+          </Columns>
+        </Identity>
+      </Keys>
+      <CustomExtensions Name="PackageRunLogExtensions">
+        <Tasks>
+          <ExecuteSQL Name="UpdateTimeTrigger" ConnectionName="VulcanLog">
+            <Query>
+              <Body>
+                CREATE TRIGGER TR_UPDATETIME On [dbo].[PackageRunLog]
+                FOR UPDATE
+                AS
+
+                If Not Update(UpdateTime)
+                BEGIN
+                Update MT
+                Set UpdateTime = SYSDATETIMEOFFSET()
+                From [dbo].[PackageRunLog] MT
+                Inner Join inserted i on i.ID = MT.ID
+                END
+              </Body>
+            </Query>
+          </ExecuteSQL>
+          <StoredProc Name="usp_PackageStart" ConnectionName="VulcanLog">
+            <Columns>
+              <Column Name="Package" Type="String" Length="255" />
+              <Column Name="PackageGuid" Type="String" Length="255"/>
+              <Column Name="ParentPackageGuid" Type="String" Length="255"/>
+              <Column Name="Source" Type="String" Length="255" />
+              <Column Name="SourceGuid" Type="String" Length="255"/>
+              <Column Name="ParentSourceGuid" Type="String" Length="255" />
+              <Column Name="Computer" Type="String" Length="255" />
+              <Column Name="Operator" Type="String" Length="255" />
+              <Column Name="ExecutionGuid" Type="String" Length="255" />
+            </Columns>
+            <Body>
+              SET NOCOUNT ON;
+
+              SET @ExecutionGuid = CASE WHEN @ExecutionGuid = '' THEN NULL ELSE @ExecutionGuid END
+              SET @PackageGuid = CASE WHEN @PackageGuid = '' THEN NULL ELSE @PackageGuid END
+              SET @ParentPackageGuid = CASE WHEN @ParentPackageGuid = '' THEN NULL ELSE @ParentPackageGuid END
+              SET @SourceGuid = CASE WHEN @SourceGuid = '' THEN NULL ELSE @SourceGuid END
+              SET @ParentSourceGuid = CASE WHEN @ParentSourceGuid = '' THEN NULL ELSE @ParentSourceGuid END
+
+              INSERT INTO [dbo].[PackageRunLog]
+              ([Package]
+              ,[Source]
+              ,[Computer]
+              ,[Operator]
+              ,[Event]
+              ,[Message]
+              ,[ExecutionGuid]
+              ,[PackageGuid]
+              ,[ParentPackageGuid]
+              ,[SourceGuid])
+              SELECT @Package
+              ,@Source
+              ,@Computer
+              ,@Operator
+              ,'1:Start'
+              ,NULL
+              ,@ExecutionGuid
+              ,@PackageGuid
+              ,@ParentPackageGuid
+              ,@SourceGuid
+            </Body>
+          </StoredProc>
+          <StoredProc Name="usp_PackageError" ConnectionName="VulcanLog">
+            <Columns>
+              <Column Name="Package" Type="String" Length="255" />
+              <Column Name="PackageGuid" Type="String" Length="255"/>
+              <Column Name="ParentPackageGuid" Type="String" Length="255"/>
+              <Column Name="Source" Type="String" Length="255" />
+              <Column Name="SourceGuid" Type="String" Length="255"/>
+              <Column Name="ParentSourceGuid" Type="String" Length="255" />
+              <Column Name="Computer" Type="String" Length="255" />
+              <Column Name="Operator" Type="String" Length="255" />
+              <Column Name="ExecutionGuid" Type="String" Length="255" />
+              <Column Name="Message" Type="String" Length="9999" />
+            </Columns>
+            <Body>
+              SET NOCOUNT ON;
+              
+              SET @ExecutionGUID = CASE WHEN @ExecutionGUID = '' THEN NULL ELSE @ExecutionGUID END
+              SET @PackageGUID = CASE WHEN @PackageGUID = '' THEN NULL ELSE @PackageGUID END
+              SET @ParentPackageGUID = CASE WHEN @ParentPackageGUID = '' THEN NULL ELSE @ParentPackageGUID END
+              SET @SourceGUID = CASE WHEN @SourceGUID = '' THEN NULL ELSE @SourceGUID END
+              SET @ParentSourceGUID = CASE WHEN @ParentSourceGUID = '' THEN NULL ELSE @ParentSourceGUID END
+
+              IF (SELECT COUNT(*) FROM [dbo].[PackageRunLog] WHERE [Event]='3:Error' AND ExecutionGUID=@ExecutionGUID AND [SourceGUID]=@SourceGUID AND [Message]=@Message)=0
+              BEGIN
+              INSERT INTO [dbo].[PackageRunLog]
+              ([Package]
+              ,[Source]
+              ,[Computer]
+              ,[Operator]
+              ,[Event]
+              ,[Message]
+              ,[ExecutionGUID]
+              ,[PackageGUID]
+              ,[ParentPackageGUID]
+              ,[SourceGUID])
+              SELECT @Package
+              ,@Source
+              ,@Computer
+              ,@Operator
+              ,'3:Error'
+              ,@Message
+              ,@ExecutionGUID
+              ,@PackageGUID
+              ,@ParentPackageGUID
+              ,@SourceGUID
+              END
+            </Body>
+          </StoredProc>
+          <StoredProc Name="usp_PackageEnd" ConnectionName="VulcanLog">
+            <Columns>
+              <Column Name="Package" Type="String" Length="255" />
+              <Column Name="PackageGuid" Type="String" Length="255"/>
+              <Column Name="ParentPackageGuid" Type="String" Length="255"/>
+              <Column Name="Source" Type="String" Length="255" />
+              <Column Name="SourceGuid" Type="String" Length="255"/>
+              <Column Name="ParentSourceGuid" Type="String" Length="255" />
+              <Column Name="Computer" Type="String" Length="255" />
+              <Column Name="Operator" Type="String" Length="255" />
+              <Column Name="ExecutionGuid" Type="String" Length="255" />
+            </Columns>
+            <Body>
+              SET NOCOUNT ON;
+
+              SET @ExecutionGUID = CASE WHEN @ExecutionGUID = '' THEN NULL ELSE @ExecutionGUID END
+              SET @PackageGUID = CASE WHEN @PackageGUID = '' THEN NULL ELSE @PackageGUID END
+              SET @ParentPackageGUID = CASE WHEN @ParentPackageGUID = '' THEN NULL ELSE @ParentPackageGUID END
+              SET @SourceGUID = CASE WHEN @SourceGUID = '' THEN NULL ELSE @SourceGUID END
+              SET @ParentSourceGUID = CASE WHEN @ParentSourceGUID = '' THEN NULL ELSE @ParentSourceGUID END
+
+              IF (SELECT COUNT(*) FROM [dbo].[PackageRunLog] WHERE [Event]='3:Error' AND ExecutionGUID=@ExecutionGUID AND [SourceGUID]=@SourceGUID)=0
+              BEGIN
+              INSERT INTO [dbo].[PackageRunLog]
+              ([Package]
+              ,[Source]
+              ,[Computer]
+              ,[Operator]
+              ,[Event]
+              ,[Message]
+              ,[ExecutionGUID]
+              ,[PackageGUID]
+              ,[ParentPackageGUID]
+              ,[SourceGUID])
+              SELECT @Package
+              ,@Source
+              ,@Computer
+              ,@Operator
+              ,'2:End'
+              ,NULL
+              ,@ExecutionGUID
+              ,@PackageGUID
+              ,@ParentPackageGUID
+              ,@SourceGUID
+              END
+            </Body>
+          </StoredProc>
+        </Tasks>
+      </CustomExtensions>
+    </Table>
+    <Table Name="Metadata" ConnectionName="VulcanLog">
+      <Columns>
+        <Column Name="ID" Type="Guid" CustomType="UNIQUEIDENTIFIER" Default="NEWID()" IsNullable="false"/>
+        <Column Name="Name" Type="String" Length="255" IsNullable="false" />
+        <Column Name="Value" Type="String" Length="9999" IsNullable="true" />
+        <Column Name="IsCurrent" Type="Boolean" IsNullable="false" Default="0" />
+        <Column Name="InsertTime" Type="DateTimeOffset" CustomType="datetimeoffset" IsNullable="false" Default="SYSDATETIMEOFFSET()" />
+        <Column Name="UpdateTime" Type="DateTimeOffset" CustomType="datetimeoffset" IsNullable="false" Default="SYSDATETIMEOFFSET()" />
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK_Metadata_EntryID">
+          <Columns>
+            <Column ColumnName="ID" />
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+      <Indexes>
+        <Index Name="IX_Metadata_Name">
+          <Columns>
+            <Column ColumnName="Name" SortOrder="Asc" />
+            <Column ColumnName="IsCurrent" SortOrder="Asc" />
+            <Column ColumnName="ID"/>
+          </Columns>
+          <Leafs>
+            <Leaf ColumnName="Value"/>
+          </Leafs>
+        </Index>
+      </Indexes>
+      <CustomExtensions Name="Log-Specific-SPROC">
+        <Tasks>
+          <ExecuteSQL Name="UpdateTimeTrigger" ConnectionName="VulcanLog">
+            <Query>
+              <Body>
+                CREATE TRIGGER TR_UPDATETIME On [dbo].[Metadata]
+                FOR UPDATE
+                AS
+
+                If Not Update(UpdateTime)
+                BEGIN
+                Update MT
+                Set UpdateTime = SYSDATETIMEOFFSET()
+                From [dbo].[Metadata] MT
+                Inner Join inserted i on i.ID = MT.ID
+                END
+              </Body>
+            </Query>
+          </ExecuteSQL>
+
+          <StoredProc Name="usp_VulcanLog_WriteMetadata" ConnectionName="VulcanLog" ExecuteDuringDesignTime="false">
+            <Columns>
+              <Column Name="ID" Type="Guid" CustomType="UNIQUEIDENTIFIER" IsOutput="true" />
+              <Column Name="Name"  Type="String" Length="255" />
+              <Column Name="Value" Type="String" Length="9999" />
+              <Column Name="Commit" Type="Boolean" Default="1"/>
+            </Columns>
+            <Body>
+              BEGIN TRANSACTION
+              DECLARE @lock INT
+
+              EXEC @lock = sp_getapplock
+              @Resource=@Name,
+              @LockMode = 'Exclusive',
+              @LockOwner = 'Transaction',
+              @LockTimeout = '60000',
+              @DbPrincipal = 'public'
+
+
+              SET @ID = NEWID()
+
+              INSERT INTO [Metadata]
+              (ID, Name, Value, UpdateTime)
+              VALUES
+              (@ID, @Name, @Value, SYSDATETIMEOFFSET())
+
+              EXEC @lock = sp_releaseapplock @Resource=@Name, @DbPrincipal='public', @LockOwner='Transaction'
+
+              IF(@Commit = 1)
+              BEGIN
+
+              EXEC usp_VulcanLog_CommitMetadata @ID;
+
+              END
+
+              COMMIT
+            </Body>
+          </StoredProc>
+
+          <StoredProc Name="usp_VulcanLog_ReadMetadata" ConnectionName="VulcanLog" ExecuteDuringDesignTime="false">
+            <Columns>
+              <Column Name="Value" Type="String" Length="9999" IsOutput="true"/>
+              <Column Name="Name"  Type="String" Length="500" />
+            </Columns>
+            <Body>
+              SELECT TOP 1 @Value = [Value] FROM [Metadata]
+              WHERE
+              [Name] = @Name
+              AND
+              [IsCurrent] = 1
+              ORDER BY [UpdateTime] DESC
+            </Body>
+          </StoredProc>
+
+          <StoredProc Name="usp_VulcanLog_CommitMetadata" ConnectionName="VulcanLog" ExecuteDuringDesignTime="false">
+            <Columns>
+              <Column Name="ID" Type="Guid" CustomType="UNIQUEIDENTIFIER"/>
+            </Columns>
+            <Body>
+              BEGIN TRANSACTION
+              DECLARE @lock INT
+              DECLARE @Name NATIONAL CHARACTER VARYING (255)
+
+              SELECT @Name = [Name]
+              FROM [Metadata]
+              WHERE [ID] = @ID
+
+              EXEC @lock = sp_getapplock
+              @Resource=@Name,
+              @LockMode = 'Exclusive',
+              @LockOwner = 'Transaction',
+              @LockTimeout = '60000',
+              @DbPrincipal = 'public'
+
+              UPDATE [Metadata]
+              SET [IsCurrent] = 0
+              WHERE
+              [Name] = @Name
+              AND
+              [ID] &lt;&gt; @ID
+              AND
+              [IsCurrent] = 1
+
+              UPDATE [Metadata]
+              SET [IsCurrent] = 1
+              WHERE [ID] = @ID
+
+              EXEC @lock = sp_releaseapplock @Resource=@Name, @DbPrincipal='public', @LockOwner='Transaction'
+
+              COMMIT
+            </Body>
+          </StoredProc>
+
+          <ExecuteSQL Name="vwCurrentMetadata" ConnectionName="VulcanLog" ExecuteDuringDesignTime="false">
+            <Query>
+              <Body>
+                /****** Object:  View [dbo].[CurrentMetadata]    Script Date: 08/10/2009 17:10:25 ******/
+                IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[CurrentMetadata]'))
+                DROP VIEW [dbo].[CurrentMetadata]
+                GO
+
+                USE [VulcanLog]
+                GO
+
+                /****** Object:  View [dbo].[CurrentMetadata]    Script Date: 08/10/2009 17:10:25 ******/
+                SET ANSI_NULLS ON
+                GO
+
+                SET QUOTED_IDENTIFIER ON
+                GO
+
+                CREATE VIEW [dbo].[CurrentMetadata]
+                AS
+                SELECT ID, Name, Value, IsCurrent, InsertTime, UpdateTime, VersionNumber
+                FROM  dbo.Metadata
+                WHERE (IsCurrent = 1)
+
+                GO
+              </Body>
+            </Query>
+          </ExecuteSQL>
+        </Tasks>
+      </CustomExtensions>
+    </Table>
+  </Tables>
+</Vulcan>

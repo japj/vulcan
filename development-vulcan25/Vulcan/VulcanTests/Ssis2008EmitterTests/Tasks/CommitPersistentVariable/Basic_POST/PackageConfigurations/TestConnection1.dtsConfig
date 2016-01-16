@@ -1,0 +1,8 @@
+<DTSConfiguration>
+  <DTSConfigurationHeading>
+    <DTSConfigurationFileInfo />
+  </DTSConfigurationHeading>
+  <Configuration ConfiguredType="Property" Path="\Package.Connections[TestConnection1].Properties[ConnectionString]" ValueType="String">
+    <ConfiguredValue>Provider=SQLOLEDB;Integrated Security=SSPI;</ConfiguredValue>
+  </Configuration>
+</DTSConfiguration>

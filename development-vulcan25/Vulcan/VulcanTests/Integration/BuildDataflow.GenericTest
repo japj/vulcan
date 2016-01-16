@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="BuildDataflow" storage="c:\codeplex\development-vulcan25\tests\vulcantest\builddataflow.generictest" id="9f86de78-36d8-4982-9693-1ff661731f7e" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Command filename="%WINDIR%\Microsoft.net\Framework64\v3.5\msbuild.exe" arguments="%VULCANTESTROOT%\Dataflow\Dataflow.vproj" workingDirectory="%VULCANTESTROOT%\Dataflow" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

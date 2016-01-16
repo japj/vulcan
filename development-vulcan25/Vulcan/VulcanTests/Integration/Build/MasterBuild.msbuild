@@ -1,0 +1,7 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <UsingTask TaskName="VulcanEngine.MSBuild.VulcanTask" AssemblyFile="$(VULCAN_ROOT)\tools\vulcan\anycpu_d\VulcanEngine.dll"/>
+  <PropertyGroup>
+    <OutputPath>$(VULCAN_ROOT)\bin\Integration\</OutputPath>
+  </PropertyGroup>
+</Project>
+

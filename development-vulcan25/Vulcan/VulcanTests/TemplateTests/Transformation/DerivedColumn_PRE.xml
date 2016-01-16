@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="master" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Templates>
+    <TransformationTemplate Name="Transform1">
+      <Arguments>
+        <Argument Name="arg1"/>
+      </Arguments>
+      <Transformations>
+        <DerivedColumns Name="DC1">
+          <Columns>
+            <Column Name="new_name" Type="String" Length="140">[{$arg1$}] + &quot; new value&quot;</Column>
+          </Columns>
+        </DerivedColumns>
+      </Transformations>
+    </TransformationTemplate>
+  </Templates>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>SELECT name, schema_id, create_date FROM sys.tables</Body>
+              </Query>
+            </QuerySource>
+            <TransformationTemplateInstance TemplateName="Transform1" Name="TransformTemplate1">
+              <Arguments>
+                <Argument ArgumentName="arg1">name</Argument>
+              </Arguments>
+            </TransformationTemplateInstance>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

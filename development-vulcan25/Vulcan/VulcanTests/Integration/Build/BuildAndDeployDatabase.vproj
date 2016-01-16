@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Target Name="Build">
+    <MSBuild Projects="$(VULCAN_ROOT)\src\Warehouse\Warehouse.vproj" />
+    <Exec Command="dtexec /f $(VULCAN_ROOT)\bin\Warehouse\Driver\WarehouseDriver\WarehouseDriver.dtsx"/>
+  </Target>
+</Project>

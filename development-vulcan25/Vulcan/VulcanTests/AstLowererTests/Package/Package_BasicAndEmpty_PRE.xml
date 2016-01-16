@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="TestPackage" Type="Test"/>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <CloneTable Name="CloneDimSimpleKeyless" CloneIndexes="false" CloneKeys="false" NullClonedColumns="true" ConnectionName="DataWarehouse" TableName="DimSimple" />
+    <CloneTable Name="CloneDimSimplePerfect" CloneIndexes="true" CloneKeys="true" NullClonedColumns="false" ConnectionName="DataWarehouse" TableName="DimSimple" />
+  </Tables>
+</Vulcan>

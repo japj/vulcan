@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PhaseWorkflows DefaultWorkflow="Compile" xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanPhaseWorkflows.xsd">
+  <PhaseWorkflow Name="Compile">
+    <Phases>
+      <Phase PhaseName="XmlSchemaValidatorPhase" WorkflowUniqueName="ValidateInput"/>
+      <Phase PhaseName="XmlToAstParserPhase" WorkflowUniqueName="Parse">
+        <Parameters>
+          <Parameter Name="defaultXmlNamespace" Type="String">http://tempuri.org/vulcan2.xsd</Parameter>
+        </Parameters>
+      </Phase>
+      <Phase PhaseName="AstLowererPhase" WorkflowUniqueName="AstLowerer" />
+      <Phase PhaseName="AstLoggingPhase" WorkflowUniqueName="AstLogging" />
+      <Phase PhaseName="AstToPhysicalLoweringPhase" WorkflowUniqueName="Lower"/>
+      <Phase PhaseName="Ssis2008EmitterPhase" WorkflowUniqueName="EmitSsis"/>
+    </Phases>
+    <IRFlowVectors>
+      <IRFlowVector SourceWorkflowUniqueName="ValidateInput" SinkWorkflowUniqueName="Parse" />
+      <IRFlowVector SourceWorkflowUniqueName="Parse" SinkWorkflowUniqueName="AstLowerer" />
+      <IRFlowVector SourceWorkflowUniqueName="AstLowerer" SinkWorkflowUniqueName="AstLogging" />
+      <IRFlowVector SourceWorkflowUniqueName="AstLogging" SinkWorkflowUniqueName="Lower" />
+      <IRFlowVector SourceWorkflowUniqueName="Lower" SinkWorkflowUniqueName="EmitSsis" />
+    </IRFlowVectors>
+  </PhaseWorkflow>
+</PhaseWorkflows>

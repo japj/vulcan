@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Packages>
+        <Package Name="Test_Staging_Basic" Type="ETL">
+            <Tasks>
+                <Staging Name="TestStaging">
+                 
+                </Staging>
+            </Tasks>
+        </Package>
+    </Packages>
+</Vulcan>

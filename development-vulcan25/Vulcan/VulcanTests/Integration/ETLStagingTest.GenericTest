@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="etlstagingtest" storage="c:\codeplex\development-vulcan25\vulcan\vulcantests\integration\etlstagingtest.generictest" id="33e05cbb-2d77-4b16-b60c-a5767d210ae5" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Command filename="%PROGRAMFILES%\Microsoft SQL Server\100\DTS\Binn\DTExec.exe" arguments="/FILE %VULCAN_ROOT%\bin\Integration\ETL\ETLStagingTest\ETLStagingTest.dtsx" workingDirectory="%VULCANTESTROOT%" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

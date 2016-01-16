@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <Table Name="tblSimple" ConnectionName="DataWarehouse">
+        <Columns>
+          <Column Name="ISOLanguageCode" Type="AnsiString" Length="3" IsNullable="false"/>
+          <Column Name="ISOCountryCode" Type="AnsiString" Length="2" IsNullable="false" />
+          <Column Name="ValueString" Type="String" Length="255" IsNullable="true" />
+        </Columns>
+      <Keys>
+        <PrimaryKey Name="PK_tblSimple_ISOLanguageCode_ISOCountryCode">
+          <Columns>
+            <Column ColumnName="ISOLanguageCode" />
+            <Column ColumnName="ISOCountryCode" />
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+      <Sources>
+        <StaticSource Name="tblSimpleStatic">
+          <Rows>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="ISOLanguageCode" Value="'eng'"/>
+                <ColumnValue ColumnName="ISOCountryCode" Value="'US'"/>
+                <ColumnValue ColumnName="ValueString" Value="'US English'"/>
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="ISOLanguageCode" Value="'eng'"/>
+                <ColumnValue ColumnName="ISOCountryCode" Value="'GB'"/>
+                <ColumnValue ColumnName="ValueString" Value="'GB English'"/>
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="ISOLanguageCode" Value="'eng'"/>
+                <ColumnValue ColumnName="ISOCountryCode" Value="'VI'"/>
+                <ColumnValue ColumnName="ValueString" Value="'US Virgin Islands English'"/>
+              </ColumnValues>
+            </Row>
+          </Rows>
+        </StaticSource>
+      </Sources>
+    </Table>
+  </Tables>
+</Vulcan>

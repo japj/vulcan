@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="Principal" Type="Principal">
+      <Tasks>
+        <ExecuteSQL Name="CreateTestPrincipal1" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'TestPrincipal1')
+              CREATE LOGIN [TestPrincipal1] FROM WINDOWS
+
+              IF  NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'TestPrincipal1')
+              CREATE USER [TestPrincipal1] FOR LOGIN [TestPrincipal1]
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTestTable1" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [Column1] int NOT NULL
+              ,[Column2] int NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+        <ExecuteSQL Name="CreateTestTable1Permissions" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>GRANT SELECT ON [TestTable1] TO [TestPrincipal1]</Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

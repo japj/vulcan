@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ExecutePackage Name="ExecutePackage1" RelativePath="..\foo" />
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

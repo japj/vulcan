@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Aggregatable</Word>
+      <Word>Optionality</Word>
+      <Word>Ssas</Word>
+      <Word>Ssis</Word>
+      <Word>Non</Word>
+      <Word>Holap</Word>
+      <Word>Molap</Word>
+      <Word>Rolap</Word>
+      <Word>Str</Word>
+      <Word>Asc</Word>
+      <Word>Desc</Word>
+      <Word>Passthrough</Word>
+      <Word>Flags</Word>
+      <Word>Biml</Word>
+      <Word>Patcher</Word>
+      <Word>Nonspacing</Word>
+      <Word>Codepage</Word>
+      <Word>Etl</Word>
+      <Word>Metl</Word>
+      <Word>x</Word>
+      <Word>unreference</Word>
+      <Word>undefine</Word>
+      <Word>referenceable</Word>
+      <Word>taskflow</Word>
+      <Word>mdx</Word>
+      <Word>kpi</Word>
+      <Word>kpis</Word>
+      <Word>dsv</Word>
+      <Word>Bayes</Word>
+      <Word>Discretization</Word>
+      <Word>Lcid</Word>
+    </Recognized>
+  </Words>
+</Dictionary>

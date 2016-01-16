@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Provider="SQLNCLI10" Server="localhost" Database="master"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>
+                  SELECT name, schema_id, create_date FROM sys.tables
+                </Body>
+              </Query>
+            </QuerySource>
+            <DerivedColumns Name="DerivedColumn1" DefaultErrorRowDisposition="IgnoreFailure">
+              <Columns>
+                <Column Name="NewName" Type="String" Length="138">[name] + &quot; New Value&quot;</Column>
+              </Columns>
+            </DerivedColumns>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

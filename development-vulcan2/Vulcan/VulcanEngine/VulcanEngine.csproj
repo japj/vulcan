@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{68775410-5104-407B-B552-6703EE4158EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VulcanEngine</RootNamespace>
+    <AssemblyName>VulcanEngine</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\tools\vulcan\anycpu_d\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\tools\vulcan\anycpu\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\tools\vulcan\x86_d\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\tools\vulcan\x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v3.5">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SDK\EnterpriseLibrary\4.1\Bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SDK\EnterpriseLibrary\4.1\Bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SDK\EnterpriseLibrary\4.1\Bin\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AppDomainFusionExtension.cs" />
+    <Compile Include="Common\Severity.cs" />
+    <Compile Include="Common\Message.cs" />
+    <Compile Include="Common\IRUtility.cs" />
+    <Compile Include="Common\PathManager.cs" />
+    <Compile Include="Common\PluginLoader.cs" />
+    <Compile Include="Common\TypeConverter.cs" />
+    <Compile Include="Common\ValidationItem.cs" />
+    <Compile Include="Extensions\VulcanExtensions.cs" />
+    <Compile Include="IR\Ast\AstBindingAttribute.cs" />
+    <Compile Include="IR\Ast\AstDefaultXmlNamespaceBindingAttribute.cs" />
+    <Compile Include="IR\Ast\AstIncludedFileNode.cs" />
+    <Compile Include="IR\Ast\AstIR.cs" />
+    <Compile Include="IR\Ast\AstNode.cs" />
+    <Compile Include="IR\Ast\AstRootNode.cs" />
+    <Compile Include="IR\Ast\AstSchemaTypeBindingAttribute.cs" />
+    <Compile Include="IR\Ast\AstScopeBoundaryAttribute.cs" />
+    <Compile Include="IR\Ast\AstWalker.cs" />
+    <Compile Include="IR\Ast\AstXNameBindingAttribute.cs" />
+    <Compile Include="IR\Ast\Connection\AstConnectionNode.cs" />
+    <Compile Include="IR\Ast\AstNamedNode.cs" />
+    <Compile Include="IR\Ast\Cube\AstActionNode.cs" />
+    <Compile Include="IR\Ast\Cube\AstCubeNode.cs" />
+    <Compile Include="IR\Ast\Cube\AstDimensionUsageNode.cs" />
+    <Compile Include="IR\Ast\Cube\AstKpiNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstDataMiningRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstFactRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstManyToManyRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstNoRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstReferencedRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstRegularRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\DimensionUsageRelationshipType\AstRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Cube\IAstActionNode.cs" />
+    <Compile Include="IR\Ast\DimensionInstance\AstDimensionInstanceAttributeNode.cs" />
+    <Compile Include="IR\Ast\DimensionInstance\AstDimensionInstanceHierarchyNode.cs" />
+    <Compile Include="IR\Ast\DimensionInstance\AstDimensionInstanceNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstAttributeColumnNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstAttributeNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstAttributeRelationshipNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstDimensionHierarchyLevelNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstDimensionHierarchyNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstDimensionNamedBaseNode.cs" />
+    <Compile Include="IR\Ast\Dimension\AstDimensionNode.cs" />
+    <Compile Include="IR\Ast\Fact\AstFactNode.cs" />
+    <Compile Include="IR\Ast\IPackageRootNode.cs" />
+    <Compile Include="IR\Ast\MeasureGroup\AstMeasureGroupNode.cs" />
+    <Compile Include="IR\Ast\MeasureGroup\AstMeasureNode.cs" />
+    <Compile Include="IR\Ast\Ssas\SsasEnums.cs" />
+    <Compile Include="IR\Ast\Table\AstTableKeyNode.cs" />
+    <Compile Include="IR\Ast\Table\AstTableLookupNode.cs" />
+    <Compile Include="IR\Ast\Table\AstTableDataValidationNode.cs" />
+    <Compile Include="IR\Ast\Task\AstStoredProcNode.cs" />
+    <Compile Include="IR\Ast\Table\AstTableColumnNode.cs" />
+    <Compile Include="IR\Ast\Table\AstTableIndexNode.cs" />
+    <Compile Include="IR\Ast\Table\AstTableNode.cs" />
+    <Compile Include="IR\Ast\Table\AstTableSourceNode.cs" />
+    <Compile Include="IR\Ast\Task\AstContainerTaskNode.cs" />
+    <Compile Include="IR\Ast\Task\AstETLRootNode.cs" />
+    <Compile Include="IR\Ast\Task\AstExecutePackageTaskNode.cs" />
+    <Compile Include="IR\Ast\Task\AstExecuteSQLTaskNode.cs" />
+    <Compile Include="IR\Ast\Task\AstPackageNode.cs" />
+    <Compile Include="IR\Ast\Task\AstTaskNode.cs" />
+    <Compile Include="IR\Ast\Task\AstVariableNode.cs" />
+    <Compile Include="IR\Ast\Task\AstStagingContainerTaskNode.cs" />
+    <Compile Include="IR\Ast\Task\AstMergeTaskNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstAutoNullPatcherNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstConditionalSplitNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstDataFlowColumnMappingNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstDataFlowNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstDerivedColumnNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstDestinationNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstETLInputPathNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstETLOutputPathNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstIsNullPatcherNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstLookupNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstOleDbCommandNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstSortNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstSourceNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstTermLookupNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstTransformationNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstUnionAllNode.cs" />
+    <Compile Include="IR\Ast\Transformation\AstTransformationBlockNode.cs" />
+    <Compile Include="IR\IIR.cs" />
+    <Compile Include="IR\XmlIR.cs" />
+    <Compile Include="Kernel\PhaseExecutionHost.cs" />
+    <Compile Include="Kernel\PhasePluginLoader.cs" />
+    <Compile Include="Kernel\PhaseWorkflow.cs" />
+    <Compile Include="Kernel\PhaseWorkflowLoader.cs" />
+    <Compile Include="MSBuild\VulcanTask.cs" />
+    <Compile Include="Phases\IPhase.cs" />
+    <Compile Include="Phases\Parser\AstParserScopeManager.cs" />
+    <Compile Include="Phases\PhaseFriendlyNameAttribute.cs" />
+    <Compile Include="Phases\AdvancedFeaturesPhase.cs" />
+    <Compile Include="Phases\XmlSchemaValidatorPhase.cs" />
+    <Compile Include="Phases\Parser\XmlToAstParserPhase.cs" />
+    <Compile Include="Phases\XmlXsltTransformPhase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\XmlXsltTransformPhase.XsltTransforms\XSLImport.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VulcanPhaseWorkflows.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Content\xsd\Values_Connection.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\xsd\Values_Dimension.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\xsd\Values_DimensionInstance.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\xsd\Values_MeasureGroup.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\xsd\Values_Owner.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\xsd\vulcan2.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\xsd\VulcanPhaseWorkflows.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\XmlToAstParserPhase.AstPlugins\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /e /f /y "$(TargetDir)Content" "$(TargetDir)"
+del /s /q "$(TargetDir)Content"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

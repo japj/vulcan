@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Templates xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanTemplate.xsd">
+  <Template Name="Merge">
+    <Map Source="Source" Index="0"/>
+    <Map Source="Target" Index="1"/>
+    <Map Source="Join" Index="2"/>
+    <Map Source="NotEqualCheck" Index="3"/>
+    <Map Source="Update" Index="4"/>
+    <Map Source="InsertParam" Index="5"/>
+    <Map Source="InsertValue" Index="6"/>
+    <Map Source="QueryHints" Index="7"/>
+    <TemplateData>
+      MERGE {1} {7} AS TARGET
+      USING (SELECT * FROM {0}) AS SOURCE
+      ON ({2})
+      WHEN MATCHED
+      {3}
+      THEN UPDATE SET
+      {4}
+      WHEN NOT MATCHED BY TARGET THEN
+      INSERT ({5}) VALUES ({6});
+    </TemplateData>
+  </Template>
+
+  <Template Name="MergeWithoutUpdate">
+    <Map Source="Source" Index="0"/>
+    <Map Source="Target" Index="1"/>
+    <Map Source="Join" Index="2"/>
+    <Map Source="InsertParam" Index="3"/>
+    <Map Source="InsertValue" Index="4"/>
+    <Map Source="QueryHints" Index="5"/>
+    <TemplateData>
+      MERGE {1} {5} AS TARGET
+      USING (SELECT * FROM {0}) AS SOURCE
+      ON ({2})
+      WHEN NOT MATCHED BY TARGET THEN
+      INSERT ({3}) VALUES ({4});
+    </TemplateData>
+  </Template>
+
+  <Template Name="DropStagingTable">
+    <Map Source="CreateAs" Index="0"/>
+    <TemplateData>
+      IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'{0}') AND type IN (N'U'))
+      DROP TABLE {0}
+      GO
+    </TemplateData>
+  </Template>
+
+  <Template Name="ForeignKeyConstraintTemplate">
+    <Map Source="TableName" Index="0"/>
+    <Map Source="ConstraintName" Index="1"/>
+    <Map Source="Column" Index="2"/>
+    <Map Source="ForeignKeyTable" Index="3"/>
+    <Map Source="ForeignKeyColumn" Index="4"/>
+    <TemplateData>
+ALTER TABLE {0} WITH CHECK ADD CONSTRAINT {1} FOREIGN KEY({2})
+REFERENCES {3} ({4})
+GO
+
+ALTER TABLE {0} CHECK CONSTRAINT {1}
+GO
+
+    </TemplateData>
+  </Template>
+  <Template Name="NullPatcherIsnullTemplate">
+    <TemplateData>[ISNULL]({0}) ? {1} : {0}</TemplateData>
+  </Template>
+  
+  <Template Name="SimpleSelect">
+    <Map Source="Table" Index="0"/>
+    <Map Source="Columns" Index="1"/>
+    <TemplateData>SELECT {1} FROM {0}</TemplateData>
+  </Template>
+
+  <Template Name="SimpleInsert">
+      <Map Source="Table" Index="0"/>
+      <Map Source="Columns" Index="1"/>
+      <Map Source="Values" Index="2"/>
+      <TemplateData>INSERT INTO {0}({1}) VALUES ({2})</TemplateData>
+    </Template>
+
+  <Template Name="SimpleUpdate">
+    <Map Source="Table" Index="0"/>
+    <Map Source="ColumnValuePairs" Index="1"/>
+    <TemplateData>UPDATE {0} SET {1}</TemplateData>
+  </Template>
+    
+  <Template Name="SimpleWhere">
+    <Map Source="ColumnValuePairs" Index="0"/>
+    <TemplateData>WHERE {0}</TemplateData>
+</Template>
+  <Template Name="ConstraintTemplate">
+    <Map Source="ConstraintName" Index="0"/>
+    <Map Source="Clustered" Index="1"/>
+    <Map Source="Columns" Index="2"/>
+    <Map Source="Options" Index="3"/>
+    <Map Source="PrimaryKey" Index="4"/>
+    <TemplateData>
+CONSTRAINT {0} {4} {1}
+(
+  {2}) {3} ON [PRIMARY]</TemplateData>
+  </Template>
+  <Template Name="CreateIndex">
+    <TemplateData>
+      CREATE {0} {1} INDEX {2} ON {3}
+      (
+      {4}
+      )
+      {6}
+      WITH
+      (
+      {5}
+      )
+      ON [PRIMARY]
+      GO
+      
+    </TemplateData>
+  </Template>
+<Template Name="StoredProc">
+  <Map Index="0" Source="Name"/>
+  <Map Index="1" Source="Columns"/>
+  <Map Index="2" Source="Body"/>
+  <TemplateData>
+    SET ANSI_NULLS ON
+    SET QUOTED_IDENTIFIER ON
+    GO
+
+    IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{0}') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {0}
+    GO
+
+    CREATE PROCEDURE {0}
+    {1}
+    AS
+    BEGIN
+    {2}
+    END
+    GO
+  </TemplateData>
+</Template>
+
+  <Template Name="CreateTable">
+    <Map Source="Name" Index="0"/>
+    <Map Source="Columns" Index="1"/>
+    <Map Source="Constraints" Index="2"/>
+    <Map Source="CompressionType" Index="3"/>
+    <TemplateData>
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+GO
+
+-------------------------------------------------------------------
+IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'{0}') AND type IN (N'U'))
+DROP TABLE {0}
+GO
+
+CREATE TABLE {0}
+(
+-- Columns Definition
+{1}
+-- Constraints
+{2}
+)
+ON [PRIMARY]
+WITH (DATA_COMPRESSION = {3})
+GO
+
+-------------------------------------------------------------------</TemplateData>
+</Template>
+  <Template Name="LogStart">
+    <Map Source="ParentLogID" Index="0"/>
+    <Map Source="ETLName" Index="1"/>
+    <Map Source="TaskName" Index="2"/>
+    <Map Source="VarScope" Index="3"/>
+    <TemplateData>
+      &quot;
+      EXECUTE [sp_LogStart]
+      {0}
+      ,{1}
+      ,{2}
+      ,{3}
+      ,? OUTPUT
+      ,? OUTPUT
+      ,? OUTPUT
+      &quot;
+    </TemplateData>
+  </Template>
+  
+  <Template Name="LogEnd">
+    <TemplateData>
+      &quot; EXECUTE [sp_LogEnd] ?&quot;
+    </TemplateData>
+  </Template>
+
+    <Template Name="LogPrepareToSetValue">
+        <Map Source="LogID" Index="0"/>
+        <TemplateData>
+            &quot;
+            DECLARE @LocalLogID INT;
+            SET @LocalLogID = ?;
+            &quot;
+        </TemplateData>
+    </Template>
+
+    <Template Name="LogSetValue">
+    <Map Source="LogID" Index="0"/>
+    <Map Source="Scope" Index="1"/> 
+    <Map Source="Var" Index="2"/>
+    <Map Source="Value" Index="3"/>
+    <TemplateData>
+      &quot; EXECUTE [sp_LogSetValue] @LocalLogID,'&quot; + &quot;{1}&quot; + &quot;','&quot; + &quot;{2}&quot; + &quot;', ? ;&quot;
+    </TemplateData>
+  </Template>
+
+  <Template Name="LogGetPredefinedValues">
+    <TemplateData>
+      &quot;
+      DECLARE @LocalLogID INT;
+      SET @LocalLogID = ?;
+      EXECUTE [sp_LogGetValues]
+      @LocalLogID
+      ,? OUTPUT
+      ,? OUTPUT
+      ,? OUTPUT
+      ,? OUTPUT
+      &quot;
+    </TemplateData>
+  </Template>
+
+    <Template Name="LogGetValue">
+        <Map Source="LogID" Index="0"/>
+        <Map Source="Scope" Index="1"/>
+        <Map Source="Var" Index="2"/>
+        <TemplateData>
+            &quot; EXECUTE [sp_LogGetValue] @LocalLogID,'&quot; + &quot;{1}&quot; + &quot;','&quot; + &quot;{2}&quot; + &quot;',? OUTPUT&quot;
+        </TemplateData>
+    </Template>
+
+    <Template Name="LogSelectQuery">
+    <Map Source="Source" Index="0"/>
+    <Map Source="Destination" Index="1"/>
+    <Map Source="Table" Index="2"/>
+    <Map Source="Status" Index="3"/>
+    <Map Source="Notes" Index="4"/>
+    <Map Source="SourceConvertStyle" Index="5"/>
+    <Map Source="DestinationConvertStyle" Index="6"/>
+    <TemplateData>
+      IF NOT EXISTS
+      (
+      SELECT TOP(1) {0},{1} FROM {2}
+      )
+      BEGIN
+      SELECT '-1','-1','{3}','{4}'
+      END
+      ELSE
+      BEGIN
+      SELECT
+      (SELECT TOP(1) CONVERT(nvarchar(255),{0},{5})FROM {2} ORDER BY {0} DESC) AS Source
+      ,(SELECT TOP(1) CONVERT(nvarchar(255),{1},{6})FROM {2} ORDER BY {1} DESC) AS Destination
+      ,'{3}'
+      ,'{4}'
+      END
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreatePrincipalDatabaseRole">
+    <Map Source="Name" Index="0"/>
+    <TemplateData>
+      IF  NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'{0}' AND type = 'R')
+      CREATE ROLE [{0}]
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreatePrincipalApplicationRole">
+    <Map Source="Name" Index="0"/>
+    <TemplateData>
+      IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'{0}' AND type = 'A')
+      CREATE APPLICATION ROLE [{0}] WITH PASSWORD = 'D3t3g0Vulc4n!'
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreatePrincipalSqlUser">
+    <Map Source="Name" Index="0"/>
+    <TemplateData>
+      IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'{0}')
+      CREATE LOGIN [{0}] WITH PASSWORD=N'{0}'
+
+      IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'{0}')
+      CREATE USER [{0}] FOR LOGIN [{0}]
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreatePrincipalWindowsUser">
+    <Map Source="Name" Index="0"/>
+    <TemplateData>
+      IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'{0}')
+      CREATE LOGIN [{0}] FROM WINDOWS
+
+      IF  NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'{0}')
+      CREATE USER [{0}] FOR LOGIN [{0}]
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreateSchema">
+    <Map Source="Name" Index="0"/>
+    <TemplateData>
+      DECLARE @x nvarchar(4000);
+      SET @x = 'CREATE SCHEMA [{0}];';
+      IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'{0}')
+      EXEC(@x);
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreateTablePermission">
+    <Map Source="Action" Index="0"/>
+    <Map Source="Target" Index="1"/>
+    <Map Source="TableName" Index="2"/>
+    <Map Source="PrincipalName" Index="3"/>
+    <TemplateData>
+      {0} {1} ON {2} TO [{3}]
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreateTableColumnPermission">
+    <Map Source="Action" Index="0"/>
+    <Map Source="Target" Index="1"/>
+    <Map Source="TableName" Index="2"/>
+    <Map Source="ColumnName" Index="3"/>
+    <Map Source="PrincipalName" Index="4"/>
+    <TemplateData>
+      {0} {1} ON {2}([{3}]) TO [{4}]
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreateSchemaPermission">
+    <Map Source="Action" Index="0"/>
+    <Map Source="Target" Index="1"/>
+    <Map Source="TableName" Index="2"/>
+    <Map Source="PrincipalName" Index="4"/>
+    <TemplateData>
+      {0} {1} ON SCHEMA::[{2}] TO [{3}]
+    </TemplateData>
+  </Template>
+
+  <Template Name="CreateStoredProcedurePermission">
+    <Map Source="Action" Index="0"/>
+    <Map Source="Target" Index="1"/>
+    <Map Source="StoredProcedureName" Index="2"/>
+    <Map Source="PrincipalName" Index="3"/>
+    <TemplateData>
+      {0} {1} ON [{2}] TO [{3}]
+      GO
+    </TemplateData>
+  </Template>
+</Templates>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1" />
+    <CloneTable Name="TestTableClone" ConnectionName="TestConnection1" TableName="TestTable1" />
+  </Tables>
+</Vulcan>

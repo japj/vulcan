@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" Server="localhost" Database="tempdb" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Tables>
+    <Table Name="TestTable" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" ScdType="Key"/>
+        <Column Name="Column2" Type="Int32" ScdType="Historical" />
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+    </Table>
+  </Tables>
+  <Packages>
+    <Package Name="Test_AstLower_Scd_Package" Type="ETL">
+      <Tasks>
+        <ETL Name="Test_AstLower_Scd_Etl">
+          <Transformations>
+            <QuerySource Name="QuerySource" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body>
+                  SELECT 1 AS Column1, 2 AS Column2
+                </Body>
+              </Query>
+            </QuerySource>
+            <Destination Name="ScdDestination" TableName="TestTable" />
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

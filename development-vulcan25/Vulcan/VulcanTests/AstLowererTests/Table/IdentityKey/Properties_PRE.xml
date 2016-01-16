@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" />
+        <Column Name="Column2" Type="Int32" />
+      </Columns>
+      <Keys>
+        <Identity Name="IK_Basic">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        
+        <Identity Name="IK_Clustered_False" Clustered="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_Clustered_True" Clustered="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_IgnoreDupKey_False" IgnoreDupKey="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_IgnoreDupKey_True" IgnoreDupKey="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_PadIndex_False" PadIndex="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_PadIndex_True" PadIndex="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_Unique_False" Unique="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_Unique_True" Unique="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_Seed1" Seed="1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_Seed5" Seed="5">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        
+        <Identity Name="IK_Increment1" Increment="1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_Increment5" Increment="5">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_Seed5_Increment5" Seed="5" Increment="5">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_Unique_False" Unique="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_Unique_True" Unique="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+
+        <Identity Name="IK_All_False" Clustered="false" DropExisting="false" IgnoreDupKey="false" Online="false" PadIndex="false" SortInTempdb="false" Unique="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+        <Identity Name="IK_All_True" Clustered="true" DropExisting="true" IgnoreDupKey="true" Online="true" PadIndex="true" SortInTempdb="true" Unique="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+      </Keys>
+    </Table>
+  </Tables>
+</Vulcan>

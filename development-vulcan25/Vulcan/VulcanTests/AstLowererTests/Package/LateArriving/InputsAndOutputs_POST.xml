@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB"/>
+  </Connections>
+  <Packages>
+    <Package Name="Test_AstLower_LateArriving" Type="ETL">
+      <Tasks>
+        <ETL Name="Test_AstLower_LateArriving">
+          <Transformations>
+            <QuerySource Name="QuerySource" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body>
+                  SELECT 1 AS TestColumn1, 0 AS TestColumn2
+                </Body>
+              </Query>
+            </QuerySource>
+            <Lookup Name="Lookup1" ConnectionName="TestConnection1">
+              <Query>
+                <Body>
+                  SELECT Column1,ColumnX FROM TestTable
+                </Body>
+              </Query>
+              <InputPath OutputPathName="QuerySource.Output"/>
+              <Inputs>
+                <Input LocalColumnName="TestColumn1" RemoteColumnName="Column1"/>
+              </Inputs>
+              <Outputs>
+                <Output LocalColumnName="TestColumn2" RemoteColumnName="ColumnX"/>
+              </Outputs>
+            </Lookup>
+            <OleDBCommand Name="OleDbCommand1" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body>INSERT INTO TestTable(Column1,_LateArrived) VALUES (0,NULL)</Body>
+              </Query>
+              <InputPath OutputPathName="Lookup1.NoMatch"/>
+            </OleDBCommand>
+            <UnionAll Name="UnionAll">
+              <InputPaths>
+                <InputPath OutputPathName="Lookup1.Match"/>
+                <InputPath OutputPathName="OleDbCommand1.Output"/>
+              </InputPaths>
+            </UnionAll>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+    <Package Name="Create Table" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable]') AND type IN (N'U'))
+              DROP TABLE [TestTable]
+              GO
+
+              CREATE TABLE [TestTable]
+              (
+              -- Columns Definition
+              [Column1] int NOT NULL
+              ,[_LateArrived] datetime2(7)
+              ,[_IsLate] AS _LateArrived IS NOT NULL PERSISTED NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [PK1] PRIMARY KEY CLUSTERED
+              (
+              [Column1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

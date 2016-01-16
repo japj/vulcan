@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="ETLLookupTest" Type="ETL" ConstraintMode="Linear">
+      <Tasks>
+        <Container Name="LookupTest" ConstraintMode="Linear">
+          <Tasks>
+            <Staging Name="SimpleStaging" ConstraintMode="Linear">
+              <Tables>
+                <CloneTable Name="_Staging_tblTestPropertyBag" TableName="tblTestPropertyBag" ConnectionName="Staging" NullClonedColumns="true">
+                </CloneTable>
+              </Tables>
+              <Tasks>
+                <ETL Name="ETLLookupTest" DelayValidation="true">
+                  <Transformations>
+                    <QuerySource ConnectionName="DataWarehouse" Name="FactSourceEnglishUS">
+                      <Query>
+                        <Body>
+                          SELECT
+                          'eng' as ISOLanguageCode,
+                          'US' as ISOCountryCode,
+                          ValueString + '-US' AS [Product]
+                          FROM FactSimple
+                        </Body>
+                      </Query>
+                    </QuerySource>
+
+                    <QuerySource ConnectionName="DataWarehouse" Name="FactSourceEnglishGB">
+                      <Query>
+                        <Body>
+                          SELECT
+                          'eng' as ISOLanguageCode,
+                          'GB' as ISOCountryCode,
+                          ValueString + '-GB' AS [Product]
+                          FROM FactSimple
+                        </Body>
+                      </Query>
+                    </QuerySource>
+
+                    <UnionAll Name="Union FactSourceEnglishUS and FactSourceEnglishGB">
+                      <InputPaths>
+                        <InputPath OutputPathName="FactSourceEnglishUS.Output" />
+                        <InputPath OutputPathName="FactSourceEnglishGB.Output" />
+                      </InputPaths>
+                    </UnionAll>
+
+                    <Lookup Name="Lookup Country Code USA Only" ConnectionName="DataWarehouse">
+                      <Query QueryType="Expression">
+                        <Body>
+                          "
+                          SELECT
+                          ISOLanguageCode AS [ISOLanguageCode_lookup],
+                          ISOCountryCode,
+                          ValueString as [LanguageDescription]
+                          from tblSimple
+                          WHERE ISOCountryCode = 'US'
+                          "
+                        </Body>
+                      </Query>
+                      <Inputs>
+                        <!-- 
+                        Test both Remapped bindings (i.e. column with _lookup appended) 
+                        and name-matches-binding 
+                      -->
+                        <Input LocalColumnName="ISOLanguageCode" RemoteColumnName="ISOLanguageCode_Lookup"/>
+                        <Input LocalColumnName="ISOCountryCode" RemoteColumnName="ISOCountryCode" />
+                      </Inputs>
+                      <Outputs>
+                        <Output LocalColumnName="LanguageDescription" RemoteColumnName="LanguageDescription" />
+                      </Outputs>
+                    </Lookup>
+
+                    <Lookup Name="Lookup Country Code GB Only" ConnectionName="DataWarehouse">
+                      <InputPath OutputPathName="Lookup Country Code USA Only.NoMatch" />
+                      <Query QueryType="Standard">
+                        <Body>
+                          SELECT
+                          ISOLanguageCode AS [ISOLanguageCode_lookup],
+                          ISOCountryCode,
+                          ValueString as [LanguageDescription]
+                          from tblSimple
+                          WHERE ISOCountryCode = 'GB'
+                        </Body>
+                      </Query>
+                      <Inputs>
+                        <!-- 
+                        Test both Remapped bindings (i.e. column with _lookup appended) 
+                        and name-matches-binding 
+                      -->
+                        <Input LocalColumnName="ISOLanguageCode" RemoteColumnName="ISOLanguageCode_Lookup"/>
+                        <Input LocalColumnName="ISOCountryCode" RemoteColumnName="ISOCountryCode" />
+                      </Inputs>
+                      <Outputs>
+                        <Output LocalColumnName="LanguageDescription" RemoteColumnName="LanguageDescription" />
+                      </Outputs>
+                    </Lookup>
+
+                    <UnionAll Name="Union Lookups">
+                      <InputPaths>
+                        <InputPath OutputPathName="Lookup Country Code USA Only.Match" />
+                        <InputPath OutputPathName="Lookup Country Code GB Only.Match" />
+                      </InputPaths>
+                    </UnionAll>
+                    <Destination Name="tblLookupTest" TableName="_Staging_tblTestPropertyBag" AccessMode="Table">
+                      <Mappings>
+                        <Mapping SourceName="Product" TargetName="A" />
+                        <Mapping SourceName="LanguageDescription" TargetName="B" />
+                      </Mappings>
+                    </Destination>
+                  </Transformations>
+                </ETL>
+                <Container Name="Check Lookup Correctness">
+                  <Tasks>
+                    <ExecuteSQL Name="Check US Lookup" ConnectionName="Staging">
+                      <Query>
+                        <Body>
+                          IF
+                          (SELECT COUNT(*) FROM dbo._Staging_tblTestPropertyBag WHERE A LIKE '%-US' AND B = 'US English')
+                          !=
+                          (SELECT COUNT(*) FROM dbo._Staging_tblTestPropertyBag WHERE A LIKE '%-US')
+                          RAISERROR(N'LOOKUP TEST FAILED: -US Products do not have the US English LanguageDescription',18,1)
+                        </Body>
+                      </Query>                      
+                    </ExecuteSQL>
+                    <ExecuteSQL Name="Check GB Lookup" ConnectionName="Staging">
+                      <Query>
+                        <Body>
+                          IF
+                          (SELECT COUNT(*) FROM dbo._Staging_tblTestPropertyBag WHERE A LIKE '%-GB' AND B = 'GB English')
+                          !=
+                          (SELECT COUNT(*) FROM dbo._Staging_tblTestPropertyBag WHERE A LIKE '%-GB')
+                          RAISERROR(N'LOOKUP TEST FAILED: -GB Products do not have the GB English LanguageDescription',18,1)
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+                    <ExecuteSQL Name="Check Overall Count" ConnectionName="Staging">
+                      <Query>
+                        <Body>
+                          IF
+                          (SELECT COUNT(*) FROM dbo._Staging_tblTestPropertyBag)&lt;= 0
+                          RAISERROR(N'LOOKUP TEST FAILED: Staging table does not contain any rows! Check Static Sources.',18,1)
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+                  </Tasks>
+                </Container>
+              </Tasks>
+            </Staging>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

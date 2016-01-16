@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="..\Build\MasterBuild.msbuild"/>
+  <Target Name="Build">
+    <MSBuild Projects="..\Tables\Tables.vproj" />
+    <Exec Command="dtexec /f $(OutputPath)\Driver\TestTableDriver\TestTableDriver.dtsx" />
+  </Target>
+</Project>

@@ -1,0 +1,10 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <ItemGroup>
+	<Compile Include="Tables\tables.vproj"/>
+	<Compile Include="ETL\ETL.vproj"/>
+  </ItemGroup>
+  <Target Name="Build">
+    <MSBuild Projects="%(Compile.FullPath)"/>
+  </Target>
+</Project>
+

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages> 
+    <Package Name="TestPrincipal" Type="Principal">
+      <Tasks>
+        <ExecuteSQL Name="CreatePrincipal" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'TestWindowsUser')
+              CREATE LOGIN [TestWindowsUser] FROM WINDOWS
+
+              IF  NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'TestWindowsUser')
+              CREATE USER [TestWindowsUser] FOR LOGIN [TestWindowsUser]
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

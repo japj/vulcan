@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VulcanConfig xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanConfig.xsd">
+  <Name>Test</Name>
+  <Description>Test</Description>
+  <Package Name="Test" PackageType="ETL">
+    <Template Name="BasicConfiguration" Comment="Test"/>
+    <Patterns>
+      <Logtainer Connection="DataWarehouse" Name="ETLNetAgent" PreviousLogEntryVariablePrefix="varETL">
+        <Container Name="DoTheEtl" ConstraintMode="Linear">
+          <Logtainer Connection="DataWarehouse" Name="DoTheETL" PreviousLogEntryVariablePrefix="varVito" DestinationColumn="Log2ID" SourceColumn="LogID" Table="Log2" TableConnection="DataWarehouse">
+            <LogUpdate FirstOrLast="First" Notes="Whee!" />
+            <ETL Name="DoTheETL">
+              <SourceConnection Name="DataWarehouse"/>
+              <Query>
+                SELECT * FROM [LOG] WHERE EndTime IS NOT NULL AND LogID > CAST(? AS int)
+              </Query>
+              <Parameter Name="Parameter_0" VariableName="varVitoLastSourceRecord"/>
+              <Destination Name="Log2" Table="Log2" ConnectionName="DataWarehouse">
+              </Destination>
+            </ETL>
+            <LogUpdate FirstOrLast="Last" Notes="Whee!" Status="Success"/>
+          </Logtainer>
+        </Container>
+      </Logtainer>
+    </Patterns>
+  </Package>
+</VulcanConfig>

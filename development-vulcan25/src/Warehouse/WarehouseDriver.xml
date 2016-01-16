@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Packages>
+        <Package Name="WarehouseDriver" Type="Driver">
+            <Tasks>
+                <Container Name="VulcanDataWarehouse Creation" ConstraintMode="Linear" TransactionMode="NoTransaction">
+                    <Tasks>
+                        <Container Name="Vulcan Database">
+                            <Tasks>
+                                <ExecutePackage Name="VulcanDataWarehouse" RelativePath="Warehouse\VulcanDataWarehouse\VulcanDataWarehouse.dtsx" />
+                            </Tasks>
+                        </Container>
+                        <Container Name="Vulcan Logging System">
+                            <Tasks>
+                                <ExecutePackage Name="VulcanLogDatabase" RelativePath="Warehouse\VulcanLog\VulcanLog.dtsx" />
+                                <ExecutePackage Name="VulcanLogTables" RelativePath="Tables\PackageRunLog\PackageRunLog.dtsx" />
+                            </Tasks>
+                        </Container>
+                        <Container Name="Vulcan Staging">
+                            <Tasks>
+                                <ExecutePackage Name="VulcanStaging" RelativePath="Warehouse\VulcanStaging\VulcanStaging.dtsx" />
+                                <ExecutePackage Name="VulcanTransient" RelativePath="Warehouse\VulcanTransient\VulcanTransient.dtsx" />
+                                <ExecutePackage Name="FakeDataSource" RelativePath="Warehouse\FakeDataSource\FakeDataSource.dtsx" />
+                                <ExecutePackage Name="Stg_FakeDataSource" RelativePath="Warehouse\Stg_FakeDataSource\Stg_FakeDataSource.dtsx" />
+                            </Tasks>
+                        </Container>
+                    </Tasks>
+                </Container>
+            </Tasks>
+        </Package>
+    </Packages>
+</Vulcan>

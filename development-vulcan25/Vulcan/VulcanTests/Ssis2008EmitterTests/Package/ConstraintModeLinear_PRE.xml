@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <!--Container ConstraintMode=Linear-->
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL" ConstraintMode="Linear">
+      <Tasks>
+        <ETL Name="TestETL1"/>
+        <ETL Name="TestETL2"/>
+        <ETL Name="TestETL3"/>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

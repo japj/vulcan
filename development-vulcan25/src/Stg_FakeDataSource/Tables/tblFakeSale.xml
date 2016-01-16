@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <Table Name="tblFakeSale" ConnectionName="Stg_FakeDataSource" CompressionType="Page">
+      <Columns>
+        <Column Name="ID" Type="Int64" IsNullable="false" />
+        <TableReference Name="FakeCustomerID" TableName="tblFakeCustomer" EnforceForeignKeyConstraint="false"/>
+        <Column Name="SaleAmount" Type="Decimal" IsNullable="false"/>
+        <Column Name="SaleTime" Type="Custom" CustomType="datetimeoffset" IsNullable="false"/>
+        <Column Name="InsertTime" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+        <Column Name="UpdateTime" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+
+        <Column Name="_InsertTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+        <Column Name="_UpdateTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK_tblFakeSale_ID">
+          <Columns>
+            <Column ColumnName="ID"/>
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+    </Table>
+
+    <CloneTable Name="_Staging_tblFakeSale" TableName="tblFakeSale" ConnectionName="Stg_FakeDataSource" CloneKeys="false"/>
+  </Tables>
+</Vulcan>

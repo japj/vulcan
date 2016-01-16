@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="TestPackage" Type="Test">
+      <Tasks>
+        <RetryContainer Name="Retry1" BreakOnError="false" RetryCount="3">
+          <Tasks>
+            <Container Name="Container1"/>
+          </Tasks>
+        </RetryContainer>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

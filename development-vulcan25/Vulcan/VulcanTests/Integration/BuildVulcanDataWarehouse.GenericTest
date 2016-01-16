@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="BuildVulcanDataWarehouse" storage="c:\codeplex\development-vulcan25\vulcan\vulcantests\integration\buildvulcandatawarehouse.generictest" id="14a9059e-75b4-4d6d-bb50-378aff5e067a" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Execution id="e33e9cde-0de1-44f2-835e-84956576fccf" />
+  <Command filename="%WINDIR%\Microsoft.net\Framework64\v3.5\msbuild.exe" arguments="%VULCANTESTROOT%\Build\BuildAndDeployDatabase.vproj" workingDirectory="%VULCANTESTROOT%\Build" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

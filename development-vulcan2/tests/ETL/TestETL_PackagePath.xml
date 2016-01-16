@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Package Name="BasicETL" Type="Dimension">
+        <ExecuteSQL ConnectionName="DataWarehouse" Name="TestSQL">
+            <Body>
+                SELECT 1 AS Foo
+            </Body>
+        </ExecuteSQL>
+    </Package>
+</Vulcan>

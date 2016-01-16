@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <UsingTask TaskName="VulcanEngine.MSBuild.VulcanTask" AssemblyFile="..\..\tools\vulcan\anycpu\VulcanEngine.dll" />
+  <ItemGroup>
+    <Sources Include="*.xml"/>
+    <Includes Include="..\..\Connections\DataWarehouse.xml" />
+    <PackageConfigurations Include="..\..\bin\PackageConfigurations\*.dtsConfig" />
+  </ItemGroup>
+  <Target Name="Build">
+    <VulcanTask OutputPath="..\..\bin" Sources="@(Sources)" Includes="@(Includes)" />
+    <Copy SourceFiles="@(PackageConfigurations)" DestinationFolder="C:\PackageConfigurations\" OverwriteReadOnlyFiles="true" />
+  </Target>
+</Project>
+

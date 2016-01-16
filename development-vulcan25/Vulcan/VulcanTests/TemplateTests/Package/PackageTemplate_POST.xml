@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="ETLtblFakeSale" Type="ETL">
+      <Tasks>
+        <Container Name="dbo">
+          <Tasks>
+            <ExecuteSQL Name="dbo" ConnectionName="TestConnection1">
+              <Query QueryType="Expression">
+                <Body>
+                  "SELECT \"_Staging_tblFakeSale\" AS A"
+                </Body>
+              </Query>
+            </ExecuteSQL>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

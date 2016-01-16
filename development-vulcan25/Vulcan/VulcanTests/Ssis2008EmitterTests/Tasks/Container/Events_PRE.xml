@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <Container Name="Container1">
+          <Tasks>
+            <ExecutePackage Name="ExecutePackage1" RelativePath="..\foo" />
+          </Tasks>
+          <Events>
+            <Event Name="OnError1" EventType="OnError">
+              <Tasks>
+                <ExecutePackage Name="ExecutePackage2" RelativePath="..\foo2" />
+              </Tasks>
+            </Event>
+          </Events>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

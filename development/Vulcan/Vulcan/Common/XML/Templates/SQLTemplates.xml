@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Templates xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanTemplate.xsd">
+  <Template Name="ForeignKeyConstraintTemplate">
+    <Map Source="TableName" Index="0"/>
+    <Map Source="ConstraintName" Index="1"/>
+    <Map Source="Column" Index="2"/>
+    <Map Source="ForeignKeyTable" Index="3"/>
+    <Map Source="ForeignKeyColumn" Index="4"/>
+    <TemplateData>
+ALTER TABLE {0}  WITH CHECK ADD CONSTRAINT [FK_{1}] FOREIGN KEY({2})
+REFERENCES {3} ({4})
+GO
+
+ALTER TABLE {0} CHECK CONSTRAINT [FK_{1}]
+GO
+
+    </TemplateData>
+  </Template>
+  <Template Name="NullPatcherIsnullTemplate">
+    <TemplateData>[ISNULL]({0}) ? {1} : {0}</TemplateData>
+  </Template>
+  <Template Name="SimpleSelect">
+    <TemplateData>
+      SELECT
+      {0}
+      FROM
+      {1}
+    </TemplateData>
+</Template>
+  <Template Name="SimpleWhere">
+    <TemplateData>
+      WHERE
+      {0}
+    </TemplateData>
+</Template>
+  <Template Name="ConstraintTemplate">
+    <Map Source="ConstraintName" Index="0"/>
+    <Map Source="Clustered" Index="1"/>
+    <Map Source="Columns" Index="2"/>
+    <Map Source="Options" Index="3"/>
+    <Map Source="PrimaryKey" Index="4"/>
+    <TemplateData>
+CONSTRAINT {0} {4} {1}
+(
+  {2}) {3} ON [PRIMARY]</TemplateData>
+  </Template>
+  <Template Name="CreateIndex">
+    <TemplateData>
+      CREATE {0} {1} INDEX {2} ON {3}
+      (
+      {4}
+      )
+      WITH
+      (
+      {5}
+      )
+      ON [PRIMARY]
+      GO
+      
+    </TemplateData>
+  </Template>
+<Template Name="StoredProc">
+  <TemplateData>
+    SET ANSI_NULLS ON
+    SET QUOTED_IDENTIFIER ON
+    GO
+
+    IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{0}') AND type in (N'P', N'PC'))
+    DROP PROCEDURE {0}
+    GO
+
+    CREATE PROCEDURE {0}
+    {1}
+    AS
+    BEGIN
+    {2}
+    END
+  </TemplateData>
+</Template>
+
+    <Template Name="InsertOrUpdateSP">
+        <Map Index="0" Source="Procedure"/>
+        <Map Index="1" Source="Table"/>
+        <Map Index="2" Source="Parameters"/>
+        <Map Index="3" Source="KeyColumn"/>
+        <Map Index="4" Source="UniqueColumns"/>
+        <Map Index="5" Source="InsertSPName"/>
+        <Map Index="6" Source="InsertSPParameters"/>
+        <Map Index="7" Source="UpdateParameters"/>
+        <Map Index="8" Source="KeyColumnType"/>
+        <TemplateData>
+            set ANSI_NULLS ON
+            set QUOTED_IDENTIFIER ON
+            GO
+
+            IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{0}') AND type in (N'P', N'PC'))
+            DROP PROCEDURE {0}
+            GO
+
+            CREATE PROCEDURE {0}
+            {2}
+            AS
+            BEGIN
+
+            DECLARE @KEY {8}
+
+            SET @KEY = (SELECT TOP 1 {3} FROM {1} where {4})
+
+            IF (@KEY is NULL)
+            BEGIN
+            EXEC {5}
+            {6}
+            END
+            ELSE
+            BEGIN
+            SET @{3} = @KEY
+            UPDATE {1} SET {7} WHERE {3}=@{3}
+            END
+            END
+        </TemplateData>
+    </Template>
+  <Template Name="CheckAndInsertSP">
+    <TemplateData>
+        set ANSI_NULLS ON
+        set QUOTED_IDENTIFIER ON
+        GO
+
+        IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{1}') AND type in (N'P', N'PC'))
+        DROP PROCEDURE {1}
+        GO
+
+        CREATE PROCEDURE {1}
+        {2}
+        AS
+        BEGIN
+        DECLARE @KEY {7}
+
+        SET @KEY = (SELECT TOP 1 {4} FROM {0} where {5})
+
+        IF (@KEY is NULL)
+        BEGIN
+        EXEC {6}
+        {3}
+        END
+        ELSE
+        BEGIN
+        SET @{4} = @KEY
+        END
+        END
+    </TemplateData>
+  </Template>
+  <Template Name="CreateTable">
+    <TemplateData>
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+GO
+
+-------------------------------------------------------------------
+IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'{0}') AND type IN (N'U'))
+DROP TABLE {0}
+GO
+
+CREATE TABLE {0}
+(
+-- Columns Definition
+{1}
+-- Constraints
+{2}
+)
+ON [PRIMARY]
+GO
+
+-------------------------------------------------------------------</TemplateData>
+</Template>
+<Template Name="InsertDefaultValues">
+  <TemplateData>INSERT INTO {0}({1}) VALUES ({2})</TemplateData>
+</Template>
+  <Template Name="InsertSP">
+    <TemplateData>
+      SET ANSI_NULLS ON
+      SET QUOTED_IDENTIFIER ON
+      GO
+
+      IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'{1}') AND type in (N'P', N'PC'))
+      DROP PROCEDURE {1}
+      GO
+
+      -------------------------------------------------------------------
+
+      CREATE PROCEDURE {1}
+      {2}
+      AS
+      DECLARE @Exception int
+      BEGIN
+      INSERT INTO {0}
+      (
+      {3}
+      )
+      VALUES
+      (
+      {4}
+      )
+
+      SET @Exception = @@ERROR
+      {5}
+      END
+      -------------------------------------------------------------------
+    </TemplateData>
+</Template>
+
+  <Template Name="LogStart">
+    <Map Source="ParentLogID" Index="0"/>
+    <Map Source="ETLName" Index="1"/>
+    <Map Source="TaskName" Index="2"/>
+    <TemplateData>
+      &quot;
+      EXECUTE [sp_LogStart]
+      {0}
+      ,{1}
+      ,{2}
+      ,? OUTPUT
+      ,? OUTPUT
+      ,? OUTPUT
+      &quot;
+    </TemplateData>
+  </Template>
+  
+  <Template Name="LogEnd">
+    <TemplateData>
+      &quot; EXECUTE [sp_LogEnd] ?&quot;
+    </TemplateData>
+  </Template>
+
+  <Template Name="LogSetValue">
+    <Map Source="LogID" Index="0"/>
+    <Map Source="Column" Index="1"/>
+    <Map Source="Value" Index="2"/>
+    <TemplateData>
+      &quot; EXECUTE [sp_LogSetValue] &quot;+ (DT_WSTR,255)@[{0}] + &quot;,'&quot; + &quot;{1}&quot; + &quot;','&quot; + (DT_WSTR,255)@[{2}] + &quot;'&quot;
+    </TemplateData>
+  </Template>
+
+  <Template Name="LogGetValue">
+    <Map Source="LogID" Index="0"/>
+    <TemplateData>
+      &quot; EXECUTE [sp_LogGetValues] &quot; + (DT_WSTR,255)@[{0}] + &quot;,? OUTPUT, ? OUTPUT, ? OUTPUT, ? OUTPUT, ? OUTPUT, ? OUTPUT, ? OUTPUT, ? OUTPUT&quot;
+    </TemplateData>
+  </Template>
+
+
+  <Template Name="LogSelectQuery">
+    <Map Source="Source" Index="0"/>
+    <Map Source="Destination" Index="1"/>
+    <Map Source="Table" Index="2"/>
+    <Map Source="Status" Index="3"/>
+    <Map Source="Notes" Index="4"/>
+    <Map Source="SourceConvertStyle" Index="5"/>
+    <Map Source="DestinationConvertStyle" Index="6"/>
+    <TemplateData>
+      IF NOT EXISTS
+      (
+      SELECT TOP(1) {0},{1} FROM {2}
+      )
+      BEGIN
+      SELECT '-1','-1','{3}','{4}'
+      END
+      ELSE
+      BEGIN
+      SELECT
+      (SELECT TOP(1) CONVERT(nvarchar(255),{0},{5})FROM {2} ORDER BY {0} DESC) AS Source
+      ,(SELECT TOP(1) CONVERT(nvarchar(255),{1},{6})FROM {2} ORDER BY {1} DESC) AS Destination
+      ,'{3}'
+      ,'{4}'
+      END
+    </TemplateData>
+  </Template>
+</Templates>

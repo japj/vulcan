@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CheckInsert" xml:space="preserve">
+    <value>CheckInsert</value>
+  </data>
+  <data name="CheckInsertUpdate" xml:space="preserve">
+    <value>CheckInsertUpdate</value>
+  </data>
+  <data name="ConnectionNameConflicts" xml:space="preserve">
+    <value>Connection with same name already exists: {0}</value>
+  </data>
+  <data name="ConnectionNotExists" xml:space="preserve">
+    <value>Connection {0} doesn't exist</value>
+  </data>
+  <data name="ConnectionTypeNotImplemented" xml:space="preserve">
+    <value>Connection type {0} not implemented</value>
+  </data>
+  <data name="DataSourceQualifier" xml:space="preserve">
+    <value>DataWarehouse</value>
+  </data>
+  <data name="DTSVariableNotExists" xml:space="preserve">
+    <value>DTS Variable {0} does not exist</value>
+  </data>
+  <data name="EmittingDataFlow" xml:space="preserve">
+    <value>Processing DataFlow "{0}"</value>
+  </data>
+  <data name="EmittingDerivedColumns" xml:space="preserve">
+    <value>Processing Derived Column Transformation "{0}"</value>
+  </data>
+  <data name="EmittingETL" xml:space="preserve">
+    <value>Processing ETL "{0}"</value>
+  </data>
+  <data name="EmittingLookup" xml:space="preserve">
+    <value>Processing Lookup Transformation "{0}"</value>
+  </data>
+  <data name="EmittingSourceComponent" xml:space="preserve">
+    <value>Processing Source Component "{0}"</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>EndTime</value>
+  </data>
+  <data name="ExtensionSQLFile" xml:space="preserve">
+    <value>.sql</value>
+  </data>
+  <data name="ExtensionTempFile" xml:space="preserve">
+    <value>.tmp</value>
+  </data>
+  <data name="InputPathError1" xml:space="preserve">
+    <value>Can't find input component "{0}", input path "{1}"</value>
+  </data>
+  <data name="InputPathError2" xml:space="preserve">
+    <value>Can't find input path "{0}"</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="IsAnotherInstanceCurrentlyRunningLogID" xml:space="preserve">
+    <value>IsAnotherInstanceCurrentlyRunningLogID</value>
+  </data>
+  <data name="LastSuccessfulRunLogID" xml:space="preserve">
+    <value>LastSuccessfulRunLogID</value>
+  </data>
+  <data name="LoadInto" xml:space="preserve">
+    <value>LoadInto</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="LogID" xml:space="preserve">
+    <value>LogID</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotSupported" xml:space="preserve">
+    <value>{0} not supported in {1}</value>
+  </data>
+  <data name="OLEDBDestinationNamePrefix" xml:space="preserve">
+    <value>LoadInto</value>
+  </data>
+  <data name="Placeholder" xml:space="preserve">
+    <value>PLACEHOLDER</value>
+  </data>
+  <data name="Schema" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="Seperator" xml:space="preserve">
+    <value>_</value>
+  </data>
+  <data name="SourceComponentError" xml:space="preserve">
+    <value>OLEDBSource:{0}: {1}: Source {2}: Query {3}</value>
+  </data>
+  <data name="SourceComponentError2" xml:space="preserve">
+    <value>OLEDBSource:{0}: Source {1}: Query {2}</value>
+  </data>
+  <data name="SPPrefix" xml:space="preserve">
+    <value>usp</value>
+  </data>
+  <data name="SSISObjectEmitterNotFound" xml:space="preserve">
+    <value>No SSISObjectEmitter found for {0}</value>
+  </data>
+  <data name="SSISTransformationNotFound" xml:space="preserve">
+    <value>No SSISTransformation found for {0}</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>lStartTime</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="VariableNames" xml:space="preserve">
+    <value>VariableNames</value>
+  </data>
+  <data name="ExtensionDTProjectFile" xml:space="preserve">
+    <value>dtproj</value>
+  </data>
+  <data name="ExtensionDtsConfigurationFile" xml:space="preserve">
+    <value>dtsConfig</value>
+  </data>
+  <data name="ExtensionDTSXPackageFile" xml:space="preserve">
+    <value>dtsx</value>
+  </data>
+  <data name="LogicalNameSeperator" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="CON" xml:space="preserve">
+    <value>CON</value>
+  </data>
+  <data name="IX" xml:space="preserve">
+    <value>IX</value>
+  </data>
+  <data name="PK" xml:space="preserve">
+    <value>PK</value>
+  </data>
+  <data name="ColumnsParentIsNotTable" xml:space="preserve">
+    <value>Columns' parent {0} is not Table.</value>
+  </data>
+  <data name="CONPrefix" xml:space="preserve">
+    <value>CON_</value>
+  </data>
+  <data name="IXPrefix" xml:space="preserve">
+    <value>IX_</value>
+  </data>
+  <data name="ParentIsNull" xml:space="preserve">
+    <value>{0} has a null Parent.</value>
+  </data>
+  <data name="Wrongtypepassedin" xml:space="preserve">
+    <value>Wrong type passed into {0}. Type {1} is expected</value>
+  </data>
+  <data name="EmittingDestination" xml:space="preserve">
+    <value>Processing Destination "{0}"</value>
+  </data>
+  <data name="NK" xml:space="preserve">
+    <value>NK</value>
+  </data>
+</root>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTargetTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="TestColumn1" Type="Int32"/>
+        <Column Name="TestColumn2" Type="Int32"/>
+        <Column Name="TestColumn3" Type="Int32"/>
+        <Column Name="TestColumn4" Type="Int32"/>
+        <Column Name="TestColumn5" Type="Int32"/>
+        <Column Name="TestColumn6" Type="Int32"/>
+        <Column Name="TestColumn7" Type="Int32"/>
+        <Column Name="TestColumn8" Type="Int32"/>
+        <Column Name="TestColumn9" Type="Int32"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK">
+          <Columns>
+            <Column ColumnName="TestColumn1"/>
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+    </Table>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="TestColumn1" Type="Int32"/>
+        <Column Name="TestColumn2" Type="Int32"/>
+        <Column Name="TestColumn3" Type="Int32"/>
+        <Column Name="TestColumn4" Type="Int32"/>
+        <Column Name="TestColumn5" Type="Int32"/>
+        <Column Name="TestColumn6" Type="Int32"/>
+        <Column Name="TestColumn7" Type="Int32"/>
+        <Column Name="TestColumn8" Type="Int32"/>
+        <Column Name="TestColumn9" Type="Int32"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK">
+          <Columns>
+            <Column ColumnName="TestColumn1"/>
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+    </Table>
+  </Tables>
+  <Packages>
+    <Package Name="TestPackage1" Type="StoredProcedure">
+      <Tasks>
+        <Merge  Name="TestMerge1" TargetConstraintName="TestTargetTable1.PK" SourceTableName="TestTable1" UnspecifiedColumnDefaultUsageType="Compare">
+          <Columns>
+            <Column ColumnName="TestColumn2" ColumnUsage="UpdateInsert"/>
+          </Columns>
+        </Merge>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

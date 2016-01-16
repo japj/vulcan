@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Principals>
+    <Principal Name="LocalAccount" ConnectionName="DataWarehouse" Type="SqlUser" />
+  </Principals>
+</Vulcan>

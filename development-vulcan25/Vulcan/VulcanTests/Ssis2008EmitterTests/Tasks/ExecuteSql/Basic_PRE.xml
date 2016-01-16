@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Connection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ExecuteSQL Name="ExecuteSql" ConnectionName="Connection1">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

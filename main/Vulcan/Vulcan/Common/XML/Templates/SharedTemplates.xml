@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Templates xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanTemplate.xsd">
+  <Template Name="BasicConfiguration">
+    <Map Source="Comment" Index="0"/>
+    <TemplateData>
+      &lt;!-- Basic Configuration {0}--&gt;
+      &lt;PackageConfiguration Name="DataWarehouse"&gt;
+        &lt;Filename&gt;DataWarehouse.dtsConfig&lt;/Filename&gt;
+        &lt;CreateNew&gt;false&lt;/CreateNew&gt;
+      &lt;/PackageConfiguration&gt;
+
+      &lt;PackageConfiguration Name="Environment"&gt;
+        &lt;Filename&gt;Environment.dtsConfig&lt;/Filename&gt;
+        &lt;CreateNew&gt;false&lt;/CreateNew&gt;
+      &lt;/PackageConfiguration&gt;
+
+      &lt;Connection Name="DataWarehouse"&gt;
+        &lt;Type&gt;OLEDB&lt;/Type&gt;
+        &lt;CreateConfiguration&gt;false&lt;/CreateConfiguration&gt;
+      &lt;/Connection&gt;
+
+      &lt;Variable Name="varRootDir"&gt;
+        &lt;Type&gt;String&lt;/Type&gt;
+        &lt;Value&gt;C:\detego&lt;/Value&gt;
+      &lt;/Variable&gt;
+
+    </TemplateData>
+  </Template>
+  <Template Name="ConnectionConfiguration">
+    <Map Source="ConnectionName" Index="0"/>
+    <TemplateData>
+      &lt;PackageConfiguration Name="{0}"&gt;
+      &lt;Filename&gt;{0}.dtsConfig&lt;/Filename&gt;
+      &lt;CreateNew&gt;false&lt;/CreateNew&gt;
+      &lt;/PackageConfiguration&gt;
+      &lt;Connection Name="{0}"&gt;
+      &lt;Type&gt;OLEDB&lt;/Type&gt;
+      &lt;CreateConfiguration&gt;false&lt;/CreateConfiguration&gt;
+      &lt;/Connection&gt;
+    </TemplateData>
+  </Template>
+  <Template Name="LookupDimTime" Type="XML" >
+    <Map Source="Input" Index="0"/>
+    <Map Source="Output" Index="1"/>
+    <TemplateData>
+    &lt;Lookup Name="Lookup DimTime_{0}"&gt;
+      &lt;Connection Name="DataWarehouse" /&gt;
+      &lt;Table&gt;DimTime&lt;/Table&gt;
+      &lt;Input Name="{0}"&gt;
+        &lt;JoinToReferenceColumn&gt;FullDate&lt;/JoinToReferenceColumn&gt;
+      &lt;/Input&gt;
+      &lt;Output Name="{1}"&gt;
+        &lt;CopyFromReferenceColumn&gt;TimeID&lt;/CopyFromReferenceColumn&gt;
+      &lt;/Output&gt;
+    &lt;/Lookup>
+    </TemplateData>
+  </Template>
+  <Template Name="LookupLocaleID">
+    <Map Source="Input" Index="1"/>
+    <Map Source="Table" Index="0"/>
+    <TemplateData>
+  &lt;Lookup Name="Lookup LocaleID_{0}"&gt;
+    &lt;Connection Name="DataWarehouse"/&gt;
+    &lt;Table&gt;{0}&lt;/Table&gt;
+    &lt;Input Name="{1}"&gt;
+      &lt;JoinToReferenceColumn&gt;LocaleName&lt;/JoinToReferenceColumn&gt;
+    &lt;/Input&gt;
+    &lt;Output Name="LocaleID"&gt;
+      &lt;CopyFromReferenceColumn&gt;LocaleID&lt;/CopyFromReferenceColumn&gt;
+    &lt;/Output&gt;
+  &lt;/Lookup&gt;
+    </TemplateData>
+  </Template>
+  <Template Name="LookupTimespanDays">
+    <Map Source="Input" Index="0"/>
+    <Map Source="Output" Index="1"/>
+    <TemplateData>
+    &lt;OLEDBCommand Name="Lookup {1} TimespanID"&gt;
+      &lt;DestinationConnection Name="DataWarehouse" /&gt;
+      &lt;Command&gt;EXEC sp_LookupTimeSpan ?, ? OUTPUT&lt;/Command&gt;
+      &lt;Map Source="{0}" Destination="@Days"/&gt;
+      &lt;Map Source="{1}" Destination="@TimeSpanID"/&gt;
+    &lt;/OLEDBCommand&gt;
+  </TemplateData>
+  </Template>
+</Templates>

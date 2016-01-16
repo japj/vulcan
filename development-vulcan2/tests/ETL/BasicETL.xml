@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Package Name="BasicETL" ConstraintMode="Linear" DefaultPlatform="SSIS08" Log="false" Type="ETL" TransactionMode="Join">
+    <Staging Name="TestTable1" StagingConnection="DataWarehouse" Table="TestTable1" CreateAs="TestTable1_Staging" TransactionMode="StartOrJoin">
+      <ETL Name="Load Data" DelayValidation="false">
+        <QuerySource>
+          <Connection ConnectionName="DataWarehouse" />
+          <Query>
+            SELECT [TestID]
+            ,[TestColumn]
+            ,[Test_SK]
+            ,[ComputedColumn]
+            ,[Name]
+            ,[DecValue]
+            ,[CustomValue]
+            ,[Date]
+            FROM [dbo].[TestTable1]
+          </Query>
+        </QuerySource>
+        <Transformations>
+          <Lookup ConnectionName="DataWarehouse" Name="Boo">
+            <Query>
+              SELECT 
+              [TestID]
+              ,[Name]
+              FROM [dbo].[TestTable1]
+            </Query>
+            <Input LocalColumnName="TestID" RemoteColumnName="TestID" />
+            <Output LocalColumnName="Name_lookup" RemoteColumnName="Name" />
+          </Lookup>
+          <DerivedColumns Name="Derive TestColumn">
+            <Column Name="Name2" Type="WSTR" Length="255" ReplaceExisting="false">Name + Name_lookup</Column>
+          </DerivedColumns>
+        </Transformations>
+        <Destination Name="Test Destination" ConnectionName="DataWarehouse" TableName="TestTable1_Staging" AccessMode="Table" ValidateExternalMetadata="false">
+          <Map SourceName="Name2" DestinationName="Name" />
+        </Destination>
+      </ETL>
+      <Merge Name="Merge Staging" ConnectionName="DataWarehouse" SourceTableName="TestTable1_Staging" TargetConstraintName="TestTable1.PK_TestTable1" />
+    </Staging>
+  </Package>
+</Vulcan>

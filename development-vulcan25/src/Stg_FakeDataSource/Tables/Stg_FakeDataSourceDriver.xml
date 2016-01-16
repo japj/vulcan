@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Stg_FakeDataSourceDriver" Type="Driver">
+      <Tasks>
+        <ExecutePackage Name="tblFakeCustomer" RelativePath="Tables\tblFakeCustomer\tblFakeCustomer.dtsx" />
+        <ExecutePackage Name="tblFakeSale" RelativePath="Tables\tblFakeSale\tblFakeSale.dtsx" />
+
+        <ExecutePackage Name="_Staging_tblFakeSale" RelativePath="Tables\_Staging_tblFakeSale\_Staging_tblFakeSale.dtsx" />
+        <ExecutePackage Name="_Staging_tblFakeCustomer" RelativePath="Tables\_Staging_tblFakeCustomer\_Staging_tblFakeCustomer.dtsx" />
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

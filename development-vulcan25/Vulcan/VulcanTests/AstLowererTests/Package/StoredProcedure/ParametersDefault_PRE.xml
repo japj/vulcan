@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="TestPackage1" Type="StoredProcedure">
+      <Tasks>
+        <StoredProc Name="TestStoredProc1" ConnectionName="TestConnection1">
+          <Columns>
+            <Column Name="TestColumn1" Type="Int32" Default="100"></Column>
+          </Columns>
+          <Body>
+            -- SET NOCOUNT ON added to prevent extra result sets from
+            -- interfering with SELECT statements.
+            SET NOCOUNT ON;
+
+            SELECT * FROM sys.tables
+          </Body>
+        </StoredProc>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

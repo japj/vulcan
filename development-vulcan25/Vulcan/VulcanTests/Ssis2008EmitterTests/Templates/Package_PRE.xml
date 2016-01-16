@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Templates>
+    <PackageTemplate Name="ETLStagingTable">
+      <Arguments>
+        <Argument Name="TableSchema"/>
+        <Argument Name="TableName"/>
+      </Arguments>
+      <Package Name="ETL{$TableName$}" Type="ETL">
+        <Tasks>
+          <Container Name="{$TableSchema$}">
+            <Tasks>
+              <ExecuteSQL Name="{$TableSchema$}" ConnectionName="TestConnection1">
+                <Query QueryType="Expression">
+                  <Body>
+                    "SELECT \"_Staging_{$TableName$}\" AS A"
+                  </Body>
+                </Query>
+              </ExecuteSQL>
+            </Tasks>
+          </Container>
+        </Tasks>
+      </Package>
+    </PackageTemplate>
+  </Templates>
+  <Packages>
+    <PackageTemplateInstance Name="ETLtblFakeSale" TemplateName="ETLStagingTable">
+      <Arguments>
+        <Argument ArgumentName="TableSchema">dbo</Argument>
+        <Argument ArgumentName="TableName">tblFakeSale</Argument>
+      </Arguments>
+    </PackageTemplateInstance>
+  </Packages>
+</Vulcan>

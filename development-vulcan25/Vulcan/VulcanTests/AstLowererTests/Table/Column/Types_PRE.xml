@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <!-- Scale and Precision will be passed even where not relevant, making sure they are ignored or otherwise not being used improperly.-->
+        <Column Name="AnsiString" Type="AnsiString" />
+        <Column Name="AnsiString_L255_S1_P2" Type="AnsiString" Length="255" Scale="1" Precision="2"/>
+        <!-- Test varchar(8000) boundary-->
+        <Column Name="AnsiString_L8000" Type="AnsiString" Length="8000"/>
+        <!-- Test varchar(max) boundary-->
+        <Column Name="AnsiString_L8001" Type="AnsiString" Length="8001"/>
+                
+        <Column Name="Binary" Type="Binary" />
+        <Column Name="Binary_L255_S1_P2" Type="Binary" Length="255" Scale="1" Precision="2"/> <!-- Scale and Precision should be ignored here -->
+        <!-- test varbinary(8000) boundary-->
+        <Column Name="Binary_L8000" Type="Binary" Length="8000" />
+        <!-- test varbinary(max) boundary-->
+        <Column Name="Binary_L8001" Type="Binary" Length="8001" />
+        
+        <!-- Scale and Precision should be ignored here -->
+        <Column Name="Byte_L255_S1_P2" Type="Byte" Length="255" Scale="1" Precision="2"/> 
+        <Column Name="Boolean_L255_S1_P2" Type="Boolean" Length="255" Scale="1" Precision="2"/>
+        <Column Name="Currency_L255_S1_P2" Type="Currency" Length="255" Scale="1" Precision="2"/>
+        <Column Name="Date_L255_S1_P2" Type="Date" Length="255" Scale="1" Precision="2"/>
+        <Column Name="DateTime_L255_S1_P2" Type="DateTime" Length="255" Scale="1" Precision="2"/>
+
+        <Column Name="Decimal" Type="Decimal" />
+        <Column Name="Decimal_P24" Type="Decimal" Precision="24" />
+        <Column Name="Decimal_S5" Type="Decimal" Scale="5" />
+        <Column Name="Decimal_P24_S5" Type="Decimal" Precision="24" Scale="5" />
+        <Column Name="Decimal_L255_S1_P2" Type="Decimal" Length="255" Scale="1" Precision="2" />
+
+        <Column Name="Double" Type="Double" />
+        <Column Name="Double_L255_S1_P2" Type="Double" Length="255" Scale="1" Precision="2" />
+        <Column Name="Guid_L255_S1_P2" Type="Guid" Length="255" Scale="1" Precision="2" />
+        <Column Name="Int16_L255_S1_P2" Type="Int16" Length="255" Scale="1" Precision="2" />
+        <Column Name="Int32_L255_S1_P2" Type="Int32" Length="255" Scale="1" Precision="2" />
+        <Column Name="Int64_L255_S1_P2" Type="Int64" Length="255" Scale="1" Precision="2" />
+
+        <!-- should be sql_variant -->
+        <Column Name="Object_L255_S1_P2" Type="Object" Length="255" Scale="1" Precision="2" /> 
+        <Column Name="Object_L255_S1_P2_foobar" Type="Object" CustomType="foobar" Length="255" Scale="1" Precision="2" />
+        <Column Name="SByte_L255_S1_P2" Type="SByte" Length="255" Scale="1" Precision="2" />
+
+        <!-- float(24) in TSQL-->
+        <Column Name="Single" Type="Single" />
+        <!-- This should be float(2) in TSQL -->
+        <Column Name="Single_L255_S1_P2" Type="Single" Length="255" Scale="1" Precision="2" /> 
+        
+
+        <Column Name="String" Type="String" />
+        <Column Name="String_L255_S1_P2" Type="String" Length="255" Scale="1" Precision="2"/>
+        <!-- TEST nvarchar(4000 boundary)-->
+        <Column Name="String_L4000" Type="String" Length="4000" Scale="1" Precision="2"/>
+        <!-- TEST nvarchar(max)-->
+        <Column Name="String_L4001" Type="String" Length="4001" Scale="1" Precision="2"/>
+
+        <Column Name="Time" Type="Time" />
+        <Column Name="Time_L255_S1_P2" Type="Time" Length="255" Scale="1" Precision="2"/>
+        <Column Name="UInt16_L255_S1_P2" Type="UInt16" Length="255" Scale="1" Precision="2"/>
+        <Column Name="UInt32_L255_S1_P2" Type="UInt32" Length="255" Scale="1" Precision="2"/>
+        <Column Name="UInt64_L255_S1_P2" Type="UInt64" Length="255" Scale="1" Precision="2"/>
+        <Column Name="VarNumeric_L255_S1_P2" Type="VarNumeric" Length="255" Scale="1" Precision="2"/>
+        
+        <Column Name="AnsiStringFixedLength" Type="AnsiStringFixedLength" />
+        <Column Name="AnsiStringFixedLength_L255_S1_P2" Type="AnsiStringFixedLength" Length="255" Scale="1" Precision="2"/>
+        <Column Name="AnsiStringFixedLength_L8000" Type="AnsiStringFixedLength" Length="8000"/>
+        
+        <Column Name="StringFixedLength" Type="StringFixedLength" />
+        <Column Name="StringFixedLength_L4000" Type="StringFixedLength" Length="4000"/>
+        
+        <Column Name="Xml" Type="Xml" />
+        <Column Name="DateTime2" Type="DateTime2" />
+        <Column Name="DateTime2_L255_S1_P2" Type="DateTime2" Length="255" Scale="1" Precision="2"/>
+        <Column Name="DateTimeOffset" Type="DateTimeOffset" />
+        <Column Name="DateTimeOffset_L255_S1_P2" Type="DateTimeOffset" Length="255" Scale="1" Precision="2"/>
+
+        <Column Name="RowVersion" Type="Binary" CustomType="rowversion"/>
+      </Columns>
+    </Table>
+  </Tables>
+</Vulcan>

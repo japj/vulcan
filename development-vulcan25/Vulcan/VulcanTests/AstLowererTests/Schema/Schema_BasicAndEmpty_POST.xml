@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="TestSchema1" Type="Schema">
+      <Tasks>
+        <ExecuteSQL Name="CreateSchema" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              DECLARE @x nvarchar(4000);
+              SET @x = 'CREATE SCHEMA [TestSchema];';
+              IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'TestSchema')
+              EXEC(@x);
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

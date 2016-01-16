@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <Table Name="tblDataSource" ConnectionName="Staging" CompressionType="Page">
+      <Columns>
+        <Column Name="DataSourceID" Type="Custom" CustomType="UNIQUEIDENTIFIER" IsNullable="false" Default="NEWID()"/>
+        <Column Name="CanonicalName" Type="WStr" Length="255" IsNullable="false"/>
+        <Column Name="GroupName" Type="WStr" Length="255" IsNullable="false"/>
+        <Column Name="ServerName" Type="WStr" Length="255" IsNullable="false"/>
+        <Column Name="DatabaseName" Type="WStr" Length="255" IsNullable="false"/>
+        <Column Name="Contact" Type="WStr" Length="255" IsNullable="true"/>
+        <Column Name="Description" Type="WStr" Length="255" IsNullable="true"/>
+        <Column Name="_VulcanInsertTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false"  Default="SYSUTCDATETIME()"/>
+        <Column Name="_VulcanUpdateTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false"  Default="SYSUTCDATETIME()"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK_tblDataSource_DataSourceID">
+          <Columns>
+            <Column ColumnName="DataSourceID"/>
+          </Columns>
+        </PrimaryKey>
+        <UniqueKey Name="UK_tblDataSource_CanonicalName">
+          <Columns>
+            <Column ColumnName="CanonicalName" />
+          </Columns>
+        </UniqueKey>
+      </Keys>
+      <Sources>
+        <StaticSource Name="tblDataSource">
+          <Rows>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="DataSourceID" Value="'AC7A61BA-8C5D-414C-A928-C76C7F14338D'"/>
+                <ColumnValue ColumnName="CanonicalName" Value="'FakeDataSource'"/>
+                <ColumnValue ColumnName="GroupName" Value="'Fakes'"/>
+                <ColumnValue ColumnName="ServerName" Value="'localhost'"/>
+                <ColumnValue ColumnName="DatabaseName" Value="'FakeDataSource'"/>
+                <ColumnValue ColumnName="Contact" Value="'Codeplex'"/>
+                <ColumnValue ColumnName="Description" Value="'Fake data source for testing of Vulcan Table Movement pattern'"/>
+                <ColumnValue ColumnName="_VulcanInsertTime_UTC" Value="SYSUTCDATETIME()" />
+                <ColumnValue ColumnName="_VulcanUpdateTime_UTC" Value="SYSUTCDATETIME()" />
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="DataSourceID" Value="'F078D119-62D5-4569-BBB1-B211AFFB4158'"/>
+                <ColumnValue ColumnName="CanonicalName" Value="'Stg_FakeDataSource'"/>
+                <ColumnValue ColumnName="GroupName" Value="'Staging'"/>
+                <ColumnValue ColumnName="ServerName" Value="'localhost'"/>
+                <ColumnValue ColumnName="DatabaseName" Value="'Stg_FakeDataSource'"/>
+                <ColumnValue ColumnName="Contact" Value="'Codeplex'"/>
+                <ColumnValue ColumnName="Description" Value="'Staged version of the Fake Data Source'"/>
+                <ColumnValue ColumnName="_VulcanInsertTime_UTC" Value="SYSUTCDATETIME()" />
+                <ColumnValue ColumnName="_VulcanUpdateTime_UTC" Value="SYSUTCDATETIME()" />
+              </ColumnValues>
+            </Row>
+          </Rows>
+        </StaticSource>
+      </Sources>
+    </Table>
+  </Tables>
+</Vulcan>

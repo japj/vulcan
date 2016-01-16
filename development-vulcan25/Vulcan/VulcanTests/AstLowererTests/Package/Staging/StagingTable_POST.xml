@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Connections>
+        <Connection Name="DataWarehouse" Type="OleDB" Server="Localhost" Database="VulcanDataWarehouse"/>
+    </Connections>
+    <Packages>
+        <Package Name="Test_Staging_WithTable" Type="ETL">
+            <Tasks>
+                <Container Name="TestStaging">
+                    <Tasks>
+                        <Container Name="__Create_Staging_TestStaging">
+                            <Tasks>
+                                <ExecuteSQL Name="__Create_Staging_TestStaging" ConnectionName="DataWarehouse" ExecuteDuringDesignTime="false">
+                                    <Query>
+                                        <Body>
+                                            SET ANSI_NULLS ON
+                                            SET QUOTED_IDENTIFIER ON
+                                            GO
+
+                                            -------------------------------------------------------------------
+                                            IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[OriginalTable]') AND type IN (N'U'))
+                                            DROP TABLE [OriginalTable]
+                                            GO
+
+                                            CREATE TABLE [OriginalTable]
+                                            (
+                                            -- Columns Definition
+                                            [TestColumn1] BIGINT NOT NULL
+
+                                            -- Constraints
+
+                                            )
+                                            ON [PRIMARY]
+                                            WITH (DATA_COMPRESSION = NONE)
+                                            GO
+
+                                            -------------------------------------------------------------------
+                                        </Body>
+                                    </Query>
+                                </ExecuteSQL>
+                            </Tasks>
+                        </Container>
+                        <Container Name="__Drops_Staging_TestStaging">
+                            <Tasks>
+                                <ExecuteSQL Name="__Drops_Staging_TestStaging" ConnectionName="DataWarehouse" ExecuteDuringDesignTime="false">
+                                    <Query>
+                                        <Body>
+                                            IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'OriginalTable' AND TABLE_TYPE = 'BASE TABLE')
+                                            DROP TABLE [OriginalTable]
+                                            GO
+                                        </Body>
+                                    </Query>
+                                </ExecuteSQL>
+                            </Tasks>
+                        </Container>
+                    </Tasks>
+                </Container>
+            </Tasks>
+        </Package>
+    </Packages>
+</Vulcan>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [AnsiString] varchar(1) NOT NULL
+              ,	[AnsiString_L255_S1_P2] varchar(255) NOT NULL
+              ,	[AnsiString_L8000] varchar(8000) NOT NULL
+              ,	[AnsiString_L8001] varchar(max) NOT NULL
+              ,	[Binary] varbinary(1) NOT NULL
+              ,	[Binary_L255_S1_P2] varbinary(255) NOT NULL
+              ,	[Binary_L8000] varbinary(8000) NOT NULL
+              ,	[Binary_L8001] varbinary(max) NOT NULL
+              ,	[Byte_L255_S1_P2] tinyint NOT NULL
+              ,	[Boolean_L255_S1_P2] bit NOT NULL
+              ,	[Currency_L255_S1_P2] money NOT NULL
+              ,	[Date_L255_S1_P2] date NOT NULL
+              ,	[DateTime_L255_S1_P2] datetime NOT NULL
+              ,	[Decimal] decimal(18,0) NOT NULL
+              ,	[Decimal_P24] decimal(24,0) NOT NULL
+              ,	[Decimal_S5] decimal(18,5) NOT NULL
+              ,	[Decimal_P24_S5] decimal(24,5) NOT NULL
+              ,	[Decimal_L255_S1_P2] decimal(2,1) NOT NULL
+              ,	[Double] float(53) NOT NULL
+              ,	[Double_L255_S1_P2] float(2) NOT NULL
+              ,	[Guid_L255_S1_P2] uniqueidentifier NOT NULL
+              ,	[Int16_L255_S1_P2] smallint NOT NULL
+              ,	[Int32_L255_S1_P2] int NOT NULL
+              ,	[Int64_L255_S1_P2] bigint NOT NULL
+              ,	[Object_L255_S1_P2] sql_variant NOT NULL
+              ,	[Object_L255_S1_P2_foobar] foobar NOT NULL
+              ,	[SByte_L255_S1_P2] smallint NOT NULL
+              ,	[Single] float(24) NOT NULL
+              ,	[Single_L255_S1_P2] float(2) NOT NULL
+              ,	[String] nvarchar(1) NOT NULL
+              ,	[String_L255_S1_P2] nvarchar(255) NOT NULL
+              ,	[String_L4000] nvarchar(4000) NOT NULL
+              ,	[String_L4001] nvarchar(max) NOT NULL
+              ,	[Time] time(7) NOT NULL
+              ,	[Time_L255_S1_P2] time(2) NOT NULL
+              ,	[UInt16_L255_S1_P2] smallint NOT NULL
+              ,	[UInt32_L255_S1_P2] int NOT NULL
+              ,	[UInt64_L255_S1_P2] bigint NOT NULL
+              ,	[VarNumeric_L255_S1_P2] decimal(2,1) NOT NULL
+              ,	[AnsiStringFixedLength] char(1) NOT NULL
+              ,	[AnsiStringFixedLength_L255_S1_P2] char(255) NOT NULL
+              ,	[AnsiStringFixedLength_L8000] char(8000) NOT NULL
+              ,	[StringFixedLength] nchar(1) NOT NULL
+              ,	[StringFixedLength_L4000] nchar(4000) NOT NULL
+              ,	[Xml] xml NOT NULL
+              ,	[DateTime2] datetime2(7) NOT NULL
+              ,	[DateTime2_L255_S1_P2] datetime2(2) NOT NULL
+              ,	[DateTimeOffset] datetimeoffset(7) NOT NULL
+              ,	[DateTimeOffset_L255_S1_P2] datetimeoffset(2) NOT NULL
+              ,	[RowVersion] rowversion NOT NULL
+              ,	[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

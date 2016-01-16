@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="Principal" Type="Principal">
+      <Tasks>
+        <ExecuteSQL Name="CreateTestUser" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'TestUser')
+              CREATE LOGIN [TestUser] WITH PASSWORD=N'TestUser'
+
+              IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'TestUser')
+              CREATE USER [TestUser] FOR LOGIN [TestUser]
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+    <Package Name="Schema" Type="Schema">
+      <Tasks>
+        <ExecuteSQL Name="CreateSchema" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              DECLARE @x nvarchar(4000);
+              SET @x = 'CREATE SCHEMA [TestSchema];';
+              IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = N'TestSchema')
+              EXEC(@x);
+            </Body>
+          </Query>
+        </ExecuteSQL>
+        <ExecuteSQL Name="CreateSchemaPermissions" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>GRANT SELECT ON SCHEMA::[TestSchema] TO [TestUser]</Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+  
+  
+</Vulcan>
+

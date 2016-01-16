@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="AdoNet" Provider="SQLNCLI10" Server="localhost" Database="master"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Variables>
+        <Variable Name="StringParam" TypeCode="String" Value="Test"/>
+        <Variable Name="BitParam" TypeCode="Boolean" Value="False"/>
+        <Variable Name="DateTimeParam" TypeCode="DateTime" Value="1/1/1900"/>
+        <Variable Name="IntParam" TypeCode="Int32" Value="1"/>
+      </Variables>
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>
+                  SELECT *
+                  FROM sys.tables
+                  WHERE name = ?
+                  AND schema_id = ?
+                  AND create_date = ?
+                  AND is_ms_shipped = ?
+                </Body>
+                <Parameters>
+                  <Parameter Name="0" VariableName="StringParam"/>
+                  <Parameter Name="1" VariableName="IntParam"/>
+                  <Parameter Name="2" VariableName="DateTimeParam"/>
+                  <Parameter Name="3" VariableName="BitParam"/>
+                </Parameters>
+              </Query>
+            </QuerySource>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

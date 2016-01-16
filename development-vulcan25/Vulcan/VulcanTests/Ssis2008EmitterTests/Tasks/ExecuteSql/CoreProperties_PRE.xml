@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Connection1" Type="OleDB" Server="localhost" Database="tempdb" />
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ExecuteSQL Name="ExecuteSqlDefault" ConnectionName="Connection1">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlDelayValidationFalse" ConnectionName="Connection1" DelayValidation="false" >
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlDelayValidationTrue" ConnectionName="Connection1" DelayValidation="true" >
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelUnspecified" ConnectionName="Connection1" IsolationLevel="Unspecified">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelChaos" ConnectionName="Connection1" IsolationLevel="Chaos">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelReadUncommitted" ConnectionName="Connection1" IsolationLevel="ReadUncommitted">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelReadCommitted" ConnectionName="Connection1" IsolationLevel="ReadCommitted">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelRepeatableRead" ConnectionName="Connection1" IsolationLevel="RepeatableRead">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelSerializable" ConnectionName="Connection1" IsolationLevel="Serializable">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlIsolationLevelSnapshot" ConnectionName="Connection1" IsolationLevel="Snapshot">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlResultSetNone" ConnectionName="Connection1" ResultSet="None">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlResultSetSingleRow" ConnectionName="Connection1" ResultSet="SingleRow">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlResultSetFull" ConnectionName="Connection1" ResultSet="Full">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+        <ExecuteSQL Name="ExecuteSqlResultSetXml" ConnectionName="Connection1" ResultSet="Xml">
+          <Query QueryType="Standard">
+            <Body>SELECT 1</Body>
+          </Query>
+        </ExecuteSQL>
+
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

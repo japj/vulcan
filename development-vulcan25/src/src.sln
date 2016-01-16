@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connections", "Connections", "{295A40AC-2BE1-4388-B8B8-5D081576D77A}"
+	ProjectSection(SolutionItems) = preProject
+		Connections\connections.vproj = Connections\connections.vproj
+		Connections\DataWarehouse.xml = Connections\DataWarehouse.xml
+		Connections\FakeDataSource.xml = Connections\FakeDataSource.xml
+		Connections\Server.xml = Connections\Server.xml
+		Connections\Staging.xml = Connections\Staging.xml
+		Connections\Stg_FakeDataSource.xml = Connections\Stg_FakeDataSource.xml
+		Connections\VulcanLog.xml = Connections\VulcanLog.xml
+		Connections\VulcanTransient.xml = Connections\VulcanTransient.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Warehouse", "Warehouse", "{B921AF62-BB45-4F7C-B7FC-DD5DE2A98109}"
+	ProjectSection(SolutionItems) = preProject
+		Warehouse\FakeDataSource.xml = Warehouse\FakeDataSource.xml
+		Warehouse\Stg_FakeDataSource.xml = Warehouse\Stg_FakeDataSource.xml
+		Warehouse\VulcanDataWarehouse.xml = Warehouse\VulcanDataWarehouse.xml
+		Warehouse\VulcanLog.xml = Warehouse\VulcanLog.xml
+		Warehouse\VulcanStaging.xml = Warehouse\VulcanStaging.xml
+		Warehouse\VulcanTransient.xml = Warehouse\VulcanTransient.xml
+		Warehouse\Warehouse.vproj = Warehouse\Warehouse.vproj
+		Warehouse\WarehouseDriver.xml = Warehouse\WarehouseDriver.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD004153-528A-472E-A26F-83E4B5283F14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FakeDataSource", "FakeDataSource", "{EC431A60-F478-40CB-9064-9F292C84AAFE}"
+	ProjectSection(SolutionItems) = preProject
+		FakeDataSource\FakeDataSource.vproj = FakeDataSource\FakeDataSource.vproj
+		FakeDataSource\FakeDataSourceDriver.xml = FakeDataSource\FakeDataSourceDriver.xml
+		FakeDataSource\tblFakeCustomer.xml = FakeDataSource\tblFakeCustomer.xml
+		FakeDataSource\tblFakeSale.xml = FakeDataSource\tblFakeSale.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Staging", "Staging", "{6E2C528F-BA27-49BC-B403-A6F94269A4DA}"
+	ProjectSection(SolutionItems) = preProject
+		Staging\Staging.vproj = Staging\Staging.vproj
+		Staging\StagingDriver.xml = Staging\StagingDriver.xml
+		Staging\tblDataSource.xml = Staging\tblDataSource.xml
+		Staging\tblMovementLog.xml = Staging\tblMovementLog.xml
+		Staging\Template.xml = Staging\Template.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stg_FakeDataSource", "Stg_FakeDataSource", "{A274273F-BF7E-4DB3-8705-6A097958727D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tables", "Tables", "{F25F2336-64FA-44EF-B7BC-54406565B52F}"
+	ProjectSection(SolutionItems) = preProject
+		Stg_FakeDataSource\Tables\Stg_FakeDataSource.vproj = Stg_FakeDataSource\Tables\Stg_FakeDataSource.vproj
+		Stg_FakeDataSource\Tables\Stg_FakeDataSourceDriver.xml = Stg_FakeDataSource\Tables\Stg_FakeDataSourceDriver.xml
+		Stg_FakeDataSource\Tables\tblFakeCustomer.xml = Stg_FakeDataSource\Tables\tblFakeCustomer.xml
+		Stg_FakeDataSource\Tables\tblFakeSale.xml = Stg_FakeDataSource\Tables\tblFakeSale.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETL", "ETL", "{E9344703-26FF-4FAE-AAC5-5D9F56B545E9}"
+	ProjectSection(SolutionItems) = preProject
+		Stg_FakeDataSource\ETL\ETLFakeDataSourceDriver.xml = Stg_FakeDataSource\ETL\ETLFakeDataSourceDriver.xml
+		Stg_FakeDataSource\ETL\ETLtblFakeCustomer.xml = Stg_FakeDataSource\ETL\ETLtblFakeCustomer.xml
+		Stg_FakeDataSource\ETL\ETLtblFakeSale.xml = Stg_FakeDataSource\ETL\ETLtblFakeSale.xml
+		Stg_FakeDataSource\ETL\Stg_FakeDataSource.vproj = Stg_FakeDataSource\ETL\Stg_FakeDataSource.vproj
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETL_TableIncremental", "ETL_TableIncremental", "{76B552E1-CBBC-4FD0-AED1-E4D9A7A655F5}"
+	ProjectSection(SolutionItems) = preProject
+		Stg_FakeDataSource\ETL_TableIncremental\ETLFakeDataSourceDriver.xml = Stg_FakeDataSource\ETL_TableIncremental\ETLFakeDataSourceDriver.xml
+		Stg_FakeDataSource\ETL_TableIncremental\ETLtblFakeCustomer.xml = Stg_FakeDataSource\ETL_TableIncremental\ETLtblFakeCustomer.xml
+		Stg_FakeDataSource\ETL_TableIncremental\ETLtblFakeSale.xml = Stg_FakeDataSource\ETL_TableIncremental\ETLtblFakeSale.xml
+		Stg_FakeDataSource\ETL_TableIncremental\Stg_FakeDataSource.vproj = Stg_FakeDataSource\ETL_TableIncremental\Stg_FakeDataSource.vproj
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F25F2336-64FA-44EF-B7BC-54406565B52F} = {A274273F-BF7E-4DB3-8705-6A097958727D}
+		{E9344703-26FF-4FAE-AAC5-5D9F56B545E9} = {A274273F-BF7E-4DB3-8705-6A097958727D}
+		{76B552E1-CBBC-4FD0-AED1-E4D9A7A655F5} = {A274273F-BF7E-4DB3-8705-6A097958727D}
+	EndGlobalSection
+EndGlobal

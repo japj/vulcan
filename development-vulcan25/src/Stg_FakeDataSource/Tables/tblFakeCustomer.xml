@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Tables>
+        <Table Name="tblFakeCustomer" ConnectionName="Stg_FakeDataSource" CompressionType="Page">
+            <Columns>
+                <Column Name="ID" Type="Int64" IsNullable="false" />
+                <Column Name="Name" Type="WStr" Length="255" IsNullable="false" />
+                <Column Name="Address" Type="WStr" Length="255" IsNullable="false" />
+                <Column Name="PostalCode" Type="WStr" Length="255" IsNullable="true" />
+                <Column Name="CountryRegion" Type="WStr" Length="255" IsNullable="false" />
+                <Column Name="InsertTime" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+                <Column Name="UpdateTime" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+
+                <Column Name="_InsertTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+                <Column Name="_UpdateTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false"/>
+            </Columns>
+            <Keys>
+                <PrimaryKey Name="PK_tblFakeCustomer_ID">
+                    <Columns>
+                        <Column ColumnName="ID" />
+                    </Columns>
+                </PrimaryKey>
+            </Keys>
+        </Table>
+      
+        <CloneTable Name="_Staging_tblFakeCustomer" TableName="tblFakeCustomer" ConnectionName="Stg_FakeDataSource"/>
+    </Tables>
+</Vulcan>

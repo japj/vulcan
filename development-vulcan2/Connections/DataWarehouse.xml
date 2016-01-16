@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="DataWarehouse" Type="OLEDB" ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+  </Connections>
+</Vulcan>

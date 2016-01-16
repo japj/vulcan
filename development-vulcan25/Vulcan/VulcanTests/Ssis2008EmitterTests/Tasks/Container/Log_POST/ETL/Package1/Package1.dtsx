@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ExecutableType="SSIS.Package.2">
+  <DTS:Property DTS:Name="PackageFormatVersion">3</DTS:Property>
+  <DTS:Property DTS:Name="VersionComments"></DTS:Property>
+  <DTS:Property DTS:Name="CreatorName">ScottVarigence1\Scott</DTS:Property>
+  <DTS:Property DTS:Name="CreatorComputerName">SCOTTVARIGENCE1</DTS:Property>
+  <DTS:Property DTS:Name="CreationDate" DTS:DataType="7">12/17/2009 3:23:53 AM</DTS:Property>
+  <DTS:Property DTS:Name="PackageType">0</DTS:Property>
+  <DTS:Property DTS:Name="ProtectionLevel">1</DTS:Property>
+  <DTS:Property DTS:Name="MaxConcurrentExecutables">-1</DTS:Property>
+  <DTS:Property DTS:Name="PackagePriorityClass">0</DTS:Property>
+  <DTS:Property DTS:Name="VersionMajor">1</DTS:Property>
+  <DTS:Property DTS:Name="VersionMinor">0</DTS:Property>
+  <DTS:Property DTS:Name="VersionBuild">0</DTS:Property>
+  <DTS:Property DTS:Name="VersionGUID">{A86AE521-18EB-46AC-89C5-50E429C97CD6}</DTS:Property>
+  <DTS:Property DTS:Name="EnableConfig">-1</DTS:Property>
+  <DTS:Property DTS:Name="CheckpointFileName"></DTS:Property>
+  <DTS:Property DTS:Name="SaveCheckpoints">0</DTS:Property>
+  <DTS:Property DTS:Name="CheckpointUsage">0</DTS:Property>
+  <DTS:Property DTS:Name="SuppressConfigurationWarnings">0</DTS:Property>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">TestConnection1</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{2B20A259-1595-4063-808E-CC9D28DAEA19}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">OLEDB</DTS:Property>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="Retain">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">Provider=SQLOLEDB;Integrated Security=SSPI;</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">0</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">User::_ssisRootDir</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable">\Package.Variables[User::_ssisRootDir].Properties[Value]</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">_ssisRootDir</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4D867C94-B574-4018-ADCD-B8FF76C217A6}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">1</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">C:\PackageConfigurations\TestConnection1.dtsConfig</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable"></DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">TestConnection1</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{71D51FB6-05B0-4BC0-A5F2-C666D7539012}</DTS:Property>
+    <DTS:Property DTS:Name="Description">TestConnection1</DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">0</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">User::_patchedExecutionGuid</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable">\Package.Variables[User::_executionGuid].Properties[Value]</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">_executionGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{3C16AD91-974C-4F94-B8C8-289A28EFCE10}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">0</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">System::PackageID</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable">\Package.Variables[User::_parentPackageGuid].Properties[Value]</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">_parentPackageGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{26FFC9E3-5A2C-4424-AC31-CA289A87F2EC}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Property DTS:Name="LastModifiedProductVersion">10.0.2531.0</DTS:Property>
+  <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+  <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+  <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+  <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+  <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+  <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+  <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+  <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+  <DTS:Property DTS:Name="LocaleID">1033</DTS:Property>
+  <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+  <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8"></DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_executionGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{47E37719-3E66-47A0-974B-34068E5A1AAD}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8"></DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_parentPackageGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4FC2C891-E964-4DD8-956B-2A22520CEA75}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression">@[User::_executionGuid] == "" ? @[System::ExecutionInstanceGUID] : @[User::_executionGuid]</DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">-1</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8">{DF378C71-0172-4E4C-95F4-C91A76422718}</DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_patchedExecutionGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{E0D41E91-E765-41EC-9E9E-32A1A8B634E8}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8">D:\varigence\trunk\vulcan\TestResults\TestResults[6]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.Container.Log_PRE.xml_89fe2069-7af5-47e9-975c-b3003d8b2688</DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_ssisRootDir</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4081831D-A07C-4234-9B08-38BDB118773E}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:LoggingOptions>
+    <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+    <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+    <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executable DTS:ExecutableType="STOCK:SEQUENCE">
+    <DTS:Property DTS:Name="LockName"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Executable DTS:ExecutableType="SSIS.Pipeline.2">
+      <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+      <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+      <DTS:Property DTS:Name="TaskContact">Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1</DTS:Property>
+      <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+      <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+      <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+      <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+      <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+      <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+      <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+      <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+      <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+      <DTS:LoggingOptions>
+        <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+        <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+        <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:Property DTS:Name="ObjectName">TestETL1</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{BA1AE3F8-FE3E-4B65-BE9D-11608090EE67}</DTS:Property>
+      <DTS:Property DTS:Name="Description"></DTS:Property>
+      <DTS:Property DTS:Name="CreationName">SSIS.Pipeline.2</DTS:Property>
+      <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+      <DTS:ObjectData>
+        <pipeline id="0" name="pipelineXml" description="pipelineXml" defaultBufferMaxRows="10000" engineThreads="10" defaultBufferSize="10485760" BLOBTempStoragePath="" bufferTempStoragePath="" runInOptimizedMode="true"/>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Property DTS:Name="ObjectName">TestContainer1</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{D8D8ECA8-08FD-48BC-9EFC-AF53D75815D6}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">STOCK:SEQUENCE</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+  </DTS:Executable>
+  <DTS:Property DTS:Name="ObjectName">Package1</DTS:Property>
+  <DTS:Property DTS:Name="DTSID">{95D823F3-223C-48F6-BEEE-5030F2CD6327}</DTS:Property>
+  <DTS:Property DTS:Name="Description"></DTS:Property>
+  <DTS:Property DTS:Name="CreationName">SSIS.Package.2</DTS:Property>
+  <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+  <DTS:EventHandler>
+    <DTS:Property DTS:Name="EventID">0</DTS:Property>
+    <DTS:Property DTS:Name="EventName">OnError</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Variable>
+      <DTS:Property DTS:Name="Expression"></DTS:Property>
+      <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+      <DTS:Property DTS:Name="Namespace">System</DTS:Property>
+      <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+      <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+      <DTS:Property DTS:Name="IncludeInDebugDump">6789</DTS:Property>
+      <DTS:VariableValue DTS:DataType="11">-1</DTS:VariableValue>
+      <DTS:Property DTS:Name="ObjectName">Propagate</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{B2CC3D66-1CA4-427E-ACCE-7073450A07D5}</DTS:Property>
+      <DTS:Property DTS:Name="Description">The propagate property of the event</DTS:Property>
+      <DTS:Property DTS:Name="CreationName"></DTS:Property>
+    </DTS:Variable>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+      <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+      <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+      <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+      <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+      <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+      <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+      <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+      <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+      <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+      <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+      <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+      <DTS:LoggingOptions>
+        <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+        <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+        <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:PropertyExpression DTS:Name="SqlStatementSource">"EXECUTE [usp_PackageEnd] ?,?,?,?,?,?,?,?,? "</DTS:PropertyExpression>
+      <DTS:Property DTS:Name="ObjectName">Exec usp_PackageError</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{8184A775-A799-491F-B842-2A5EBA99FF49}</DTS:Property>
+      <DTS:Property DTS:Name="Description"></DTS:Property>
+      <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+      <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="{2B20A259-1595-4063-808E-CC9D28DAEA19}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="DirectInput" SQLTask:SqlStatementSource="EXEC usp_PackageError 'Package1','{95D823F3-223C-48F6-BEEE-5030F2CD6327}',NULL,NULL,NULL,NULL,'SCOTTVARIGENCE1','ScottVarigence1\Scott','{DF378C71-0172-4E4C-95F4-C91A76422718}',NULL" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+        <SQLTask:ParameterBinding SQLTask:ParameterName="0" SQLTask:DtsVariableName="System::PackageName" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="1" SQLTask:DtsVariableName="System::PackageID" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="2" SQLTask:DtsVariableName="User::_parentPackageGuid" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="3" SQLTask:DtsVariableName="System::SourceName" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="4" SQLTask:DtsVariableName="System::SourceID" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="5" SQLTask:DtsVariableName="System::ParentContainerGUID" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="6" SQLTask:DtsVariableName="System::MachineName" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="7" SQLTask:DtsVariableName="System::UserName" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+          <SQLTask:ParameterBinding SQLTask:ParameterName="8" SQLTask:DtsVariableName="User::_patchedExecutionGuid" SQLTask:ParameterDirection="Input" SQLTask:DataType="130" SQLTask:ParameterSize="255" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Property DTS:Name="DTSID">{509E8A61-7428-4FA6-BCF2-3B9A551E131F}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">OnError</DTS:Property>
+  </DTS:EventHandler>
+  <DTS:EventHandler>
+    <DTS:Property DTS:Name="EventID">0</DTS:Property>
+    <DTS:Property DTS:Name="EventName">OnPostExecute</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Variable>
+      <DTS:Property DTS:Name="Expression"></DTS:Property>
+      <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+      <DTS:Property DTS:Name="Namespace">System</DTS:Property>
+      <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+      <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+      <DTS:Property DTS:Name="IncludeInDebugDump">6789</DTS:Property>
+      <DTS:VariableValue DTS:DataType="11">-1</DTS:VariableValue>
+      <DTS:Property DTS:Name="ObjectName">Propagate</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{687D158A-194B-43E3-862C-48B1066C0480}</DTS:Property>
+      <DTS:Property DTS:Name="Description">The propagate property of the event</DTS:Property>
+      <DTS:Property DTS:Name="CreationName"></DTS:Property>
+    </DTS:Variable>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Executable DTS:ExecutableType="STOCK:SEQUENCE">
+      <DTS:Property DTS:Name="LockName"></DTS:Property>
+      <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+      <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+      <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+      <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+      <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+      <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+      <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+      <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+      <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+      <DTS:LoggingOptions>
+        <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+        <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+        <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:Executable DTS:ExecutableType="STOCK:SEQUENCE">
+        <DTS:Property DTS:Name="LockName"></DTS:Property>
+        <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+        <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+        <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+        <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+        <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+        <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+        <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+        <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+        <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+        <DTS:LoggingOptions>
+          <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+          <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+          <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+        </DTS:LoggingOptions>
+        <DTS:Property DTS:Name="ObjectName">ConstrainedContainer</DTS:Property>
+        <DTS:Property DTS:Name="DTSID">{B79CA651-C3AA-4FCC-8601-C2F2E0FB45C8}</DTS:Property>
+        <DTS:Property DTS:Name="Description"></DTS:Property>
+        <DTS:Property DTS:Name="CreationName">STOCK:SEQUENCE</DTS:Property>
+        <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+      </DTS:Executable>
+      <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+        <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+        <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+        <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+        <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+        <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+        <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+        <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+        <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+        <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+        <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+        <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+        <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+        <DTS:LoggingOptions>
+          <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+          <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+          <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+        </DTS:LoggingOptions>
+        <DTS:PropertyExpression DTS:Name="SqlStatementSource">"EXEC usp_PackageEnd " + (@[System::PackageName] == "" ? "NULL" : "'"+@[System::PackageName]+"'") +","+(@[System::PackageID] == "" ? "NULL" : "'"+@[System::PackageID]+"'") +","+(@[User::_parentPackageGuid] == "" ? "NULL" : "'"+@[User::_parentPackageGuid]+"'") +","+(@[System::SourceName] == "" ? "NULL" : "'"+@[System::SourceName]+"'") +","+(@[System::SourceID] == "" ? "NULL" : "'"+@[System::SourceID]+"'") +","+(@[System::SourceParentGUID] == "" ? "NULL" : "'"+@[System::SourceParentGUID]+"'") +","+ (@[System::MachineName] == "" ? "NULL" : "'"+@[System::MachineName]+"'") +","+(@[System::UserName] == "" ? "NULL" : "'"+@[System::UserName]+"'") +","+(@[User::_patchedExecutionGuid] == "" ? "NULL" : "'"+@[User::_patchedExecutionGuid])+"'"</DTS:PropertyExpression>
+        <DTS:Property DTS:Name="ObjectName">Exec usp_PackageEnd</DTS:Property>
+        <DTS:Property DTS:Name="DTSID">{6DC1ED69-41FD-4457-A62D-E7176C0963C8}</DTS:Property>
+        <DTS:Property DTS:Name="Description"></DTS:Property>
+        <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+        <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+        <DTS:ObjectData>
+          <SQLTask:SqlTaskData SQLTask:Connection="{2B20A259-1595-4063-808E-CC9D28DAEA19}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="DirectInput" SQLTask:SqlStatementSource="EXEC usp_PackageEnd 'Package1','{95D823F3-223C-48F6-BEEE-5030F2CD6327}',NULL,NULL,NULL,NULL,'SCOTTVARIGENCE1','ScottVarigence1\Scott','{DF378C71-0172-4E4C-95F4-C91A76422718}'" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+        </DTS:ObjectData>
+      </DTS:Executable>
+      <DTS:PrecedenceConstraint>
+        <DTS:Property DTS:Name="Value">0</DTS:Property>
+        <DTS:Property DTS:Name="EvalOp">1</DTS:Property>
+        <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+        <DTS:Property DTS:Name="Expression">@[System::PackageID] == @[System::SourceID]</DTS:Property>
+        <DTS:Executable IDREF="{B79CA651-C3AA-4FCC-8601-C2F2E0FB45C8}" DTS:IsFrom="-1"/>
+        <DTS:Executable IDREF="{6DC1ED69-41FD-4457-A62D-E7176C0963C8}" DTS:IsFrom="0"/>
+        <DTS:Property DTS:Name="ObjectName">__PC_ConstrainedContainer_Exec usp_PackageEnd_1_0_2087175659_0</DTS:Property>
+        <DTS:Property DTS:Name="DTSID">{FA5BACF7-4DF8-45D9-AFFA-85ABBB5D2ABF}</DTS:Property>
+        <DTS:Property DTS:Name="Description"></DTS:Property>
+        <DTS:Property DTS:Name="CreationName"></DTS:Property>
+      </DTS:PrecedenceConstraint>
+      <DTS:Property DTS:Name="ObjectName">OnPostExec</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{C9E4E88B-F258-4F3B-A31D-82F8D4E1F221}</DTS:Property>
+      <DTS:Property DTS:Name="Description"></DTS:Property>
+      <DTS:Property DTS:Name="CreationName">STOCK:SEQUENCE</DTS:Property>
+      <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    </DTS:Executable>
+    <DTS:Property DTS:Name="DTSID">{E62755D9-7EB1-42A7-839D-6B68DD81A5C4}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">OnPostExecute</DTS:Property>
+  </DTS:EventHandler>
+  <DTS:EventHandler>
+    <DTS:Property DTS:Name="EventID">0</DTS:Property>
+    <DTS:Property DTS:Name="EventName">OnPreExecute</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Variable>
+      <DTS:Property DTS:Name="Expression"></DTS:Property>
+      <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+      <DTS:Property DTS:Name="Namespace">System</DTS:Property>
+      <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+      <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+      <DTS:Property DTS:Name="IncludeInDebugDump">6789</DTS:Property>
+      <DTS:VariableValue DTS:DataType="11">-1</DTS:VariableValue>
+      <DTS:Property DTS:Name="ObjectName">Propagate</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{9AB13621-1464-4ED0-9941-88C3DEF679F0}</DTS:Property>
+      <DTS:Property DTS:Name="Description">The propagate property of the event</DTS:Property>
+      <DTS:Property DTS:Name="CreationName"></DTS:Property>
+    </DTS:Variable>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Executable DTS:ExecutableType="STOCK:SEQUENCE">
+      <DTS:Property DTS:Name="LockName"></DTS:Property>
+      <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+      <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+      <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+      <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+      <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+      <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+      <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+      <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+      <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+      <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+      <DTS:LoggingOptions>
+        <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+        <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+        <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:Executable DTS:ExecutableType="STOCK:SEQUENCE">
+        <DTS:Property DTS:Name="LockName"></DTS:Property>
+        <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+        <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+        <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+        <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+        <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+        <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+        <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+        <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+        <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+        <DTS:LoggingOptions>
+          <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+          <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+          <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+        </DTS:LoggingOptions>
+        <DTS:Property DTS:Name="ObjectName">ConstrainedContainer</DTS:Property>
+        <DTS:Property DTS:Name="DTSID">{26CAF7A3-B5A4-4503-B34D-4D4C7943DE14}</DTS:Property>
+        <DTS:Property DTS:Name="Description"></DTS:Property>
+        <DTS:Property DTS:Name="CreationName">STOCK:SEQUENCE</DTS:Property>
+        <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+      </DTS:Executable>
+      <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+        <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+        <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+        <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+        <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+        <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+        <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+        <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+        <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+        <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+        <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+        <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+        <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+        <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+        <DTS:LoggingOptions>
+          <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+          <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+          <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+        </DTS:LoggingOptions>
+        <DTS:PropertyExpression DTS:Name="SqlStatementSource">"EXEC usp_PackageStart " + (@[System::PackageName] == "" ? "NULL" : "'"+@[System::PackageName]+"'") +","+(@[System::PackageID] == "" ? "NULL" : "'"+@[System::PackageID]+"'") +","+(@[User::_parentPackageGuid] == "" ? "NULL" : "'"+@[User::_parentPackageGuid]+"'") +","+(@[System::SourceName] == "" ? "NULL" : "'"+@[System::SourceName]+"'") +","+(@[System::SourceID] == "" ? "NULL" : "'"+@[System::SourceID]+"'") +","+(@[System::SourceParentGUID] == "" ? "NULL" : "'"+@[System::SourceParentGUID]+"'") +","+ (@[System::MachineName] == "" ? "NULL" : "'"+@[System::MachineName]+"'") +","+(@[System::UserName] == "" ? "NULL" : "'"+@[System::UserName]+"'") +","+(@[User::_patchedExecutionGuid] == "" ? "NULL" : "'"+@[User::_patchedExecutionGuid])+"'"</DTS:PropertyExpression>
+        <DTS:Property DTS:Name="ObjectName">Exec usp_PackageStart</DTS:Property>
+        <DTS:Property DTS:Name="DTSID">{89055AD8-C624-41BE-B7A2-DE0A14CF6BE3}</DTS:Property>
+        <DTS:Property DTS:Name="Description"></DTS:Property>
+        <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+        <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+        <DTS:ObjectData>
+          <SQLTask:SqlTaskData SQLTask:Connection="{2B20A259-1595-4063-808E-CC9D28DAEA19}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="DirectInput" SQLTask:SqlStatementSource="EXEC usp_PackageStart 'Package1','{95D823F3-223C-48F6-BEEE-5030F2CD6327}',NULL,NULL,NULL,NULL,'SCOTTVARIGENCE1','ScottVarigence1\Scott','{DF378C71-0172-4E4C-95F4-C91A76422718}'" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+        </DTS:ObjectData>
+      </DTS:Executable>
+      <DTS:PrecedenceConstraint>
+        <DTS:Property DTS:Name="Value">0</DTS:Property>
+        <DTS:Property DTS:Name="EvalOp">1</DTS:Property>
+        <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+        <DTS:Property DTS:Name="Expression">@[System::PackageID] == @[System::SourceID]</DTS:Property>
+        <DTS:Executable IDREF="{26CAF7A3-B5A4-4503-B34D-4D4C7943DE14}" DTS:IsFrom="-1"/>
+        <DTS:Executable IDREF="{89055AD8-C624-41BE-B7A2-DE0A14CF6BE3}" DTS:IsFrom="0"/>
+        <DTS:Property DTS:Name="ObjectName">__PC_ConstrainedContainer_Exec usp_PackageStart_1_0_2087175659_0</DTS:Property>
+        <DTS:Property DTS:Name="DTSID">{0A20A3B9-937A-4C69-8CBF-54AD57EE47B9}</DTS:Property>
+        <DTS:Property DTS:Name="Description"></DTS:Property>
+        <DTS:Property DTS:Name="CreationName"></DTS:Property>
+      </DTS:PrecedenceConstraint>
+      <DTS:Property DTS:Name="ObjectName">OnPreExec</DTS:Property>
+      <DTS:Property DTS:Name="DTSID">{58683188-027E-4EB5-9029-EA6155EC696E}</DTS:Property>
+      <DTS:Property DTS:Name="Description"></DTS:Property>
+      <DTS:Property DTS:Name="CreationName">STOCK:SEQUENCE</DTS:Property>
+      <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    </DTS:Executable>
+    <DTS:Property DTS:Name="DTSID">{268703FA-BDE8-4403-B665-F3C7747B3674}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">OnPreExecute</DTS:Property>
+  </DTS:EventHandler>
+</DTS:Executable>

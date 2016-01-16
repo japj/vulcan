@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [Column1] int NOT NULL
+              ,[Column2] int NOT NULL
+              ,[Column3] int NOT NULL
+              ,[Column4] int NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [PK1] PRIMARY KEY CLUSTERED ([Column1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]) ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+
+              CREATE  NONCLUSTERED INDEX [IX1] ON [TestTable1] ([Column2] Asc,[Column3] Asc)
+              WITH (PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
+              GO
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+    <Package Name="TestTableClone" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTableClone" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTableClone]') AND type IN (N'U'))
+              DROP TABLE [TestTableClone]
+              GO
+
+              CREATE TABLE [TestTableClone]
+              (
+              -- Columns Definition
+              [Column1] int NOT NULL
+              ,[Column2] int NOT NULL
+              ,[Column3] int NOT NULL
+              ,[Column4] int NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+
+              CREATE  NONCLUSTERED INDEX [IXClone1] ON [TestTableClone] ([Column1] Asc)
+              WITH (PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
+              GO
+              
+              CREATE  NONCLUSTERED INDEX [IXClone2] ON [TestTableClone] ([Column3] Asc,[Column4] Asc)
+              WITH (PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
+              GO
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

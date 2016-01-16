@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="TestTableDriver" Type="Driver">
+      <Tasks>
+        <Container Name="Test Table Creation" ConstraintMode="Linear" TransactionMode="NoTransaction">
+          <Tasks>
+            <Container Name="Simple Tables">
+              <Tasks>
+                <ExecutePackage Name="tblSimple" RelativePath="\Tables\tblSimple\tblSimple.dtsx" />
+                <ExecutePackage Name="tblSimpleStatic" RelativePath="\StaticSources\tblSimpleStatic\tblSimpleStatic.dtsx" />
+
+                <ExecutePackage Name="DimSimple" RelativePath="\Dimensions\DimSimple\DimSimple.dtsx" />
+                <ExecutePackage Name="DimSimpleStatic" RelativePath="\StaticSources\DimSimpleStatic\DimSimpleStatic.dtsx" />
+
+                <ExecutePackage Name="CloneDimSimpleKeyless" RelativePath="\Tables\CloneDimSimpleKeyless\CloneDimSimpleKeyless.dtsx" />
+                <ExecutePackage Name="CloneDimSimplePerfect" RelativePath="\Tables\CloneDimSimplePerfect\CloneDimSimplePerfect.dtsx" />
+
+                <ExecutePackage Name="FactSimple" RelativePath="\FactTables\FactSimple\FactSimple.dtsx" />
+                <ExecutePackage Name="FactSimpleStatic" RelativePath="\StaticSources\FactSimpleStatic\FactSimpleStatic.dtsx" />
+              </Tasks>
+            </Container>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

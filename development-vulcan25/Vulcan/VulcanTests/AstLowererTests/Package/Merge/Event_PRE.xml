@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTargetTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="TestColumn1" Type="Int32"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK">
+          <Columns>
+            <Column ColumnName="TestColumn1"/>
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+    </Table>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="TestColumn1" Type="Int32"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK">
+          <Columns>
+            <Column ColumnName="TestColumn1"/>
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+    </Table>
+  </Tables>
+  <Packages>
+    <Package Name="TestPackage1" Type="StoredProcedure">
+      <Tasks>
+        <Merge Name="TestMerge1" TargetConstraintName="TestTargetTable1.PK" SourceTableName="TestTable1" UnspecifiedColumnDefaultUsageType="CompareUpdateInsert">
+          <Events>
+            <Event Name="OnError1" EventType="OnError">
+              <Tasks>
+                <ExecuteSQL Name="WriteError1" ConnectionName="TestConnection1">
+                  <Query QueryType="Standard">
+                    <Body>
+                      INSERT INTO ErrorLog VALUES ('Error Occurred')
+                    </Body>
+                  </Query>
+                </ExecuteSQL>
+              </Tasks>
+            </Event>
+          </Events>
+        </Merge>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

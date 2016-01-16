@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="ETLStagingTest" Type="ETL" ConstraintMode="Linear">
+      <Tasks>
+        <Container Name="LookupTest" ConstraintMode="Linear">
+          <Tasks>
+            <Staging Name="SimpleStaging" ConstraintMode="Linear" ExecuteDuringDesignTime="true">
+              <Tables>
+                <CloneTable Name="tblSimpleStage" TableName="tblSimple" ConnectionName="Staging" />
+                <Table Name="BasicStagingTable" ConnectionName="Staging">
+                  <Columns>
+                    <Column Name="Foo" Type="Int64" IsNullable="true" />
+                  </Columns>
+                </Table>
+              </Tables>
+              <Tasks>
+                <ExecuteSQL Name="Check if table exists" ConnectionName="Staging">
+                  <Query>
+                    <Body>
+                      IF NOT EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'tblSimpleStage') AND type IN (N'U'))
+                      RAISERROR(N'TEST FAILED: tblSimpleStage table was not created! .',18,1)
+                      GO
+
+                      IF NOT EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'BasicStagingTable') AND type IN (N'U'))
+                      RAISERROR(N'TEST FAILED: BasicStagingTable table was not created! .',18,1)
+                      GO
+                    </Body>
+                  </Query>
+                </ExecuteSQL>
+
+                <ExecuteSQL Name="Check Staging Column Counts" ConnectionName="Staging">
+                  <Query>
+                    <Body>
+                      IF (SELECT COUNT(*) from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'tblSimpleStage') &lt;= 0
+                      RAISERROR(N'TEST FAILED: tblSimpleStage has 0 or fewer columns! .',18,1)
+                      GO
+
+                      IF (SELECT COUNT(*) from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BasicStagingTable') &lt;= 0
+                      RAISERROR(N'TEST FAILED: BasicStagingTable has 0 or fewer columns! .',18,1)
+                      GO
+                    </Body>
+                  </Query>
+                </ExecuteSQL>
+              </Tasks>
+            </Staging>
+
+            <ExecuteSQL Name="Check Staging Tables are Dropped" ConnectionName="Staging">
+              <Query>
+                <Body>
+                  IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'tblSimpleStage') AND type IN (N'U'))
+                  RAISERROR(N'TEST FAILED: tblSimpleStage table was not dropped! .',18,1)
+                  GO
+
+                  IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'BasicStagingTable') AND type IN (N'U'))
+                  RAISERROR(N'TEST FAILED: BasicStagingTable table was not dropped! .',18,1)
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

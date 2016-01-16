@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [Column1] int NOT NULL
+              ,[Column2] int NOT NULL
+              ,[Column3] int NOT NULL
+              ,[Column4] int NOT NULL
+              ,[Column5] int NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [PK_SingleColumn] PRIMARY KEY CLUSTERED ([Column1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [PK_SingleColumn_Asc] PRIMARY KEY CLUSTERED ([Column1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [PK_SingleColumn_Desc] PRIMARY KEY CLUSTERED ([Column1] Desc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [PK_MultipleColumn] PRIMARY KEY CLUSTERED ([Column1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [PK_MultipleColumn_Asc] PRIMARY KEY CLUSTERED ([Column1] Asc,[Column2] Asc,[Column3] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [PK_MultipleColumn_Desc] PRIMARY KEY CLUSTERED ([Column1] Desc,[Column2] Desc,[Column3] Desc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              ,CONSTRAINT [PK_MultipleColumn_Mix] PRIMARY KEY CLUSTERED ([Column1] Asc,[Column2] Desc,[Column3] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

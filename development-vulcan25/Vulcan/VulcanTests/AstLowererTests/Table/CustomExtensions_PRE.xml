@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <CustomExtensions Name="TestCustomExtensions">
+        <Tasks>
+          <ExecuteSQL Name="TestExecuteSql" ConnectionName="TestConnection1">
+            <Body>
+              SELECT * FROM Test
+            </Body>
+          </ExecuteSQL>
+        </Tasks>
+      </CustomExtensions>
+    </Table>
+  </Tables>
+</Vulcan>

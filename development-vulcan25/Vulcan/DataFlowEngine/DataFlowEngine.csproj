@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8BAAA928-55EC-4BFD-A8BC-240011F7D573}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataFlowEngine</RootNamespace>
+    <AssemblyName>DataFlowEngine</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Data.Schema, Version=9.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.Data.Schema.ScriptDom, Version=9.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Data.Schema.ScriptDom.Sql, Version=9.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Data.Schema.UnitTesting, Version=9.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ITupleBase.cs" />
+    <Compile Include="DataflowSliceManager.cs" />
+    <Compile Include="PhiTupleSequence.cs" />
+    <Compile Include="DataflowGraph.cs" />
+    <Compile Include="DataflowSlice.cs" />
+    <Compile Include="Statements\DefinitionReference.cs" />
+    <Compile Include="Statements\Use.cs" />
+    <Compile Include="TupleProviders\Tasks\ContainerTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\PackageTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\EtlRootTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\StoredProcTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\ExecutePackageTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\ExecuteSqlTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\MergeTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\StagingContainerTupleProvider.cs" />
+    <Compile Include="TupleProviders\Tasks\TaskTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\OleDBCommandTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\MulticastTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\SingleMappedInputTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\MappedInputTupleProvider.cs" />
+    <Compile Include="TupleProviders\PhiTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\TransformationTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\UnionAllTupleProvider.cs" />
+    <Compile Include="TupleSequence.cs" />
+    <Compile Include="TupleDataflowGraph.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statements\Identifier.cs" />
+    <Compile Include="Statements\Opcode.cs" />
+    <Compile Include="Statements\Definition.cs" />
+    <Compile Include="Statements\Tuple.cs" />
+    <Compile Include="TupleDataflowGraphNode.cs" />
+    <Compile Include="TupleProviderManager.cs" />
+    <Compile Include="TupleProviders\Transformations\DerivedColumnListTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\DestinationTupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\LookupTupleProvider.cs" />
+    <Compile Include="TupleProviders\TupleProvider.cs" />
+    <Compile Include="TupleProviders\Transformations\QuerySourceTupleProvider.cs" />
+    <Compile Include="TupleProviders\TupleProviderMappingAttribute.cs" />
+    <Compile Include="TupleProviders\Utility.cs" />
+    <Compile Include="TupleSequenceEnumerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utility\Utility\Utility.csproj">
+      <Project>{77278D18-0512-4493-8FB0-51FE92D48FC4}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AstFramework\AstFramework.csproj">
+      <Project>{3E372F75-2C05-4A25-AF5C-9776AB95BE56}</Project>
+      <Name>AstFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VulcanAst\VulcanAst.csproj">
+      <Project>{1556D101-51A7-4493-8E16-5F40F9105CC3}</Project>
+      <Name>VulcanAst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VulcanEngine\VulcanEngine.csproj">
+      <Project>{68775410-5104-407B-B552-6703EE4158EF}</Project>
+      <Name>VulcanEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

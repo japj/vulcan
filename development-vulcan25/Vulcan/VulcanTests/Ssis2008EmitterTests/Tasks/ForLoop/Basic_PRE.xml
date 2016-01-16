@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Connection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Variables>
+        <Variable Name="Attempts" TypeCode="Int32" Value="0"/>
+        <Variable Name="RetryCount" TypeCode="Int32" Value="2"/>
+      </Variables>
+      <Tasks>
+        <ForLoop Name="ForLoop1">
+          <LoopTestExpression>@Attempts&lt;=@RetryCount</LoopTestExpression>
+          <CountingExpression>@Attempts=@Attempts + 1</CountingExpression>
+        </ForLoop>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,2242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="vulcan2"
+    targetNamespace="http://tempuri.org/vulcan2.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/vulcan2.xsd"
+    xmlns:mstns="http://tempuri.org/vulcan2.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:Values="http://tempuri.org/Values.xsd"
+>
+    <xs:import schemaLocation="Values_Connection.xsd" namespace="http://tempuri.org/Values.xsd" />
+    <xs:import schemaLocation="Values_Dimension.xsd" namespace="http://tempuri.org/Values.xsd" />
+    <xs:import schemaLocation="Values_DimensionInstance.xsd" namespace="http://tempuri.org/Values.xsd" />
+    <xs:import schemaLocation="Values_MeasureGroup.xsd" namespace="http://tempuri.org/Values.xsd" />
+    <xs:import schemaLocation="Values_Owner.xsd" namespace="http://tempuri.org/Values.xsd" />
+
+    <!-- ROOT.xsd -->
+    <xs:element name="Vulcan" type="VulcanRootElemType" />
+
+    <xs:complexType name="VulcanRootElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+
+                    <xs:element name="Using" type="IncludeFileElemType" minOccurs="0" maxOccurs="unbounded" />
+
+                    <xs:choice>
+                        <xs:element name="Connections" type="ConnectionListElemType" />
+                        <xs:element name="Connection" type="ConnectionElemType" minOccurs="0" maxOccurs="unbounded" />
+                    </xs:choice>
+
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="Cubes" type="CubeListElemType" />
+                        <xs:element name="Cube" type="CubeElemType" />
+
+                        <xs:element name="Dimensions" type="DimensionListElemType" />
+                        <xs:element name="Dimension" type="DimensionElemType" />
+
+                        <xs:element name="DimensionInstances" type="DimensionInstanceListElemType" />
+                        <xs:element name="DimensionInstance" type="DimensionInstanceElemType" />
+
+                        <xs:element name="Packages" type="PackageListElemType" />
+                        <xs:element name="Package" type="PackageElemType" />
+
+                        <xs:element name="Facts" type="FactListElemType" />
+                        <xs:element name="Fact" type="FactElemType" />
+
+                        <xs:element name="Tables" type="TableListElemType" />
+                        <xs:element name="Table" type="TableElemType" />
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="IncludeFileElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="As" type="xs:string" use="optional" default=""/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="GlobalColumnReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="ColumnName" type="xs:string" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- PACKAGE.xsd -->
+    <xs:complexType name="PackageListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Package" type="PackageElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PackageElemType">
+        <xs:complexContent>
+            <xs:extension base="ContainerTaskElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="DefaultPlatform" type="PlatformFacet" default="SSIS08" />
+                <xs:attribute name="Type" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="PlatformFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SSIS05" />
+            <xs:enumeration value="SSIS08" />
+            <xs:enumeration value="METL" />
+            <xs:enumeration value="Debug" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="StagingTaskElemType">
+        <xs:complexContent>
+            <xs:extension base="ContainerTaskElemType">
+                <xs:sequence>
+                    <xs:element name="DropConstraint" type="StagingTableDropConstraintElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="Table" type="xs:string" use="required"/>
+                <xs:attribute name="CreateAs" type="xs:string" use="required"/>
+                <xs:attribute name="UseStaticSource" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="StagingConnection" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="StagingTableDropConstraintElemType">
+        <xs:restriction base="xs:string">
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ContainerTaskElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="HelperTables" type="TableListElemType" />
+                    <xs:element name="HelperTable" type="TableElemType" />
+                    <xs:element name="Staging" type="StagingTaskElemType" />
+                    <xs:element name="Merge" type="MergeTaskElemType" />
+                    <xs:element name="StoredProc" type="StoredProcElemType" />
+                    <xs:element name="Variable" type="VariableTaskElemType" />
+                    <xs:element name="Container" type="ContainerTaskElemType"/>
+                    <xs:element name="ExecuteSQL" type="ExecuteSqlTaskElemType" />
+                    <xs:element name="ETL" type="ETLRootElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="ExecutePackage" type="ExecutePackageTaskElemType" />
+                </xs:choice>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConstraintMode" type="ContainerConstraintModeFacet" default="Linear" use="optional" />
+                <xs:attribute name="Log" type="xs:boolean" default="false" />
+                <xs:attribute name="LogConnectionName" type="xs:string" use="optional" />
+                <xs:attribute name="TransactionMode" type="ContainerTransactionFacet" use="optional" default="Join"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="ContainerTransactionFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StartOrJoin" />
+            <xs:enumeration value="Join" />
+            <xs:enumeration value="NoTransaction" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="VariableTaskElemType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+        <xs:attribute name="Type" type="VariableTypeFacet" use="required" />
+        <xs:attribute name="Value" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:simpleType name="VariableTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Boolean" />
+            <xs:enumeration value="Byte" />
+            <xs:enumeration value="Char" />
+            <xs:enumeration value="DateTime" />
+            <xs:enumeration value="DBNull" />
+            <xs:enumeration value="Double" />
+            <xs:enumeration value="Int16" />
+            <xs:enumeration value="Int32" />
+            <xs:enumeration value="Int64" />
+            <xs:enumeration value="Object" />
+            <xs:enumeration value="SByte" />
+            <xs:enumeration value="Single" />
+            <xs:enumeration value="String" />
+            <xs:enumeration value="UInt32" />
+            <xs:enumeration value="UInt64" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="MergeTaskElemType">
+        <xs:sequence>
+            <xs:element name="Column" type="MergeColumnElemType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+        <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+        <xs:attribute name="SourceTableName" type="xs:string" use="required" />
+        <xs:attribute name="TargetConstraintName" type="xs:string" use="required" />
+        <xs:attribute name="UpdateTargetTable" type="xs:boolean" use="optional" default="true" />
+        <xs:attribute name="UnspecifiedColumnDefaultUsageType" type="MergeColumnUsageFacet" use="optional" default="CompareAndUpdate" />
+    </xs:complexType>
+
+    <xs:complexType name="MergeColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="ColumnName" type="xs:string" />
+                <xs:attribute name="ColumnUsage" type="MergeColumnUsageFacet" default="CompareAndUpdate" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="MergeColumnUsageFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Compare"/>
+            <xs:enumeration value="Update"/>
+            <xs:enumeration value="CompareAndUpdate"/>
+            <xs:enumeration value="Excluded"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ExecuteSqlTaskElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Body" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="Result" type="ParameterMappingElemType" maxOccurs="unbounded" minOccurs="0" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attributeGroup ref="GlobalExecuteDuringDesignTimeAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="optional" />
+                <xs:attribute name="Type" type="ExecuteSQLTaskTypeFacet" use="optional" default="File" />
+                <xs:attribute name="ResultSet" type="ExecuteSQLResultSetFacet" default="None" use="optional" />
+                <xs:attribute name="IsolationLevel" type="IsolationLevelFacet" default="ReadCommitted" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ParameterMappingElemType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="ParameterName" type="xs:string" use="required" />
+        <xs:attribute name="VariableName" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ExecutePackageTaskElemType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+        <xs:attribute name="RelativePath" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:simpleType name="ExecuteSQLTaskTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Expression" />
+            <xs:enumeration value="File" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ExecuteSQLResultSetFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None" />
+            <xs:enumeration value="SingleRow" />
+            <xs:enumeration value="Full" />
+            <xs:enumeration value="XML" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ContainerConstraintModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Linear" />
+            <xs:enumeration value="Parallel" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- GLOBAL.xsd -->
+    <!-- Global Attribute Groups -->
+    <xs:attributeGroup name="GlobalNamedElementAttrGroup">
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="AsClassOnly" type="xs:boolean" use="optional" default="false" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="GlobalVisibleElementAttrGroup">
+        <xs:attribute name="Visible" type="xs:boolean" use="optional" default="true" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="GlobalExecuteDuringDesignTimeAttrGroup">
+        <xs:attribute name="ExecuteDuringDesignTime" type="xs:boolean" use="optional" default="false" />
+    </xs:attributeGroup>
+
+    <!-- Global Base Type -->
+    <xs:complexType name="GlobalBase">
+        <xs:sequence>
+            <xs:choice minOccurs="0">
+                <xs:element name="Annotation" type="GlobalAnnotationElemType" />
+                <xs:element name="Owner" type="xs:string" />
+            </xs:choice>
+            <xs:choice minOccurs="0">
+                <xs:element name="Argument" type="ArgumentElemType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="New" type="GlobalNewObjectElemType" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attributeGroup ref="GlobalElementMarkupAttrGroup" />
+    </xs:complexType>
+
+    <xs:attributeGroup name="GlobalElementMarkupAttrGroup">
+        <xs:attribute name="Owner" type="xs:string" />
+    </xs:attributeGroup>
+
+    <xs:complexType name="GlobalAnnotationElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Type" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Documentation" />
+                            <xs:enumeration value="CodeComment" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="GlobalNewObjectElemType">
+        <xs:sequence>
+            <xs:element name="Change" type="NewObjectChangeElemType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+        <xs:anyAttribute namespace="##local" processContents="skip" />
+    </xs:complexType>
+
+    <xs:complexType name="NewObjectChangeElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="Type" type="xs:string" use="required" />
+                <xs:attribute name="Name" type="xs:string" use="required" />
+                <xs:attribute name="Property" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArgumentElemType">
+        <xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="DefaultValue" type="xs:string" use="optional" default=""/>
+    </xs:complexType>
+
+    <!-- Utility Element Types -->
+    <xs:complexType name="GlobalColumnMapElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="SourceName" type="xs:string" use="required" />
+                <!-- TODO: Destination was optional in the previos schema.  Is that possible? 
+             Yes - Optional Map means Unmap :) -->
+                <xs:attribute name="DestinationName" type="xs:string" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DestinationElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Map" type="GlobalColumnMapElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+                <xs:attribute name="TableName" type="xs:string" use="required" />
+                <xs:attribute name="AccessMode" type="DestinationAccessModeFacet" default="Table" use="optional" />
+                <xs:attribute name="TableLock" type="xs:boolean" use="optional" default="true" />
+                <xs:attribute name="CheckConstraints" type="xs:boolean" use="optional" default="true" />
+                <xs:attribute name="KeepIdentity" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="KeepNulls" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="RowsPerBatch" type="xs:integer" use="optional" default="0" />
+                <xs:attribute name="MaximumInsertCommitSize" type="xs:integer" use="optional" default="0" />
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="false" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="DestinationAccessModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Table" />
+            <xs:enumeration value="TableFastLoad" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- CONNECTION.xsd -->
+    <xs:complexType name="ConnectionListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Connection" type="ConnectionElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TODO: Add Facets for these attributes -->
+    <!-- TODO: Does this cover enough of the options for Oracle, MySQL, and others? -->
+    <xs:complexType name="ConnectionElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConnectionString" type="xs:string" use="required" />
+                <xs:attribute name="Type" type="ConnectionTypeFacet" use="required" />
+                <xs:attribute name="RetainSameConnection" type="xs:boolean" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="ConnectionTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FILE" />
+            <xs:enumeration value="OLEDB" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- TABLE.xsd -->
+    <xs:complexType name="TableListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Table" type="TableElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Columns" type="TableColumnListElemType" minOccurs="0" maxOccurs="1"/>
+                    <xs:group ref="TablePhysicalParameters" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attributeGroup ref="GlobalExecuteDuringDesignTimeAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TODO: Where is this used?  Does it need to be a group? -->
+    <xs:group name="TablePhysicalParameters">
+        <xs:sequence>
+            <xs:element name="Keys" type="TableKeyListElemType" minOccurs="1" maxOccurs="1" />
+            <xs:element name="ForeignKeys" type="TableForeignKeyListElemType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Sources" type="TableSourceListElemType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Lookups" type="TableLookupListElemType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Indexes" type="TableIndexListElemType" minOccurs="0" maxOccurs="1" />
+            <!-- TODO: <xs:element name="DataValidations" type="TableDataValidationListElemType" minOccurs="0" maxOccurs="1" />-->
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="TableColumnListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="Column" type="TableColumnElemType" />
+                    <xs:element name="HashedKey" type="HashedKeyColumnElemType" />
+                    <xs:element name="Dimension" type="DimensionReferenceElemType" />
+                    <xs:element name="TableReference" type="TableReferenceElemType" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Columns -->
+    <xs:complexType name="TableColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="Type" type="AttributeColumnDataTypeFacet" />
+                <xs:attribute name="Length" type="xs:int" default="-1" />
+                <xs:attribute name="Precision" type="xs:int" default="-1" />
+                <xs:attribute name="Scale" type="xs:int" default="-1" />
+                <xs:attribute name="Default" type="xs:string" use="optional" default="" />
+                <xs:attribute name="CustomType" type="xs:string" use="optional" />
+                <xs:attribute name="IsNullable" type="xs:boolean" default="false" />
+                <xs:attribute name="Computed" type="xs:string" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="HashedKeyColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="Constraint" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="OutputName" type="xs:string" use="required" />
+                <xs:attribute name="DimensionName" type="Values:DimensionListFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="OutputName" type="xs:string" use="required" />
+                <xs:attribute name="ColumnName" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Table Keys -->
+    <xs:complexType name="TableKeyListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Identity" type="TableIdentityElemType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="PrimaryKey" type="TablePrimaryKeyElemType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="UniqueKey" type="TableUniqueKeyElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableForeignKeyListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="ForeignKey" type="TableForeignKeyElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableIdentityElemType">
+        <xs:complexContent>
+            <xs:extension base="TableKeyColumnElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="Seed" type="xs:int" default="1" />
+                <xs:attribute name="Increment" type="xs:int" default="1" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TablePrimaryKeyElemType">
+        <xs:complexContent>
+            <xs:extension base="TableKeyColumnElemType">
+                <xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableUniqueKeyElemType">
+        <xs:complexContent>
+            <xs:extension base="TableKeyColumnElemType">
+                <xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableForeignKeyElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Column" type="TableForeignKeyColumnElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="DimensionName" type="Values:DimensionListFacet" use="required" />
+                <xs:attribute name="Name" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableForeignKeyColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="ColumnName" type="xs:string" use="required" />
+                <xs:attribute name="OutputName" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableKeyColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Column" type="TableKeyColumnReferenceElemType" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="PadIndex" type="xs:boolean" default="false" />
+                <xs:attribute name="SortInTempdb" type="xs:boolean" default="false" />
+                <xs:attribute name="DropExisting" type="xs:boolean" default="false" />
+                <xs:attribute name="IgnoreDupKey" type="xs:boolean" default="false" />
+                <xs:attribute name="Online" type="xs:boolean" default="false" />
+                <xs:attribute name="Clustered" type="xs:boolean" default="false" />
+                <xs:attribute name="Unique" type="xs:boolean" default="false" />
+                <xs:attribute name="Name" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableKeyColumnReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalColumnReferenceElemType">
+                <xs:sequence />
+                <xs:attribute name="SortOrder" type="TableKeySortOrderFacet" use="optional" default="ASC" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Facets -->
+    <xs:simpleType name="TableKeySortOrderFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ASC" />
+            <xs:enumeration value="DESC" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Table Sources -->
+    <xs:complexType name="TableSourceListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice>
+                    <!-- TODO: Will this be sufficient for views and data source views? -->
+                    <!--<xs:element name="CreateViewQuerySource" type="xs:string" minOccurs="0" maxOccurs="1"/>-->
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element name="StaticSource" type="TableStaticSourceElemType" />
+                        <xs:element name="QuerySource" type="TableQuerySourceElemType" />
+                        <xs:element name="DynamicSource" type="TableDynamicSourceElemType" />
+                    </xs:choice>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableStaticSourceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Row" type="TableStaticSourceRowElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TODO: This requires comma-separated flattened list like we have today - let's fix this to do explicit XML markup -->
+    <xs:complexType name="TableStaticSourceRowElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableQuerySourceElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableDynamicSourceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Package" type="PackageElemType" minOccurs="1" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <!-- Table Lookups -->
+    <xs:complexType name="TableLookupListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="KeyLookup" type="TableKeyLookupElemType" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="CustomLookup" type="TableCustomLookupElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableKeyLookupElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="KeyName" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableCustomLookupElemType">
+        <xs:complexContent>
+            <xs:extension base="TransformationListElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <!-- Indexes -->
+    <xs:complexType name="TableIndexListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Index" type="TableIndexElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableIndexBaseElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Column" type="TableIndexColumnReferenceElemType" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="PadIndex" type="xs:boolean" default="false" />
+                <xs:attribute name="SortInTempdb" type="xs:boolean" default="false" />
+                <xs:attribute name="DropExisting" type="xs:boolean" default="false" />
+                <xs:attribute name="IgnoreDupKey" type="xs:boolean" default="false" />
+                <xs:attribute name="Online" type="xs:boolean" default="false" />
+                <xs:attribute name="Clustered" type="xs:boolean" default="false" />
+                <xs:attribute name="Unique" type="xs:boolean" default="false" />
+                <xs:attribute name="Name" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableIndexElemType">
+        <xs:complexContent>
+            <xs:extension base="TableIndexBaseElemType">
+                <xs:sequence>
+                    <xs:element name="Leaf" type="GlobalColumnReferenceElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TableIndexColumnReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalColumnReferenceElemType">
+                <xs:sequence />
+                <xs:attribute name="SortOrder" type="TableIndexSortOrderFacet" use="optional" default="ASC" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Facets -->
+    <xs:simpleType name="TableIndexSortOrderFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ASC" />
+            <xs:enumeration value="DESC" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeColumnDataTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BOOL" />
+            <xs:enumeration value="WSTR" />
+            <xs:enumeration value="STR" />
+            <xs:enumeration value="FLOAT" />
+            <xs:enumeration value="DOUBLE" />
+            <xs:enumeration value="DECIMAL" />
+            <xs:enumeration value="INT32" />
+            <xs:enumeration value="INT64" />
+            <xs:enumeration value="UINT32" />
+            <xs:enumeration value="UINT64" />
+            <xs:enumeration value="DATE" />
+            <xs:enumeration value="TIME" />
+            <xs:enumeration value="DATETIME" />
+            <xs:enumeration value="BINARY" />
+            <xs:enumeration value="CUSTOM" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- DIMENSION.xsd -->
+    <xs:complexType name="DimensionListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Dimension" type="DimensionElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Columns" type="TableColumnListElemType" minOccurs="0" maxOccurs="1"/>
+                    <xs:group ref="TablePhysicalParameters" />
+                    <xs:element name="Attributes" type="AttributeListElemType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="Relationships" type="AttributeRelationshipListElemType" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="Hierarchies" type="DimensionHierarchyListElemType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- List Types -->
+    <xs:complexType name="AttributeListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Attribute" type="AttributeElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeRelationshipListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Relationship" type="AttributeRelationshipElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionHierarchyListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Hierarchy" type="DimensionHierarchyElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Core Types-->
+    <!-- Dimension Attributes and Attribute Hierarchies -->
+    <xs:complexType name="AttributeElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="KeyColumn" type="AttributeColumnElemType" minOccurs="1" maxOccurs="unbounded" />
+                    <xs:element name="NameColumn" type="AttributeColumnElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="ValueColumn" type="AttributeColumnElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="Usage" type="AttributeUsageFacet" />
+                <xs:attribute name="OrderBy" type="AttributeOrderByFacet" default="Key" />
+                <xs:attribute name="OrderByAttributeName" type="xs:string" />
+                <xs:attribute name="MemberNameUnique" type="xs:boolean" />
+                <xs:attribute name="EstimatedCount" type="xs:integer" />
+                <xs:attribute name="IsAggregatable" type="xs:boolean" default="true" />
+                <xs:attribute name="AttributeHierarchyEnabled" type="xs:boolean" default="true" />
+                <xs:attribute name="AttributeHierarchyOrdered" type="xs:boolean" default="true" />
+                <xs:attribute name="AttributeHierarchyOptimizedState" type="SSASAttributeHierarchyOptimizedStateFacet" default="FullyOptimized" />
+                <xs:attribute name="AttributeHierarchyVisible" type="xs:boolean" default="true" />
+                <xs:attribute name="AttributeHierarchyDisplayFolder" type="xs:string" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="ColumnName" type="xs:string" use="required" />
+                <xs:attributeGroup ref="SSASColumnOptions" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Attribute Relationships -->
+    <xs:complexType name="AttributeRelationshipElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attributeGroup ref="GlobalVisibleElementAttrGroup" />
+                <xs:attribute name="ParentAttributeName" type="xs:string" use="required" />
+                <xs:attribute name="ChildAttributeName" type="xs:string" use="required" />
+                <xs:attribute name="Type" type="AttributeRelationshipTypeFacet" use="required" />
+                <xs:attribute name="Cardinality" type="AttributeRelationshipCardinalityFacet" use="required" />
+                <xs:attribute name="Optionality" type="AttributeRelationshipOptionalityFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <!-- Dimension Hierarchies -->
+    <xs:complexType name="DimensionHierarchyElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Level" type="DimensionHierarchyLevelElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionHierarchyLevelElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="AttributeName" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Facets -->
+    <xs:simpleType name="AttributeUsageFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Key" />
+            <xs:enumeration value="Additional" />
+            <xs:enumeration value="Parent" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeOrderByFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Key" />
+            <xs:enumeration value="Name" />
+            <xs:enumeration value="AttributeKey" />
+            <xs:enumeration value="AttributeName" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeRelationshipTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Rigid" />
+            <xs:enumeration value="Flexible" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeRelationshipCardinalityFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="One-to-One" />
+            <xs:enumeration value="One-to-Many" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeRelationshipOptionalityFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Mandatory" />
+            <xs:enumeration value="Optional" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- DIMENSIONINSTANCE.xsd -->
+    <xs:complexType name="DimensionInstanceListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="DimensionInstance" type="DimensionInstanceElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionInstanceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="AttributeProperties" type="AttributeReferenceListElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="DimensionHierarchyProperties" type="DimensionHierarchyReferenceListElemType" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="DimensionName" type="Values:DimensionListFacet" use="required" />
+                <xs:attribute name="Description" type="xs:string" use="optional" />
+                <xs:attribute name="AllMemberAggregationUsage" type="SSASAggregationUsageFacet" use="optional" default="Default" />
+                <xs:attribute name="HierarchyUniqueNameStyle" type="SSASHierarchyUniqueNameStyleFacet" use="optional" default="IncludeDimensionName" />
+                <xs:attribute name="MemberUniqueNameStyle" type="SSASMemberUniqueNameStyleFacet" use="optional" default="Native" />
+                <xs:attributeGroup ref="GlobalVisibleElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeReferenceListElemType" >
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Attribute" type="AttributeReferenceElemType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AttributeReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="AttributeName" type="xs:string" use="required" />
+                <xs:attribute name="AggregationUsage" type="SSASAggregationUsageFacet" use="optional" default="Default" />
+                <xs:attribute name="AttributeHierarchyEnabled" type="xs:boolean" use="optional" default="true" />
+                <xs:attribute name="AttributeHierarchyOptimizedState" type="SSASAttributeHierarchyOptimizedStateFacet" use="optional" default="FullyOptimized" />
+                <xs:attribute name="AttributeHierarchyVisible" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionHierarchyReferenceListElemType" >
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="DimensionHierarchy" type="DimensionHierarchyReferenceElemType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionHierarchyReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="DimensionHierarchyName" type="xs:string" use="required" />
+                <xs:attributeGroup ref="GlobalVisibleElementAttrGroup" />
+                <xs:attribute name="Enabled" type="xs:boolean" use="optional" default="true" />
+                <xs:attribute name="OptimizedState" type="SSASAttributeHierarchyOptimizedStateFacet" use="optional" default="FullyOptimized" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- FACT.xsd -->
+    <xs:complexType name="FactListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Fact" type="FactElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FactElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Columns" type="FactColumnListElemType" minOccurs="0" maxOccurs="1"/>
+                    <xs:group ref="TablePhysicalParameters" />
+                    <xs:element name="CalculatedMeasures" type="MeasureListElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+
+                <xs:attribute name="MeasureGroupName" type="xs:string" />
+                <xs:attribute name="Description" type="xs:string" />
+                <xs:attribute name="AggregationPrefix" type="xs:string" />
+                <xs:attribute name="DefaultMeasure" type="xs:string" />
+                <xs:attribute name="ErrorConfiguration" type="xs:string" />
+                <xs:attribute name="EstimatedRows" type="xs:int" />
+                <xs:attribute name="EstimatedSize" type="xs:int" />
+                <xs:attribute name="IgnoreUnrelatedDimensions" type="xs:boolean" />
+                <xs:attribute name="ProcessingMode" type="SSASProcessingModeFacet" />
+                <xs:attribute name="ProcessingPriority" type="xs:int" />
+                <xs:attribute name="Type" type="SSASMeasureGroupTypeFacet" />
+                <xs:attribute name="DataAggregation" type="SSASDataAggregationFacet" />
+                <xs:attribute name="ProactiveCaching" type="xs:string" />
+                <xs:attribute name="StorageMode" type="SSASStorageModeFacet" />
+                <xs:attribute name="StorageLocation" type="xs:string" />
+                <xs:attributeGroup ref="GlobalVisibleElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FactColumnListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="Column" type="FactColumnElemType" />
+                    <xs:element name="HashedKey" type="HashedKeyColumnElemType" />
+                    <xs:element name="Dimension" type="DimensionReferenceElemType" />
+                    <xs:element name="TableReference" type="TableReferenceElemType" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FactColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="TableColumnElemType">
+                <xs:sequence>
+                    <xs:element name="Measure" type="MeasureElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MeasureListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Measure" type="MeasureElemType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MeasureElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element name="Expression" type="MDXExpressionElemType" />
+                        <xs:element name="Aggregate" type="AggregateElemType" />
+                    </xs:choice>
+                    <xs:element name="ForeColor" type="MDXExpressionElemType" />
+                    <xs:element name="BackColor" type="MDXExpressionElemType" />
+                    <xs:element name="FontName" type="MDXExpressionElemType" />
+                    <xs:element name="FontSize" type="MDXExpressionElemType" />
+                    <xs:element name="FontFlags" type="MDXExpressionElemType" />
+                    <!-- TODO: Add appropriate non-empty behavior structure -->
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attributeGroup ref="GlobalVisibleElementAttrGroup" />
+                <xs:attributeGroup ref="SSASColumnOptions" />
+                <xs:attribute name="DisplayFormat" type="MeasureFormatFacet" use="required" />
+                <xs:attribute name="DisplayFolder" type="xs:string" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AggregateElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="Function" type="AggregateFunctionFacet" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="MeasureFormatFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="#" />
+            <xs:enumeration value="#,#" />
+            <xs:enumeration value="#,#.0" />
+            <xs:enumeration value="#,#.00" />
+            <xs:enumeration value="Standard" />
+            <xs:enumeration value="Currency" />
+            <xs:enumeration value="Short Date" />
+            <xs:enumeration value="Short Time" />
+            <xs:enumeration value="Percent" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AggregateFunctionFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Sum" />
+            <xs:enumeration value="Count" />
+            <xs:enumeration value="Min" />
+            <xs:enumeration value="Max" />
+            <xs:enumeration value="DistinctCount" />
+            <xs:enumeration value="None" />
+            <xs:enumeration value="ByAccount" />
+            <xs:enumeration value="AverageOfChildren" />
+            <xs:enumeration value="FirstChild" />
+            <xs:enumeration value="LastChild" />
+            <xs:enumeration value="FirstNonEmpty" />
+            <xs:enumeration value="LastNonEmpty" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- ETL.xsd -->
+    <xs:complexType name="ETLRootListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="ETL" type="ETLRootElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLRootElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="QuerySource" type="ETLQuerySourceElemType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="XmlSource" type="ETLXmlSourceElemType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="Transformations" type="TransformationListElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Destination" type="DestinationElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="DelayValidation" type="xs:boolean" default="false" />
+                <xs:attribute name="IsolationLevel" type="IsolationLevelFacet" default="ReadCommitted" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="IsolationLevelFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Unspecified"/>
+            <xs:enumeration value="Chaos"/>
+            <xs:enumeration value="ReadUncommitted"/>
+            <xs:enumeration value="ReadCommitted"/>
+            <xs:enumeration value="RepeatableRead"/>
+            <xs:enumeration value="Serializable"/>
+            <xs:enumeration value="Snapshot"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ETLInputPathElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="PathName" type="xs:string" use="required" />
+                <xs:attribute name="Source" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLOutputPathElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="Name" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLQuerySourceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Connection" type="ETLConnectionElemType" />
+                    <xs:element name="Query" type="ETLQueryElemType" />
+                    <xs:element name="Parameter" type="ETLQueryParameterElemType" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attribute name="Name" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLQueryElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="EvaluateAsExpression" type="xs:boolean" default="false"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLConnectionElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLQueryParameterListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Parameter" type="ETLQueryParameterElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ETLQueryParameterElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <!-- TODO: Another Name overload -->
+                <xs:attribute name="Name" type="xs:string" use="required" />
+                <xs:attribute name="VariableName" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- REVIEW: Not sure I like the model here.  Attributes are sloppy.  e.g. does load from file or variable apply both to data and schema? -->
+    <xs:complexType name="ETLXmlSourceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attribute name="XMLData" type="xs:string" use="required"/>
+                <xs:attribute name="XMLSchemaDefinition" type="xs:string" use="required"/>
+                <xs:attribute name="UseInlineSchema" type="xs:boolean" use="optional" default="false"/>
+                <xs:attribute name="XMLDataAccessMode"  type="ETLXmlSourceDataAccessModeFacet" use="optional" default="XMLFileLocation"/>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="ETLXmlSourceDataAccessModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="XMLFileLocation"/>
+            <xs:enumeration value="XMLFileFromVariable"/>
+            <xs:enumeration value="XMLDataFromVariable"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="StoredProcElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Columns" type="StoredProcColumnListElemType" />
+                    <xs:element name="Body" type="xs:string" />
+                </xs:sequence>
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="required" />
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attributeGroup ref="GlobalExecuteDuringDesignTimeAttrGroup" />
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="StoredProcColumnListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Column" type="StoredProcColumnElemType" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="StoredProcColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="TableColumnElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="IsOutput" type="xs:boolean" default="false" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DataFlowElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="DerivedColumns" type="TransformationDerivedColumnListElemType" />
+                    <xs:element name="Lookup" type="TransformationLookupElemType" />
+                    <xs:element name="OLEDBCommand" type="TransformationOLEDBCommandElemType" />
+                    <xs:element name="IsNullPatcher" type="TransformationIsNullPatcherElemType" />
+                    <xs:element name="AutoNullPatcher" type="TransformationAutoNullPatcherElemType" />
+                    <xs:element name="TermLookup" type="TransformationTermLookupElemType"/>
+                    <xs:element name="ConditionalSplit" type="TransformationConditionalSplitElemType"/>
+                    <xs:element name="UnionAll" type="TransformationUnionAllElemType"/>
+                    <xs:element name="Sort" type="TransformationSortElemType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- TRANSFORMATION.xsd-->
+    <!-- REVIEW: The Template transformation type has been removed here. -->
+    <xs:complexType name="TransformationListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element name="DerivedColumns" type="TransformationDerivedColumnListElemType" />
+                    <xs:element name="Lookup" type="TransformationLookupElemType" />
+                    <xs:element name="OLEDBCommand" type="TransformationOLEDBCommandElemType" />
+                    <xs:element name="IsNullPatcher" type="TransformationIsNullPatcherElemType" />
+                    <xs:element name="AutoNullPatcher" type="TransformationAutoNullPatcherElemType" />
+                    <xs:element name="TermLookup" type="TransformationTermLookupElemType"/>
+                    <xs:element name="ConditionalSplit" type="TransformationConditionalSplitElemType"/>
+                    <xs:element name="UnionAll" type="TransformationUnionAllElemType"/>
+                    <xs:element name="Sort" type="TransformationSortElemType"/>
+                    <xs:element name="DataFlow" type="DataFlowElemType" />
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Derived Columns -->
+    <xs:complexType name="TransformationDerivedColumnListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Column" type="TransformationDerivedColumnElemType" maxOccurs="unbounded" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TODO: how do we deal with simple content and global base type? -->
+    <xs:complexType name="TransformationDerivedColumnElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:annotation>
+                    <xs:documentation>SSIS Expression goes inside as child content</xs:documentation>
+                </xs:annotation>
+                <xs:attribute name="Type" type="TransformationDerivedColumnTypeFacet" />
+                <xs:attribute name="Length" type="xs:int" default="0" />
+                <xs:attribute name="Precision" type="xs:int" default="0" />
+                <xs:attribute name="Scale" type="xs:int" default="0" />
+                <xs:attribute name="Codepage" type="xs:int" default="0" />
+                <xs:attribute name="ReplaceExisting" type="xs:boolean" default="false" />
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:simpleType name="TransformationDerivedColumnTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BOOL" />
+            <xs:enumeration value="WSTR" />
+            <xs:enumeration value="STR" />
+            <xs:enumeration value="FLOAT" />
+            <xs:enumeration value="DOUBLE" />
+            <xs:enumeration value="INT32" />
+            <xs:enumeration value="INT64" />
+            <xs:enumeration value="UINT32" />
+            <xs:enumeration value="UINT64" />
+            <xs:enumeration value="DATE" />
+            <xs:enumeration value="TIME" />
+            <xs:enumeration value="TIMESTAMP" />
+            <xs:enumeration value="TIMESTAMP2" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- Lookup -->
+    <xs:complexType name="TransformationLookupElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:choice>
+                        <xs:element name="Query" type="xs:string" minOccurs="0"/>
+                    </xs:choice>
+                    <xs:element name="Input" type="TransformationLookupInputOutputElemType" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="Output" type="TransformationLookupInputOutputElemType" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" use="optional"/>
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationLookupInputOutputElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="LocalColumnName" type="xs:string" use="required" />
+                <xs:attribute name="RemoteColumnName" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- OLE DB Command -->
+    <xs:complexType name="TransformationOLEDBCommandElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs ="1" />
+                    <xs:element name="Command" type="xs:string" />
+                    <xs:element name="Map" type="GlobalColumnMapElemType" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet" />
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- IsNullPatcher -->
+    <xs:complexType name="TransformationIsNullPatcherElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Column" type="TransformationIsNullPatcherColumnElemType" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationIsNullPatcherColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="DefaultValue" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <!-- AutoNullPatcher -->
+    <xs:complexType name="TransformationAutoNullPatcherElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <!-- TODO: Add Facet for Fact Tables -->
+                <xs:attribute name="FactTableName" type="xs:string" use="required" />
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Term Lookup -->
+    <xs:complexType name="TransformationTermLookupElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="InputColumn" type="TransformationTermLookColumnElemType" minOccurs="1" maxOccurs="unbounded" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attribute name="ConnectionName" type="Values:ConnectionListFacet"  use="required"/>
+                <xs:attribute name="IsCaseSensitive" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="RefTermColumnName" type="xs:string" use="required" />
+                <xs:attribute name="RefTermTableName" type="xs:string" use="required"/>
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationTermLookColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:attribute name="InputColumnUsageType" type="TransformationTermLookupInputColumnUsageTypeFacet" use="optional" default="PassThrough"/>
+                <xs:attribute name="InputColumnName" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TODO: Another simple content-->
+    <xs:simpleType name="TransformationTermLookupInputColumnUsageTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PassThrough" />
+            <xs:enumeration value="Lookup" />
+            <xs:enumeration value="BothPassThroughAndLookup" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Conditional Split -->
+    <xs:complexType name="TransformationConditionalSplitElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputPath" type="ETLInputPathElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="ConditionalOutputPath" type="TransformationConditionalSplitOutputElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationConditionalSplitOutputListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Output" type="TransformationConditionalSplitOutputElemType" minOccurs="1" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationConditionalSplitOutputElemType">
+        <xs:complexContent>
+            <xs:extension base="ETLOutputPathElemType">
+                <xs:sequence>
+                    <xs:element name="Expression" type="xs:string" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Union All -->
+    <xs:complexType name="TransformationUnionAllElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="UnionInputPath" type="TransformationUnionAllInputPathElemType" minOccurs="1" maxOccurs="unbounded"/>
+                    <xs:element name="OutputPath" type="ETLOutputPathElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationUnionAllInputPathElemType">
+        <xs:complexContent>
+            <xs:extension base="ETLInputPathElemType">
+                <xs:sequence>
+                    <xs:element name="Map" type="GlobalColumnMapElemType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- Sort -->
+    <xs:complexType name="TransformationSortElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="InputColumn" type="TransformationSortInputColumnElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="EliminateDuplicates" type="xs:boolean" default="false" use="optional"/>
+                <xs:attribute name="MaximumThreads" type="xs:integer" default="-1" use="optional"/>
+                <xs:attribute name="ValidateExternalMetadata" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TransformationSortInputColumnElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="ComparisonFlag" type="TransformationSortInputColumnComparisonFlagFacet" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="InputColumnUsageType" type="TransformationSortInputColumnUsageTypeFacet" use="optional" default="PassThrough"/>
+                <xs:attribute name="InputColumnName" type="xs:string" use="required"/>
+                <xs:attribute name="SortType" type="TransformationSortInputColumnSortTypeFacet" default="ASC" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="TransformationSortInputColumnComparisonFlagFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IgnoreCase" />
+            <xs:enumeration value="IgnoreKanaType" />
+            <xs:enumeration value="IgnoreNonspacingCharacters" />
+            <xs:enumeration value="IgnoreCharacterWidth" />
+            <xs:enumeration value="IgnoreSymbols" />
+            <xs:enumeration value="SortPunctuationAsSymbols" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TransformationSortInputColumnUsageTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PassThrough" />
+            <xs:enumeration value="SortColumn" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TransformationSortInputColumnSortTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ASC" />
+            <xs:enumeration value="DESC" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- CUBE.xsd -->
+    <xs:complexType name="CubeListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Cube" type="CubeElemType" minOccurs="1" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CubeElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Dimensions" type="CubeDimensionListElemType" />
+                    <xs:element name="MeasureGroups" type="CubeMeasureGroupListElemType" />
+                    <xs:element name="DimensionUsage" type="DimensionUsageListElemType" />
+                    <xs:element name="KPIs" type="KPIListElemType" />
+                    <xs:element name="Actions" type="ActionListElemType" />
+
+                    <!-- TODO:							<xs:element name="Partitions" type="PartitionListElemType" />-->
+                    <!-- TODO:							<xs:element name="Perspectives" type="PerspectiveListElemType" />-->
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attributeGroup ref="GlobalVisibleElementAttrGroup" />
+                <xs:attribute name="Description" type="xs:string" />
+                <xs:attribute name="AggregationPrefix" type="xs:string" />
+                <xs:attribute name="DefaultMeasure" type="xs:string" />
+                <xs:attribute name="ErrorConfiguration" type="xs:string" />
+                <xs:attribute name="EstimatedRows" type="xs:int" />
+                <xs:attribute name="Language" type="xs:string" />
+                <xs:attribute name="ProcessingMode" type="SSASProcessingModeFacet" />
+                <xs:attribute name="ProcessingPriority" type="xs:int" />
+                <xs:attribute name="Collation" type="xs:string" />
+                <xs:attribute name="ScriptCacheProcessingMode" type="SSASScriptCacheProcessingModeFacet" />
+                <xs:attribute name="ScriptErrorHandlingMode" type="SSASScriptErrorHandlingMode" />
+                <xs:attribute name="ProactiveCaching" type="xs:string" />
+                <xs:attribute name="StorageMode" type="SSASStorageModeFacet" />
+                <xs:attribute name="StorageLocation" type="xs:string" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CubeDimensionListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Dimension" type="CubeDimensionElemType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CubeDimensionElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="ref" type="Values:DimensionInstanceListFacet" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CubeMeasureGroupListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="MeasureGroup" type="CubeMeasureGroupElemType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CubeMeasureGroupElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="ref" type="Values:MeasureGroupListFacet" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionUsageListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="NoRelationsip" type="NoRelationshipDimensionUsageElemType" />
+                    <xs:element name="Regular" type="RegularDimensionUsageElemType" />
+                    <xs:element name="Fact" type="FactDimensionUsageElemType" />
+                    <xs:element name="Referenced" type="ReferencedDimensionUsageElemType" />
+                    <xs:element name="ManyToMany" type="ManyToManyDimensionUsageElemType" />
+                    <xs:element name="DataMining" type="DataMiningDimensionUsageElemType" />
+                </xs:choice>
+                <xs:attribute name="AutoGenerateRelationships" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="refDimension" type="Values:DimensionInstanceListFacet" use="required" />
+                <xs:attribute name="refMeasureGroup" type="Values:MeasureGroupListFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NoRelationshipDimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="DimensionUsageElemType">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- REVIEW: Left out some advanced options around multi-column binding and overrides on null processing per column -->
+    <xs:complexType name="RegularDimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="DimensionUsageElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="refGranularityAttribute" type="xs:string" use="required" />
+                <xs:attribute name="refFactTableColumn" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FactDimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="DimensionUsageElemType">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ReferencedDimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="DimensionUsageElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="refIntermediateDimension" type="Values:DimensionInstanceListFacet" use="required" />
+                <xs:attribute name="refReferenceDimensionAttribute" type="xs:string" use="required" />
+                <xs:attribute name="refIntermediateDimensionAttribute" type="xs:string" use="required" />
+                <xs:attribute name="Materialize" type="xs:boolean" use="optional" default="true" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ManyToManyDimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="DimensionUsageElemType">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="refIntermediateMeasureGroup" type="Values:MeasureGroupListFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DataMiningDimensionUsageElemType">
+        <xs:complexContent>
+            <xs:extension base="DimensionUsageElemType">
+                <xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KPIListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="KPI" type="KPIElemType" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KPIElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Value" type="MDXExpressionElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Goal" type="MDXExpressionElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Status" type="KPIStatusElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Trend" type="KPITrendElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="CurrentTimeMember" type="MDXExpressionElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="Weight" type="MDXExpressionElemType" minOccurs="0" maxOccurs="1" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="associatedMeasureGroup" type="Values:MeasureGroupListFacet" use="required" />
+                <xs:attribute name="displayFolder" type="xs:string" use="optional" />
+                <xs:attribute name="parentKPI" type="xs:string" use="optional" />
+                <xs:attribute name="description" type="xs:string" use="optional" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- TODO: Made this complexContent so that it could be inherited and have attributes added.  Is that necessary? -->
+    <xs:complexType name="MDXExpressionElemType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string" />
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="KPIStatusElemType">
+        <xs:complexContent>
+            <xs:extension base="MDXExpressionElemType">
+                <xs:attribute name="statusIndicator" type="KPIStatusIndicatorFacet" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KPITrendElemType">
+        <xs:complexContent>
+            <xs:extension base="MDXExpressionElemType">
+                <xs:attribute name="trendIndicator" type="KPITrendIndicatorFacet" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="KPIStatusIndicatorFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Shapes" />
+            <xs:enumeration value="TrafficLight" />
+            <xs:enumeration value="RoadSigns" />
+            <xs:enumeration value="Gauge" />
+            <xs:enumeration value="ReversedGauge" />
+            <xs:enumeration value="Thermometer" />
+            <xs:enumeration value="Cylinder" />
+            <xs:enumeration value="Faces" />
+            <xs:enumeration value="VarianceArrow" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="KPITrendIndicatorFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StandardArrow" />
+            <xs:enumeration value="StatusArrow" />
+            <xs:enumeration value="ReversedStatusArrow" />
+            <xs:enumeration value="Faces" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ActionListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <!-- TODO:							<xs:element name="Drillthrough" type="DrillthoughActionElemType" />-->
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DrillthroughActionElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <xs:element name="Condition" type="MDXExpressionElemType" minOccurs="0" maxOccurs="1" />
+                    <xs:element name="DrillthroughColumns" type="DrillthroughColumnListElemType" />
+                </xs:sequence>
+                <xs:attributeGroup ref="GlobalNamedElementAttrGroup" />
+                <xs:attribute name="measureGroupMembers" type="MeasureGroupListWithAllFacet" use="required" />
+                <xs:attribute name="default" type="xs:boolean" use="optional" default="false" />
+                <xs:attribute name="maximumRows" type="xs:int" use="optional" />
+                <!-- TODO:						<xs:attribute name="invocation" type="SSASDrillthroughInvocationFacet" use="optional" default="Interactive" /> -->
+                <xs:attribute name="application" type="xs:string" use="optional" />
+                <xs:attribute name="description" type="xs:string" use="optional" />
+                <xs:attribute name="caption" type="xs:string" use="optional" />
+                <xs:attribute name="captionIsMDX" type="xs:boolean" use="optional" default="false" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DrillthroughColumnListElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                    <!-- TODO: Can we allow minOccurs = 0?  The BI Studio UI seems to allow it.  Didn't test a deployment. -->
+                    <xs:element name="Column" type="DrillthroughColumnReferenceElemType" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:attribute name="Dimension" type="DimensionIncidentListWithMEASURESFacet" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DrillthroughColumnReferenceElemType">
+        <xs:complexContent>
+            <xs:extension base="GlobalBase">
+                <xs:sequence>
+                </xs:sequence>
+                <xs:attribute name="ref" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="DimensionIncidentListWithMEASURESFacet">
+        <xs:restriction base="Values:MeasureGroupListFacet">
+            <!-- TODO:		<xs:enumeration value="MEASURES" /> -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MeasureGroupListWithAllFacet">
+        <xs:restriction base="Values:MeasureGroupListFacet">
+            <!-- TODO:		<xs:enumeration value="&lt;ALL&gt;" /> -->
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+    <!-- SSAS.xsd -->
+    <!-- MeasureGroups and Cubes-->
+    <xs:simpleType name="SSASProcessingModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Regular" />
+            <xs:enumeration value="LazyAggregations" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASMeasureGroupTypeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Regular" />
+            <xs:enumeration value="ExchangeRate" />
+            <xs:enumeration value="Sales" />
+            <xs:enumeration value="Budget" />
+            <xs:enumeration value="FinancialReporting" />
+            <xs:enumeration value="Marketing" />
+            <xs:enumeration value="Inventory" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASDataAggregationFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None" />
+            <xs:enumeration value="DataAggregatable" />
+            <xs:enumeration value="CacheAggregatable" />
+            <xs:enumeration value="DataAndCacheAggregatable" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASStorageModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Molap" />
+            <xs:enumeration value="Rolap" />
+            <xs:enumeration value="Holap" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASScriptCacheProcessingModeFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Regular" />
+            <xs:enumeration value="Lazy" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASScriptErrorHandlingMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IgnoreNone" />
+            <xs:enumeration value="IgnoreAll" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASAggregationUsageFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Full" />
+            <xs:enumeration value="None" />
+            <xs:enumeration value="Unrestricted" />
+            <xs:enumeration value="Default" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASHierarchyUniqueNameStyleFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IncludeDimensionName" />
+            <xs:enumeration value="ExcludeDimensionName" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASMemberUniqueNameStyleFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Native" />
+            <xs:enumeration value="NamePath" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASAttributeHierarchyOptimizedStateFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FullyOptimized" />
+            <xs:enumeration value="NotOptimized" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- TODO: Is this thing correct or even relevant? Who uses it?-->
+    <xs:attributeGroup name="SSASColumnOptions">
+        <xs:attribute name="DataMimeType" type="SSASColumnDataMimeTypeFacet" />
+        <xs:attribute name="DataFormat" type="SSASColumnDataFormatFacet" />
+        <xs:attribute name="Collation" type="SSASColumnCollationFacet" />
+        <xs:attribute name="Trimming" type="xs:string" />
+        <!-- TODO: should this be bool or a facet? -->
+        <xs:attribute name="InvalidXMLCharacterProcessing" type="SSASColumnInvalidXmlCharacterProcessingFacet" />
+        <xs:attribute name="NullProcessing" type="SSASColumnNullProcessingFacet" />
+    </xs:attributeGroup>
+
+    <xs:simpleType name="SSASColumnInvalidXmlCharacterProcessingFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Preserved" />
+            <xs:enumeration value="Removed" />
+            <xs:enumeration value="Replaced" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASColumnNullProcessingFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NotPermitted" />
+            <xs:enumeration value="Preserve" />
+            <xs:enumeration value="ZeroOrBlank" />
+            <xs:enumeration value="Unknown Member" />
+            <xs:enumeration value="Error" />
+            <xs:enumeration value="Automatic" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASColumnDataMimeTypeFacet">
+        <xs:restriction base="xs:string">
+            <!-- TODO: Add Mime Types Enumerations -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SSASColumnDataFormatFacet">
+        <xs:restriction base="xs:string">
+            <!-- Predefined Numeric Formats -->
+            <xs:enumeration value="GeneralNumber" />
+            <xs:enumeration value="G" />
+            <xs:enumeration value="g" />
+            <xs:enumeration value="Currency" />
+            <xs:enumeration value="C" />
+            <xs:enumeration value="c" />
+            <xs:enumeration value="Fixed" />
+            <xs:enumeration value="F" />
+            <xs:enumeration value="f" />
+            <xs:enumeration value="Standard" />
+            <xs:enumeration value="N" />
+            <xs:enumeration value="n" />
+            <xs:enumeration value="Percent" />
+            <xs:enumeration value="P" />
+            <xs:enumeration value="p" />
+            <xs:enumeration value="Scientific" />
+            <xs:enumeration value="E" />
+            <xs:enumeration value="e" />
+            <xs:enumeration value="D" />
+            <xs:enumeration value="d" />
+            <xs:enumeration value="X" />
+            <xs:enumeration value="x" />
+            <xs:enumeration value="Yes" />
+            <xs:enumeration value="No" />
+            <xs:enumeration value="True" />
+            <xs:enumeration value="False" />
+            <xs:enumeration value="On" />
+            <xs:enumeration value="Off" />
+            <!-- TODO: Add RegEx pattern for user-defined numeric formats -->
+
+            <!-- Predefined Date Formats -->
+            <xs:enumeration value="GeneralDate" />
+            <xs:enumeration value="G" />
+            <xs:enumeration value="LongDate" />
+            <xs:enumeration value="MediumDate" />
+            <xs:enumeration value="D" />
+            <xs:enumeration value="ShortDate" />
+            <xs:enumeration value="d" />
+            <xs:enumeration value="LongTime" />
+            <xs:enumeration value="MediumTime" />
+            <xs:enumeration value="T" />
+            <xs:enumeration value="ShortTime" />
+            <xs:enumeration value="t" />
+            <xs:enumeration value="f" />
+            <xs:enumeration value="F" />
+            <xs:enumeration value="g" />
+            <xs:enumeration value="M" />
+            <xs:enumeration value="m" />
+            <xs:enumeration value="R" />
+            <xs:enumeration value="r" />
+            <xs:enumeration value="s" />
+            <xs:enumeration value="u" />
+            <xs:enumeration value="U" />
+            <xs:enumeration value="Y" />
+            <xs:enumeration value="y" />
+            <!-- TODO: Add RegEx pattern for user-defined date formats -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- TODO: Is this right?  It seems like there are many different "friendly strings" for the same collations -->
+    <xs:simpleType name="SSASColumnCollationFacet">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SQL_Latin1_General_Cp437_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp437_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Pref_Cp437_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp437_CI_AI_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp437_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp850_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp850_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp850_CI_AI_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Pref_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_1xCompat_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Pref_Cp1_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1_CI_AI_KI_WI" />
+            <xs:enumeration value="SQL_AltDiction_Cp850_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_AltDiction_Pref_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_AltDiction_Cp850_CI_AI_KI_WI" />
+            <xs:enumeration value="SQL_Scandainavian_Pref_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Scandainavian_Cp850_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Scandainavian_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_AltDiction_Cp850_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1250_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Czech_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Czech_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Hungarian_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Hungarian_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Polish_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Polish_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Romanian_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Romanian_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Croatian_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Croatian_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Slovak_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Slovak_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Slovenian_Cp1250_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Slovenian_Cp1250_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1251_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1251_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1251_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Ukrainian_Cp1251_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Ukrainian_Cp1251_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1253_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1253_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1253_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1253_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1253_CI_AI_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1254_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1254_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1254_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1255_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1255_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1255_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1256_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1256_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1256_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_1257_BIN" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1257_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latin1_General_Cp1257_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Estonian_Cp1257_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Estonian_Cp1257_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latvian_Cp1257_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Latvian_Cp1257_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Lithuanian_Cp1257_CS_AS_KI_WI" />
+            <xs:enumeration value="SQL_Lithuanian_Cp1257_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Danish_Pref_Cp1_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_SwedishPhone_Pref_Cp1_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_SwedishStd_Pref_Cp1_CI_AS_KI_WI" />
+            <xs:enumeration value="SQL_Icelandic_Pref_Cp1_CI_AS_KI_WI" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

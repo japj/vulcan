@@ -1,0 +1,15 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+    <Import Project="..\..\..\Build\MasterBuild.msbuild"/>
+    <ItemGroup>
+        <Sources Include="*.xml;"/>
+        <Includes Include="..\..\Connections\*.xml;..\Tables\*.xml;*.xml;..\..\Staging\*.xml" />
+    </ItemGroup>
+    <Target Name="Build">
+        <VulcanTask OutputPath="..\..\..\bin\Stg_FakeDataSource" Sources="@(Sources)" Includes="@(Includes)" TemplatePath="..\..\Staging" />
+    </Target>
+    <Target Name="BuildFile">
+        <Message Text="Build Source File: $(TargetFile) ..." Condition="'$(TargetFile)'!=''"/>
+        <VulcanTask OutputPath="..\..\..\bin\Stg_FakeDataSource" Sources="$(TargetFile)" Includes="@(Includes)" Condition="'$(TargetFile)'!=''"  TemplatePath="..\..\Staging" />
+    </Target>
+</Project>
+

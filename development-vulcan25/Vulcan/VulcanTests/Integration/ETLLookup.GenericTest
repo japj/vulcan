@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="etllookup" storage="c:\codeplex\development-vulcan25\vulcan\vulcantests\integration\etllookup.generictest" id="67626956-0778-4037-9671-08fbe84878e0" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Execution id="df0e1ecf-6cce-43b0-92df-c968fd397b0b" />
+  <Command filename="%PROGRAMFILES%\Microsoft SQL Server\100\DTS\Binn\DTExec.exe" arguments="/FILE %VULCAN_ROOT%\bin\Integration\ETL\ETLLookupTest\ETLLookupTest.dtsx" workingDirectory="%VULCANTESTROOT%" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

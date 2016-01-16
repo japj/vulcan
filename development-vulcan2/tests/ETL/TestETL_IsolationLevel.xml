@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Connection Name="DataWarehouse" Type="OLEDB" ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+
+    <Package Name="TestETL_IsolationLevel" Type="ETL">
+        <ETL Name="TestIsolationLevel" IsolationLevel="ReadCommitted">
+            <QuerySource>
+                <Connection ConnectionName="DataWarehouse"/>
+                <Query>
+                    SELECT 1 AS A
+                </Query>
+            </QuerySource>
+        </ETL>
+
+        <ExecuteSQL Name="TestExecuteSQL_IsolationLevel_ReadUncommitted" IsolationLevel="ReadUncommitted" ConnectionName="DataWarehouse">
+            <Body>
+                SELECT 1 AS A
+            </Body>
+        </ExecuteSQL>
+        <ExecuteSQL Name="TestExecuteSQL_IsolationLevel_Default" ConnectionName="DataWarehouse">
+            <Body>
+                SELECT 1 AS A
+            </Body>
+        </ExecuteSQL>
+        <Container Name="TestContainer">
+            <StoredProc Name="TestStoredProc_IsolationLevel_Default" ConnectionName="DataWarehouse">
+                <Columns>
+                    <Column Name="Test" Type="INT32"/>
+                </Columns>
+                <Body>
+                    SELECT 1 AS A
+                </Body>
+            </StoredProc>
+        </Container>
+    </Package>
+</Vulcan>

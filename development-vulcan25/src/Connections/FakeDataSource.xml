@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="FakeDataSource" Type="OleDB" Server="localhost" Database="FakeDataSource" Provider="SQLNCLI10.1" Authentication="Windows" />
+    <Connection Name="FakeDataSourceADO" Type="AdoNet" Server="localhost" Database="FakeDataSource" Authentication="Windows" />
+  </Connections>
+</Vulcan>

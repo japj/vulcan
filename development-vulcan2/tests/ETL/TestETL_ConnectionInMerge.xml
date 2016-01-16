@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Connection Name="DataWarehouse" RetainSameConnection="true" Type="OLEDB" ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+    <Connection Name="ConnectionInMerge" RetainSameConnection="true" Type="OLEDB" ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+    <Table Name="TestConnectionInMerge_Source" ConnectionName="DataWarehouse">
+        <Columns>
+            <Column Name="TestColumn" Type="WSTR"/>
+        </Columns>
+        <Keys>
+            <UniqueKey Name="UK_TestConnectionInMerge_Source_TestColumn" Unique="true">
+                <Column ColumnName="TestColumn" SortOrder="ASC"/>
+            </UniqueKey>
+        </Keys>
+    </Table>
+    <Table Name="TestConnectionInMerge_Target" ConnectionName="DataWarehouse">
+        <Columns>
+            <Column Name="TestColumn" Type="WSTR"/>
+        </Columns>
+        <Keys>
+            <UniqueKey Name="UK_TestConnectionInMerge_Target_TestColumn" Unique="true">
+                <Column ColumnName="TestColumn" SortOrder="ASC"/>
+            </UniqueKey>
+        </Keys>
+    </Table>
+    <Package Name="TestETL_ConnectionInMerge" Type="ETL">
+        <ExecutePackage Name="TestConnectionInMerge_Source" RelativePath="..\..\Table\TestConnectionInMerge_Source\TestConnectionInMerge_Source.dtsx"/>
+        <ExecutePackage Name="TestConnectionInMerge_Target" RelativePath="..\..\Table\TestConnectionInMerge_Target\TestConnectionInMerge_Target.dtsx"/>
+        <Merge Name="Merge" ConnectionName ="ConnectionInMerge" SourceTableName="TestConnectionInMerge_Source" TargetConstraintName="TestConnectionInMerge_Target.UK_TestConnectionInMerge_Target_TestColumn"/>
+    </Package>
+</Vulcan>

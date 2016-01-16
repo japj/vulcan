@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="VulcanTransient" Type="Warehouse">
+      <Tasks>
+        <Container Name="VulcanTransient Creation">
+          <Tasks>
+            <ExecuteSQL Name="Drop_VulcanTransient" ConnectionName="Server">
+              <Query>
+                <Body>
+                  EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'VulcanTransient'
+                  GO
+
+                  USE [master]
+                  GO
+
+                  IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'VulcanTransient')
+                  ALTER DATABASE [VulcanTransient] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+                  GO
+
+                  IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'VulcanTransient')
+                  DROP DATABASE [VulcanTransient]
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+            <ExecuteSQL Name="DDL_VulcanTransient" ConnectionName="Server" ExecuteDuringDesignTime="false" ResultSet="None">
+              <Query>
+                <Body>
+                  EXECUTE ('CREATE DATABASE [VulcanTransient]');
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+            <ExecuteSQL Name="CLR_VulcanTransient" ConnectionName="Server" ExecuteDuringDesignTime="false" ResultSet="None">
+              <Query>
+                <Body>
+                  USE [VulcanTransient]
+                  GO
+
+                  EXEC sp_configure 'clr enabled', 1
+                  GO
+
+                  RECONFIGURE
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="TestPackage" Type="Test">
+      <Tasks>
+        <ForLoop Name="RetryContainer1">
+          <Variables>
+            <Variable Name="_attemptsToMake" TypeCode="Int32" Value="2"/>
+            <Variable Name="_retryCount" TypeCode="Int32" Value="0"/>
+          </Variables>
+          <LoopTestExpression>@_retryCount&lt;=@_attemptsToMake</LoopTestExpression>
+          <CountingExpression>@_retryCount=@_retryCount+1</CountingExpression>
+          <Tasks>
+            <Container Name="Container1"/>
+          </Tasks>
+        </ForLoop>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

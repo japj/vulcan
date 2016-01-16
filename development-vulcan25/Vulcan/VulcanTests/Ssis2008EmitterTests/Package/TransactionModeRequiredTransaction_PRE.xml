@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL" TransactionMode="StartOrJoin">
+      <Tasks>
+        <ETL Name="TestETL1"/>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

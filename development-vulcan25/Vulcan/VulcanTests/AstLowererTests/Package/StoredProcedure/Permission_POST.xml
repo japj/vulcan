@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB"/>
+  </Connections>
+  <Packages>
+    <Package Name="TestPackage1" Type="StoredProcedure">
+      <Tasks>
+        <ExecuteSQL Name="TestStoredProc1" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[TestStoredProc1]') AND type in (N'P', N'PC'))
+              DROP PROCEDURE [TestStoredProc1]
+              GO
+
+              CREATE PROCEDURE [TestStoredProc1]
+
+              AS
+              BEGIN
+
+              -- SET NOCOUNT ON added to prevent extra result sets from
+              -- interfering with SELECT statements.
+              SET NOCOUNT ON;
+
+              SELECT * FROM sys.tables
+
+              END
+              GO
+
+              Grant Execute ON [TestStoredProc1] TO [TestUser]
+              GO
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+    <Package Name="Principal" Type="Principal">
+      <Tasks>
+        <ExecuteSQL Name="CreateTestUser" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'TestUser')
+              CREATE LOGIN [TestUser] WITH PASSWORD=N'TestUser'
+
+              IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'TestUser')
+              CREATE USER [TestUser] FOR LOGIN [TestUser]
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

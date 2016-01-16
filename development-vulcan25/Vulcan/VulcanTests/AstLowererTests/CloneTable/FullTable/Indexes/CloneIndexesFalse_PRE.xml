@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" />
+        <Column Name="Column2" Type="Int32" />
+        <Column Name="Column3" Type="Int32" />
+        <Column Name="Column4" Type="Int32" />
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+      <Indexes>
+        <Index Name="IX1">
+          <Columns>
+            <Column ColumnName="Column2" />
+            <Column ColumnName="Column3" />
+          </Columns>
+        </Index>
+      </Indexes>
+      <Sources>
+        <StaticSource Name="StaticSource1" EmitMergePackage="false">
+          <Rows>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="Column1" Value="1" />
+                <ColumnValue ColumnName="Column2" Value="2" />
+                <ColumnValue ColumnName="Column3" Value="3" />
+                <ColumnValue ColumnName="Column4" Value="4" />
+              </ColumnValues>
+            </Row>
+          </Rows>
+        </StaticSource>
+      </Sources>
+    </Table>
+    <CloneTable Name="TestTableClone" ConnectionName="TestConnection1" TableName="TestTable1" CloneIndexes="false" />
+  </Tables>
+</Vulcan>

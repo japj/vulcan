@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VulcanEngine.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SubpathAstPluginFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">XmlToAstParserPhase.AstPlugins</Value>
+    </Setting>
+    <Setting Name="SubPathXsltTransformFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">XmlXsltTransformPhase.XsltTransforms</Value>
+    </Setting>
+    <Setting Name="SubpathPhasePluginFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BreakOnError" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ShowDebug" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowNotifications" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SubpathDefaultPhaseWorkflowFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VulcanPhaseworkflows.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

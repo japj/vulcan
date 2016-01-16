@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ExecutePackage Name="ExecutePackage1" RelativePath="..\foo" />
+        <ExecutePackage Name="ExecutePackage2" RelativePath="..\OnSuccess">
+          <PrecedenceConstraints LogicalType="And">
+            <Inputs>
+              <Input OutputPathName="ExecutePackage1.Output" EvaluationValue="Success"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ExecutePackage>
+        <ExecutePackage Name="ExecutePackage3" RelativePath="..\OnFailure">
+          <PrecedenceConstraints LogicalType="Or">
+            <Inputs>
+              <Input OutputPathName="ExecutePackage1.Output" EvaluationValue="Failure"/>
+              <Input OutputPathName="ExecutePackage2.Output" EvaluationValue="Failure"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ExecutePackage>
+        <ExecutePackage Name="ExecutePackage4" RelativePath="..\OnCompletion">
+          <PrecedenceConstraints>
+            <Inputs>
+              <Input OutputPathName="ExecutePackage1.Output" EvaluationValue="Completion"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ExecutePackage>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

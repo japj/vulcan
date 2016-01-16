@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="master" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Variables>
+        <Variable Name="xmlValue" TypeCode="String" Value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?>&lt;Vulcan>&lt;Table Name=&quot;Table1&quot;/>&lt;/Vulcan>"/>
+      </Variables>
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <XmlSource Name="XmlSource1" XmlSchemaDefinition="C:\temp\temp.xsd" XmlDataAccessMode="XmlDataFromVariable" XmlData="User::xmlValue">
+            </XmlSource>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

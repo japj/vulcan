@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="etlmerge" storage="c:\codeplex\development-vulcan25\vulcan\vulcantests\integration\etlmerge.generictest" id="c8b7e593-249a-4b0d-a063-4feb6109eadc" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Command filename="%PROGRAMFILES%\Microsoft SQL Server\100\DTS\Binn\DTExec.exe" arguments="/FILE %VULCAN_ROOT%\bin\Integration\ETL\ETLMergeTest\ETLMergeTest.dtsx" workingDirectory="%VULCANTESTROOT%" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

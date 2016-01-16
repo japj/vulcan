@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <Table Name="tblFakeCustomer" ConnectionName="FakeDataSource" CompressionType="Page">
+      <Annotations>
+        <Annotation AnnotationType="CodeComment">
+          There are many great tools out there to generate sets of seed or fake data for testing databases
+          and many of the Vulcan developers have licensed versions of said tools.
+        </Annotation>
+      </Annotations>
+      <Columns>
+        <Column Name="ID" Type="Int64" IsNullable="false" />
+        <Column Name="Name" Type="WStr" Length="255" IsNullable="false" />
+        <Column Name="Address" Type="WStr" Length="255" IsNullable="false" />
+        <Column Name="PostalCode" Type="WStr" Length="255" IsNullable="true" />
+        <Column Name="CountryRegion" Type="WStr" Length="255" IsNullable="false" />
+        <Column Name="InsertTime" Type="Custom" CustomType="datetime2" IsNullable="false"  Default="SYSUTCDATETIME()"/>
+        <Column Name="UpdateTime" Type="Custom" CustomType="datetime2" IsNullable="false"  Default="SYSUTCDATETIME()"/>
+      </Columns>
+      <Keys>
+        <Identity Name="PK_tblFakeCustomer_ID">
+          <Columns>
+            <Column ColumnName="ID" />
+          </Columns>
+        </Identity>
+      </Keys>
+      <CustomExtensions Name="tblFakeCustomer_CustomExtensions">
+        <Tasks>
+          <StoredProc Name="usp_growTblFakeCustomer" ConnectionName="FakeDataSource">
+            <Columns>
+                <Column Name="DeltaSize" Type="Int64" />
+                <Column Name="DelayLength" Type="WStr" Length="255" Default="'00:00:00:005'"/>
+            </Columns>
+            <Body>
+              DECLARE @i BIGINT
+              DECLARE @rand float
+
+              SET @i = 0;
+              WHILE @i &lt; @DeltaSize
+                BEGIN
+                SET @rand = RAND()
+                SET @i = @i + 1
+
+                IF(@rand > 0.5)
+                BEGIN
+                INSERT INTO
+                [tblFakeCustomer]
+                (
+                Name,
+                Address,
+                PostalCode,
+                CountryRegion
+                )
+                VALUES
+                (
+                CONVERT(nvarchar(255),NEWID()),
+                CONVERT(nvarchar(255),NEWID()),
+                CONVERT(nvarchar(255),NEWID()),
+                N'USA'
+                )
+                END
+                ELSE
+                BEGIN
+                UPDATE
+                [tblFakeCustomer]
+                SET
+                Name = CONVERT(nvarchar(255),NEWID()),
+                Address = CONVERT(nvarchar(255),NEWID()),
+                PostalCode = CONVERT(nvarchar(255),NEWID()),
+                UpdateTime = SYSUTCDATETIME()
+                WHERE tblFakeCustomer.ID = (SELECT TOP (1) ID FROM [tblFakeCustomer] ORDER BY NEWID())
+                END
+
+                WaitFor Delay @DelayLength
+                END
+            </Body>
+          </StoredProc>
+        </Tasks>
+      </CustomExtensions>
+    </Table>
+  </Tables>
+</Vulcan>

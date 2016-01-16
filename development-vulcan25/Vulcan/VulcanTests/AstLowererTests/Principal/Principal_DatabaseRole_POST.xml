@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages> 
+    <Package Name="TestPrincipal" Type="Principal">
+      <Tasks>
+        <ExecuteSQL Name="CreatePrincipal" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              IF  NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'TestDBRole' AND type = 'R')
+              CREATE ROLE [TestDBRole]
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

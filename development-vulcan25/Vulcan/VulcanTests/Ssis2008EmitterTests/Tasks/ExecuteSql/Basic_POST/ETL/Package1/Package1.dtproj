@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Project xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+  <ProductVersion>9.0.2047.0</ProductVersion>
+  <SchemaVersion>9.0.1.0</SchemaVersion>
+  <Database>
+    <Name>placeholder.database</Name>
+    <FullPath>placeholder.database</FullPath>
+  </Database>
+  <Cubes />
+  <Dimensions />
+  <DataSources />
+  <DTSPackages>
+    <DtsPackage>
+      <Name>Package1.dtsx</Name>
+      <FullPath>Package1.dtsx</FullPath>
+      <References>
+      </References>
+    </DtsPackage>
+  </DTSPackages>
+  <MiningModels />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>ExecuteSql_a930fddf72a94ba3bd93a699cd770fdd.sql</Name>
+      <FullPath>ExecuteSql_a930fddf72a94ba3bd93a699cd770fdd.sql</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
+</Project>

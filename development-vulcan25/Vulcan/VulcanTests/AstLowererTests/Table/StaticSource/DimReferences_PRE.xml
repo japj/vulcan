@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" Server="localhost" Database="tempdb" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Dimensions>
+    <Dimension Name="DimConsumerCAPSRQueue" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="CAPSRQID" Type="Int32" IsNullable="false" />
+        <Column Name="EmailAddress" Type="String" Length="510" />
+        <Column Name="FriendlyName" Type="String" Length="510" />
+        <Column Name="FullName" Type="String" Length="510" />
+        <Column Name="AgentFacingName" Type="String" Length="64" />
+        <Dimension Name="ConsumerCAPSRQueueID" DimensionName="DimConsumerCAPSRQueue" />
+        <Column Name="DataSourceID" Type="Int32" IsNullable="false" />
+        <Column Name="LastModifiedDate" Type="DateTime2" IsNullable="false" />
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK_DimConsumerCAPSRQueue_CAPSRQID">
+          <Columns>
+            <Column ColumnName="CAPSRQID" />
+          </Columns>
+        </PrimaryKey>
+      </Keys>
+      <Sources>
+        <StaticSource Name="DimConsumerCAPSRQueue_Static" EmitMergePackage="true">
+          <Rows>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="CAPSRQID" Value="-1" />
+                <ColumnValue ColumnName="EmailAddress" Value="'Unknown'" />
+                <ColumnValue ColumnName="FriendlyName" Value="'Unknown'" />
+                <ColumnValue ColumnName="FullName" Value="'Unknown'" />
+                <ColumnValue ColumnName="AgentFacingName" Value="'Unknown'" />
+                <ColumnValue ColumnName="ConsumerCAPSRQueueID" Value="-1" />
+                <ColumnValue ColumnName="DataSourceID" Value="-1" />
+                <ColumnValue ColumnName="LastModifiedDate" Value="GetDate()" />
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="CAPSRQID" Value="-2" />
+                <ColumnValue ColumnName="EmailAddress" Value="'Unknown'" />
+                <ColumnValue ColumnName="FriendlyName" Value="'Unknown'" />
+                <ColumnValue ColumnName="FullName" Value="'Unknown'" />
+                <ColumnValue ColumnName="AgentFacingName" Value="'Unknown'" />
+                <ColumnValue ColumnName="ConsumerCAPSRQueueID" Value="-1" />
+                <ColumnValue ColumnName="DataSourceID" Value="-1" />
+                <ColumnValue ColumnName="LastModifiedDate" Value="GetDate()" />
+              </ColumnValues>
+            </Row>
+            <Row>
+              <ColumnValues>
+                <ColumnValue ColumnName="CAPSRQID" Value="-3" />
+                <ColumnValue ColumnName="EmailAddress" Value="'Unknown'" />
+                <ColumnValue ColumnName="FriendlyName" Value="'Unknown'" />
+                <ColumnValue ColumnName="FullName" Value="'Unknown'" />
+                <ColumnValue ColumnName="AgentFacingName" Value="'Unknown'" />
+                <ColumnValue ColumnName="ConsumerCAPSRQueueID" Value="-1" />
+                <ColumnValue ColumnName="DataSourceID" Value="-1" />
+                <ColumnValue ColumnName="LastModifiedDate" Value="GetDate()" />
+              </ColumnValues>
+            </Row>
+          </Rows>
+        </StaticSource>
+      </Sources>
+    </Dimension>
+  </Dimensions>
+</Vulcan>

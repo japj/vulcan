@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1"/>
+        <ETL Name="ETL2">
+          <PrecedenceConstraints LogicalType="And">
+            <Inputs>
+              <Input OutputPathName="ETL1.Output" EvaluationValue="Success"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ETL>
+        <ETL Name="ETL3">
+          <PrecedenceConstraints LogicalType="Or">
+            <Inputs>
+              <Input OutputPathName="ETL1.Output" EvaluationValue="Failure"/>
+              <Input OutputPathName="ETL2.Output" EvaluationValue="Failure"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ETL>
+        <ETL Name="ETL4">
+          <PrecedenceConstraints>
+            <Inputs>
+              <Input OutputPathName="ETL1.Output" EvaluationValue="Completion"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

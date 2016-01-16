@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" />
+        <Column Name="Column2" Type="Int32" />
+        <Column Name="Column3" Type="Int32" />
+        <Column Name="Column4" Type="Int32" />
+      </Columns>
+    </Table>
+    <CloneTable Name="TestTableClone" ConnectionName="TestConnection1" TableName="TestTable1">
+      <Columns>
+        <Column Name="Column5" Type="Int32" />
+        <Column Name="Column6" Type="Int32" />
+        <Column Name="Column7" Type="Int32" />
+      </Columns>
+      <Indexes>
+        <Index Name="IX1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX2">
+          <Columns>
+            <Column ColumnName="Column2" />
+            <Column ColumnName="Column5" />
+          </Columns>
+        </Index>
+        <Index Name="IX3">
+          <Columns>
+            <Column ColumnName="Column7" />
+          </Columns>
+        </Index>
+      </Indexes>
+    </CloneTable>
+  </Tables>
+</Vulcan>

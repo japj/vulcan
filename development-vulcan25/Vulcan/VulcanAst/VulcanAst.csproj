@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1556D101-51A7-4493-8E16-5F40F9105CC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VulcanEngine.IR.Ast</RootNamespace>
+    <AssemblyName>VulcanAst</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>VulcanEngineKey.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\tools\vulcan\anycpu_d\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\tools\vulcan\anycpu\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>..\..\tools\vulcan\x86_d\</OutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <PlatformTarget>x86</PlatformTarget>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS;</DefineConstants>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\..\tools\vulcan\x86\</OutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <PlatformTarget>x86</PlatformTarget>
+    <DefineConstants>CODE_ANALYSIS;</DefineConstants>
+    <Optimize>true</Optimize>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="GlobalSuppressions.Designer.cs">
+      <DependentUpon>GlobalSuppressions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <!-- AstDesigner START: VulcanAst -->
+    <Compile Include="AstNode.cs" />
+    <Compile Include="AstNode.Designer.cs">
+      <DependentUpon>AstNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstNamedNode.cs" />
+    <Compile Include="AstNamedNode.Designer.cs">
+      <DependentUpon>AstNamedNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\AstConnectionNode.cs" />
+    <Compile Include="Connection\AstConnectionNode.Designer.cs">
+      <DependentUpon>AstConnectionNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstDimensionNamedBaseNode.cs" />
+    <Compile Include="Dimension\AstDimensionNamedBaseNode.Designer.cs">
+      <DependentUpon>AstDimensionNamedBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstAttributeNode.cs" />
+    <Compile Include="Dimension\AstAttributeNode.Designer.cs">
+      <DependentUpon>AstAttributeNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstAttributeRelationshipNode.cs" />
+    <Compile Include="Dimension\AstAttributeRelationshipNode.Designer.cs">
+      <DependentUpon>AstAttributeRelationshipNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstDimensionHierarchyLevelNode.cs" />
+    <Compile Include="Dimension\AstDimensionHierarchyLevelNode.Designer.cs">
+      <DependentUpon>AstDimensionHierarchyLevelNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstDimensionHierarchyNode.cs" />
+    <Compile Include="Dimension\AstDimensionHierarchyNode.Designer.cs">
+      <DependentUpon>AstDimensionHierarchyNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableIndexNode.cs" />
+    <Compile Include="Table\AstTableIndexNode.Designer.cs">
+      <DependentUpon>AstTableIndexNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableKeyBaseNode.cs" />
+    <Compile Include="Table\AstTableKeyBaseNode.Designer.cs">
+      <DependentUpon>AstTableKeyBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableIdentityNode.cs" />
+    <Compile Include="Table\AstTableIdentityNode.Designer.cs">
+      <DependentUpon>AstTableIdentityNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTablePrimaryKeyNode.cs" />
+    <Compile Include="Table\AstTablePrimaryKeyNode.Designer.cs">
+      <DependentUpon>AstTablePrimaryKeyNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableUniqueKeyNode.cs" />
+    <Compile Include="Table\AstTableUniqueKeyNode.Designer.cs">
+      <DependentUpon>AstTableUniqueKeyNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableLookupBaseNode.cs" />
+    <Compile Include="Table\AstTableLookupBaseNode.Designer.cs">
+      <DependentUpon>AstTableLookupBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableCustomLookupNode.cs" />
+    <Compile Include="Table\AstTableCustomLookupNode.Designer.cs">
+      <DependentUpon>AstTableCustomLookupNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableKeyLookupNode.cs" />
+    <Compile Include="Table\AstTableKeyLookupNode.Designer.cs">
+      <DependentUpon>AstTableKeyLookupNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableSourceBaseNode.cs" />
+    <Compile Include="Table\AstTableSourceBaseNode.Designer.cs">
+      <DependentUpon>AstTableSourceBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableStaticSourceNode.cs" />
+    <Compile Include="Table\AstTableStaticSourceNode.Designer.cs">
+      <DependentUpon>AstTableStaticSourceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDataflowOutputPathNode.cs" />
+    <Compile Include="Transformation\AstDataflowOutputPathNode.Designer.cs">
+      <DependentUpon>AstDataflowOutputPathNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstConditionalSplitOutputPathNode.cs" />
+    <Compile Include="Transformation\AstConditionalSplitOutputPathNode.Designer.cs">
+      <DependentUpon>AstConditionalSplitOutputPathNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDerivedColumnNode.cs" />
+    <Compile Include="Transformation\AstDerivedColumnNode.Designer.cs">
+      <DependentUpon>AstDerivedColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTermLookupColumnNode.cs" />
+    <Compile Include="Transformation\AstTermLookupColumnNode.Designer.cs">
+      <DependentUpon>AstTermLookupColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstPrincipalNode.cs" />
+    <Compile Include="Table\AstPrincipalNode.Designer.cs">
+      <DependentUpon>AstPrincipalNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fact\AstMeasureNode.cs" />
+    <Compile Include="Fact\AstMeasureNode.Designer.cs">
+      <DependentUpon>AstMeasureNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstIsNullPatcherColumnNode.cs" />
+    <Compile Include="Transformation\AstIsNullPatcherColumnNode.Designer.cs">
+      <DependentUpon>AstIsNullPatcherColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstSortColumnNode.cs" />
+    <Compile Include="Transformation\AstSortColumnNode.Designer.cs">
+      <DependentUpon>AstSortColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskflowOutputPathNode.cs" />
+    <Compile Include="Task\AstTaskflowOutputPathNode.Designer.cs">
+      <DependentUpon>AstTaskflowOutputPathNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstScopeBoundaryNode.cs" />
+    <Compile Include="AstScopeBoundaryNode.Designer.cs">
+      <DependentUpon>AstScopeBoundaryNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskNode.cs" />
+    <Compile Include="Task\AstTaskNode.Designer.cs">
+      <DependentUpon>AstTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstContainerTaskBaseNode.cs" />
+    <Compile Include="Task\AstContainerTaskBaseNode.Designer.cs">
+      <DependentUpon>AstContainerTaskBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstContainerTaskNode.cs" />
+    <Compile Include="Task\AstContainerTaskNode.Designer.cs">
+      <DependentUpon>AstContainerTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstStagingContainerTaskNode.cs" />
+    <Compile Include="Task\AstStagingContainerTaskNode.Designer.cs">
+      <DependentUpon>AstStagingContainerTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstPackageBaseNode.cs" />
+    <Compile Include="Task\AstPackageBaseNode.Designer.cs">
+      <DependentUpon>AstPackageBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstPackageNode.cs" />
+    <Compile Include="Task\AstPackageNode.Designer.cs">
+      <DependentUpon>AstPackageNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstPackageTemplateInstanceNode.cs" />
+    <Compile Include="Task\AstPackageTemplateInstanceNode.Designer.cs">
+      <DependentUpon>AstPackageTemplateInstanceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstForLoopContainerTaskNode.cs" />
+    <Compile Include="Task\AstForLoopContainerTaskNode.Designer.cs">
+      <DependentUpon>AstForLoopContainerTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstRetryContainerTaskNode.cs" />
+    <Compile Include="Task\AstRetryContainerTaskNode.Designer.cs">
+      <DependentUpon>AstRetryContainerTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskEventHandlerNode.cs" />
+    <Compile Include="Task\AstTaskEventHandlerNode.Designer.cs">
+      <DependentUpon>AstTaskEventHandlerNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstEtlRootNode.cs" />
+    <Compile Include="Task\AstEtlRootNode.Designer.cs">
+      <DependentUpon>AstEtlRootNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstExecutePackageTaskNode.cs" />
+    <Compile Include="Task\AstExecutePackageTaskNode.Designer.cs">
+      <DependentUpon>AstExecutePackageTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstExecuteSqlTaskNode.cs" />
+    <Compile Include="Task\AstExecuteSqlTaskNode.Designer.cs">
+      <DependentUpon>AstExecuteSqlTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstMergeTaskNode.cs" />
+    <Compile Include="Task\AstMergeTaskNode.Designer.cs">
+      <DependentUpon>AstMergeTaskNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstStoredProcNode.cs" />
+    <Compile Include="Task\AstStoredProcNode.Designer.cs">
+      <DependentUpon>AstStoredProcNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstReadPersistentVariableNode.cs" />
+    <Compile Include="Task\AstReadPersistentVariableNode.Designer.cs">
+      <DependentUpon>AstReadPersistentVariableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstWritePersistentVariableNode.cs" />
+    <Compile Include="Task\AstWritePersistentVariableNode.Designer.cs">
+      <DependentUpon>AstWritePersistentVariableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstCommitPersistentVariableNode.cs" />
+    <Compile Include="Task\AstCommitPersistentVariableNode.Designer.cs">
+      <DependentUpon>AstCommitPersistentVariableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskTemplateInstanceNode.cs" />
+    <Compile Include="Task\AstTaskTemplateInstanceNode.Designer.cs">
+      <DependentUpon>AstTaskTemplateInstanceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTransformationNode.cs" />
+    <Compile Include="Transformation\AstTransformationNode.Designer.cs">
+      <DependentUpon>AstTransformationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstSingleInTransformationNode.cs" />
+    <Compile Include="Transformation\AstSingleInTransformationNode.Designer.cs">
+      <DependentUpon>AstSingleInTransformationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDerivedColumnListNode.cs" />
+    <Compile Include="Transformation\AstDerivedColumnListNode.Designer.cs">
+      <DependentUpon>AstDerivedColumnListNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDestinationNode.cs" />
+    <Compile Include="Transformation\AstDestinationNode.Designer.cs">
+      <DependentUpon>AstDestinationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstIsNullPatcherNode.cs" />
+    <Compile Include="Transformation\AstIsNullPatcherNode.Designer.cs">
+      <DependentUpon>AstIsNullPatcherNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstOleDBCommandNode.cs" />
+    <Compile Include="Transformation\AstOleDBCommandNode.Designer.cs">
+      <DependentUpon>AstOleDBCommandNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstSortNode.cs" />
+    <Compile Include="Transformation\AstSortNode.Designer.cs">
+      <DependentUpon>AstSortNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTermLookupNode.cs" />
+    <Compile Include="Transformation\AstTermLookupNode.Designer.cs">
+      <DependentUpon>AstTermLookupNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstConditionalSplitNode.cs" />
+    <Compile Include="Transformation\AstConditionalSplitNode.Designer.cs">
+      <DependentUpon>AstConditionalSplitNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstMulticastNode.cs" />
+    <Compile Include="Transformation\AstMulticastNode.Designer.cs">
+      <DependentUpon>AstMulticastNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstLookupNode.cs" />
+    <Compile Include="Transformation\AstLookupNode.Designer.cs">
+      <DependentUpon>AstLookupNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstLateArrivingLookupNode.cs" />
+    <Compile Include="Transformation\AstLateArrivingLookupNode.Designer.cs">
+      <DependentUpon>AstLateArrivingLookupNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstSlowlyChangingDimensionNode.cs" />
+    <Compile Include="Transformation\AstSlowlyChangingDimensionNode.Designer.cs">
+      <DependentUpon>AstSlowlyChangingDimensionNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstEtlFragmentReferenceNode.cs" />
+    <Compile Include="Transformation\AstEtlFragmentReferenceNode.Designer.cs">
+      <DependentUpon>AstEtlFragmentReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstRowCountNode.cs" />
+    <Compile Include="Transformation\AstRowCountNode.Designer.cs">
+      <DependentUpon>AstRowCountNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstSourceTransformationNode.cs" />
+    <Compile Include="Transformation\AstSourceTransformationNode.Designer.cs">
+      <DependentUpon>AstSourceTransformationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstSingleOutSourceNode.cs" />
+    <Compile Include="Transformation\AstSingleOutSourceNode.Designer.cs">
+      <DependentUpon>AstSingleOutSourceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstQuerySourceNode.cs" />
+    <Compile Include="Transformation\AstQuerySourceNode.Designer.cs">
+      <DependentUpon>AstQuerySourceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstXmlSourceNode.cs" />
+    <Compile Include="Transformation\AstXmlSourceNode.Designer.cs">
+      <DependentUpon>AstXmlSourceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstMultipleInTransformationNode.cs" />
+    <Compile Include="Transformation\AstMultipleInTransformationNode.Designer.cs">
+      <DependentUpon>AstMultipleInTransformationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstUnionAllNode.cs" />
+    <Compile Include="Transformation\AstUnionAllNode.Designer.cs">
+      <DependentUpon>AstUnionAllNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTransformationTemplateInstanceNode.cs" />
+    <Compile Include="Transformation\AstTransformationTemplateInstanceNode.Designer.cs">
+      <DependentUpon>AstTransformationTemplateInstanceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstSecurableNode.cs" />
+    <Compile Include="AstSecurableNode.Designer.cs">
+      <DependentUpon>AstSecurableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableColumnBaseNode.cs" />
+    <Compile Include="Table\AstTableColumnBaseNode.Designer.cs">
+      <DependentUpon>AstTableColumnBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableHashedKeyColumnNode.cs" />
+    <Compile Include="Table\AstTableHashedKeyColumnNode.Designer.cs">
+      <DependentUpon>AstTableHashedKeyColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableColumnNode.cs" />
+    <Compile Include="Table\AstTableColumnNode.Designer.cs">
+      <DependentUpon>AstTableColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstFactTableColumnNode.cs" />
+    <Compile Include="Table\AstFactTableColumnNode.Designer.cs">
+      <DependentUpon>AstFactTableColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableColumnTableReferenceBaseNode.cs" />
+    <Compile Include="Table\AstTableColumnTableReferenceBaseNode.Designer.cs">
+      <DependentUpon>AstTableColumnTableReferenceBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableColumnDimensionReferenceNode.cs" />
+    <Compile Include="Table\AstTableColumnDimensionReferenceNode.Designer.cs">
+      <DependentUpon>AstTableColumnDimensionReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableColumnTableReferenceNode.cs" />
+    <Compile Include="Table\AstTableColumnTableReferenceNode.Designer.cs">
+      <DependentUpon>AstTableColumnTableReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstMultipleColumnTableReferenceBaseNode.cs" />
+    <Compile Include="Table\AstMultipleColumnTableReferenceBaseNode.Designer.cs">
+      <DependentUpon>AstMultipleColumnTableReferenceBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstMultipleColumnDimensionReferenceNode.cs" />
+    <Compile Include="Table\AstMultipleColumnDimensionReferenceNode.Designer.cs">
+      <DependentUpon>AstMultipleColumnDimensionReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstMultipleColumnTableReferenceNode.cs" />
+    <Compile Include="Table\AstMultipleColumnTableReferenceNode.Designer.cs">
+      <DependentUpon>AstMultipleColumnTableReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstSchemaNode.cs" />
+    <Compile Include="Table\AstSchemaNode.Designer.cs">
+      <DependentUpon>AstSchemaNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableBaseNode.cs" />
+    <Compile Include="Table\AstTableBaseNode.Designer.cs">
+      <DependentUpon>AstTableBaseNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableTemplateInstanceNode.cs" />
+    <Compile Include="Table\AstTableTemplateInstanceNode.Designer.cs">
+      <DependentUpon>AstTableTemplateInstanceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableNode.cs" />
+    <Compile Include="Table\AstTableNode.Designer.cs">
+      <DependentUpon>AstTableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstDimensionNode.cs" />
+    <Compile Include="Dimension\AstDimensionNode.Designer.cs">
+      <DependentUpon>AstDimensionNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fact\AstFactNode.cs" />
+    <Compile Include="Fact\AstFactNode.Designer.cs">
+      <DependentUpon>AstFactNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableCloneNode.cs" />
+    <Compile Include="Table\AstTableCloneNode.Designer.cs">
+      <DependentUpon>AstTableCloneNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstEtlFragmentNode.cs" />
+    <Compile Include="Transformation\AstEtlFragmentNode.Designer.cs">
+      <DependentUpon>AstEtlFragmentNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersistentVariables\AstPersistentVariableNode.cs" />
+    <Compile Include="PersistentVariables\AstPersistentVariableNode.Designer.cs">
+      <DependentUpon>AstPersistentVariableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstTemplateNode.cs" />
+    <Compile Include="AstTemplateNode.Designer.cs">
+      <DependentUpon>AstTemplateNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskTemplateNode.cs" />
+    <Compile Include="Task\AstTaskTemplateNode.Designer.cs">
+      <DependentUpon>AstTaskTemplateNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstPackageTemplateNode.cs" />
+    <Compile Include="Task\AstPackageTemplateNode.Designer.cs">
+      <DependentUpon>AstPackageTemplateNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTransformationTemplateNode.cs" />
+    <Compile Include="Transformation\AstTransformationTemplateNode.Designer.cs">
+      <DependentUpon>AstTransformationTemplateNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableTemplateNode.cs" />
+    <Compile Include="Table\AstTableTemplateNode.Designer.cs">
+      <DependentUpon>AstTableTemplateNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstParameterMappingTypeNode.cs" />
+    <Compile Include="Task\AstParameterMappingTypeNode.Designer.cs">
+      <DependentUpon>AstParameterMappingTypeNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstVariableParameterMappingNode.cs" />
+    <Compile Include="Task\AstVariableParameterMappingNode.Designer.cs">
+      <DependentUpon>AstVariableParameterMappingNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstExecuteSqlParameterMappingTypeNode.cs" />
+    <Compile Include="Task\AstExecuteSqlParameterMappingTypeNode.Designer.cs">
+      <DependentUpon>AstExecuteSqlParameterMappingTypeNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstUnboundParameterMappingNode.cs" />
+    <Compile Include="Task\AstUnboundParameterMappingNode.Designer.cs">
+      <DependentUpon>AstUnboundParameterMappingNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstTemplateArgumentNode.cs" />
+    <Compile Include="AstTemplateArgumentNode.Designer.cs">
+      <DependentUpon>AstTemplateArgumentNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstMappedTableColumnReferenceNode.cs" />
+    <Compile Include="Table\AstMappedTableColumnReferenceNode.Designer.cs">
+      <DependentUpon>AstMappedTableColumnReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstVariableNode.cs" />
+    <Compile Include="Task\AstVariableNode.Designer.cs">
+      <DependentUpon>AstVariableNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstStoredProcColumnNode.cs" />
+    <Compile Include="Task\AstStoredProcColumnNode.Designer.cs">
+      <DependentUpon>AstStoredProcColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstRootNode.cs" />
+    <Compile Include="AstRootNode.Designer.cs">
+      <DependentUpon>AstRootNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDataflowColumnMappingNode.cs" />
+    <Compile Include="Transformation\AstDataflowColumnMappingNode.Designer.cs">
+      <DependentUpon>AstDataflowColumnMappingNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDataflowInputPathNode.cs" />
+    <Compile Include="Transformation\AstDataflowInputPathNode.Designer.cs">
+      <DependentUpon>AstDataflowInputPathNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstDataflowMappedInputPathNode.cs" />
+    <Compile Include="Transformation\AstDataflowMappedInputPathNode.Designer.cs">
+      <DependentUpon>AstDataflowMappedInputPathNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstLookupInputOutputNode.cs" />
+    <Compile Include="Transformation\AstLookupInputOutputNode.Designer.cs">
+      <DependentUpon>AstLookupInputOutputNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstAnnotationNode.cs" />
+    <Compile Include="AstAnnotationNode.Designer.cs">
+      <DependentUpon>AstAnnotationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstStaticSourceRowNode.cs" />
+    <Compile Include="Table\AstStaticSourceRowNode.Designer.cs">
+      <DependentUpon>AstStaticSourceRowNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstScdTypeColumnMappingNode.cs" />
+    <Compile Include="Transformation\AstScdTypeColumnMappingNode.Designer.cs">
+      <DependentUpon>AstScdTypeColumnMappingNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstPermissionNode.cs" />
+    <Compile Include="AstPermissionNode.Designer.cs">
+      <DependentUpon>AstPermissionNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstEtlFragmentPathColumnDeclarationNode.cs" />
+    <Compile Include="Transformation\AstEtlFragmentPathColumnDeclarationNode.Designer.cs">
+      <DependentUpon>AstEtlFragmentPathColumnDeclarationNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstEtlFragmentPathColumnMappingNode.cs" />
+    <Compile Include="Transformation\AstEtlFragmentPathColumnMappingNode.Designer.cs">
+      <DependentUpon>AstEtlFragmentPathColumnMappingNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstStaticSourceColumnValueNode.cs" />
+    <Compile Include="Table\AstStaticSourceColumnValueNode.Designer.cs">
+      <DependentUpon>AstStaticSourceColumnValueNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTransformationColumnNode.cs" />
+    <Compile Include="Transformation\AstTransformationColumnNode.Designer.cs">
+      <DependentUpon>AstTransformationColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskflowPrecedenceConstraintsNode.cs" />
+    <Compile Include="Task\AstTaskflowPrecedenceConstraintsNode.Designer.cs">
+      <DependentUpon>AstTaskflowPrecedenceConstraintsNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstTaskflowInputPathNode.cs" />
+    <Compile Include="Task\AstTaskflowInputPathNode.Designer.cs">
+      <DependentUpon>AstTaskflowInputPathNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableColumnReferenceNode.cs" />
+    <Compile Include="Table\AstTableColumnReferenceNode.Designer.cs">
+      <DependentUpon>AstTableColumnReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableIndexColumnNode.cs" />
+    <Compile Include="Table\AstTableIndexColumnNode.Designer.cs">
+      <DependentUpon>AstTableIndexColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableKeyColumnNode.cs" />
+    <Compile Include="Table\AstTableKeyColumnNode.Designer.cs">
+      <DependentUpon>AstTableKeyColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableIndexLeafNode.cs" />
+    <Compile Include="Table\AstTableIndexLeafNode.Designer.cs">
+      <DependentUpon>AstTableIndexLeafNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstAttributeColumnNode.cs" />
+    <Compile Include="Dimension\AstAttributeColumnNode.Designer.cs">
+      <DependentUpon>AstAttributeColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstAttributeKeyColumnNode.cs" />
+    <Compile Include="Dimension\AstAttributeKeyColumnNode.Designer.cs">
+      <DependentUpon>AstAttributeKeyColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstAttributeNameColumnNode.cs" />
+    <Compile Include="Dimension\AstAttributeNameColumnNode.Designer.cs">
+      <DependentUpon>AstAttributeNameColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dimension\AstAttributeValueColumnNode.cs" />
+    <Compile Include="Dimension\AstAttributeValueColumnNode.Designer.cs">
+      <DependentUpon>AstAttributeValueColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstQueryNode.cs" />
+    <Compile Include="Task\AstQueryNode.Designer.cs">
+      <DependentUpon>AstQueryNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstVariableParameterMappingQueryNode.cs" />
+    <Compile Include="Task\AstVariableParameterMappingQueryNode.Designer.cs">
+      <DependentUpon>AstVariableParameterMappingQueryNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstExecuteSqlQueryNode.cs" />
+    <Compile Include="Task\AstExecuteSqlQueryNode.Designer.cs">
+      <DependentUpon>AstExecuteSqlQueryNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstOnDemandLookupQueryNode.cs" />
+    <Compile Include="Transformation\AstOnDemandLookupQueryNode.Designer.cs">
+      <DependentUpon>AstOnDemandLookupQueryNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transformation\AstTransformationMappedQueryNode.cs" />
+    <Compile Include="Transformation\AstTransformationMappedQueryNode.Designer.cs">
+      <DependentUpon>AstTransformationMappedQueryNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AstTemplateArgumentMappingNode.cs" />
+    <Compile Include="AstTemplateArgumentMappingNode.Designer.cs">
+      <DependentUpon>AstTemplateArgumentMappingNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Task\AstMergeColumnNode.cs" />
+    <Compile Include="Task\AstMergeColumnNode.Designer.cs">
+      <DependentUpon>AstMergeColumnNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AstTableReferenceNode.cs" />
+    <Compile Include="Table\AstTableReferenceNode.Designer.cs">
+      <DependentUpon>AstTableReferenceNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ConnectionIsolation.Designer.cs" />
+    <Compile Include="Connection\ConnectionSecurity.Designer.cs" />
+    <Compile Include="Connection\ConnectionType.Designer.cs" />
+    <Compile Include="Dimension\CardinalityType.Designer.cs" />
+    <Compile Include="Dimension\OptionalityType.Designer.cs" />
+    <Compile Include="Dimension\RelationshipType.Designer.cs" />
+    <Compile Include="ColumnType.Designer.cs" />
+    <Compile Include="Table\IndexColumnSortOrder.Designer.cs" />
+    <Compile Include="Table\KeyColumnSortOrder.Designer.cs" />
+    <Compile Include="Task\ContainerTransactionMode.Designer.cs" />
+    <Compile Include="Task\ContainerConstraintMode.Designer.cs" />
+    <Compile Include="Task\ExecuteSqlResultSet.Designer.cs" />
+    <Compile Include="Task\PlatformType.Designer.cs" />
+    <Compile Include="Transformation\DestinationAccessModeFacet.Designer.cs" />
+    <Compile Include="Transformation\SortComparisonFlag.Designer.cs" />
+    <Compile Include="Transformation\SortOrder.Designer.cs" />
+    <Compile Include="Transformation\SortColumnUsageType.Designer.cs" />
+    <Compile Include="Transformation\XmlSourceDataAccessMode.Designer.cs" />
+    <Compile Include="Transformation\AstTermLookupInputUsageType.Designer.cs" />
+    <Compile Include="Transformation\TermLookupColumnUsageType.Designer.cs" />
+    <Compile Include="Cube\SsasDataMimeType.Designer.cs" />
+    <Compile Include="Cube\SsasDataFormat.Designer.cs" />
+    <Compile Include="Cube\SsasCollation.Designer.cs" />
+    <Compile Include="Cube\SsasInvalidXmlCharacterProcessing.Designer.cs" />
+    <Compile Include="Cube\SsasNullProcessing.Designer.cs" />
+    <Compile Include="Cube\SsasMeasureFormat.Designer.cs" />
+    <Compile Include="Cube\SsasTrimming.Designer.cs" />
+    <Compile Include="Cube\SsasAggregationFunction.Designer.cs" />
+    <Compile Include="Cube\SsasOptimizedState.Designer.cs" />
+    <Compile Include="Cube\AllMemberAggregationUsage.Designer.cs" />
+    <Compile Include="Cube\HierarchyUniqueNameStyle.Designer.cs" />
+    <Compile Include="Cube\MemberUniqueNameStyle.Designer.cs" />
+    <Compile Include="Cube\SsasErrorConfiguration.Designer.cs" />
+    <Compile Include="Cube\ProcessingMode.Designer.cs" />
+    <Compile Include="Cube\StorageMode.Designer.cs" />
+    <Compile Include="Measure\MeasureGroupType.Designer.cs" />
+    <Compile Include="Cube\DataAggregation.Designer.cs" />
+    <Compile Include="Cube\SsasOrderBy.Designer.cs" />
+    <Compile Include="Cube\SsasAttributeUsage.Designer.cs" />
+    <Compile Include="Cube\SsasColumnDataFormat.Designer.cs" />
+    <Compile Include="AnnotationType.Designer.cs" />
+    <Compile Include="Connection\NetworkProtocol.Designer.cs" />
+    <Compile Include="AuthenticationType.Designer.cs" />
+    <Compile Include="Table\PrincipalType.Designer.cs" />
+    <Compile Include="Table\ScdType.Designer.cs" />
+    <Compile Include="Transformation\ScdColumnMappingType.Designer.cs" />
+    <Compile Include="PermissionActionType.Designer.cs" />
+    <Compile Include="PermissionTargetType.Designer.cs" />
+    <Compile Include="Task\LogicalOperationType.Designer.cs" />
+    <Compile Include="Task\TaskEvaluationOperationType.Designer.cs" />
+    <Compile Include="Task\TaskEvaluationOperationValue.Designer.cs" />
+    <Compile Include="Task\EventType.Designer.cs" />
+    <Compile Include="Task\Direction.Designer.cs" />
+    <Compile Include="Transformation\ErrorRowDisposition.Designer.cs" />
+    <Compile Include="Task\IsolationLevel.Designer.cs" />
+    <Compile Include="Transformation\CacheMode.Designer.cs" />
+    <Compile Include="Task\QueryType.Designer.cs" />
+    <Compile Include="Task\MergeColumnUsage.Designer.cs" />
+    <Compile Include="Table\TableCompressionType.Designer.cs" />
+    <!-- AstDesigner FINISH: VulcanAst -->
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utility\Utility\Utility.csproj">
+      <Project>{77278D18-0512-4493-8FB0-51FE92D48FC4}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Vulcan\AstFramework\AstFramework.csproj">
+      <Project>{3E372F75-2C05-4A25-AF5C-9776AB95BE56}</Project>
+      <Name>AstFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

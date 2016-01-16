@@ -1,0 +1,1880 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E24CB59F-5F34-459F-84A7-46306ACC9498}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VulcanTests</RootNamespace>
+    <AssemblyName>Vulcan.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Migrated rules for VulcanTests (4).ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>
+    </CodeAnalysisRuleAssemblies>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for VulcanTests (5).ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>
+    </CodeAnalysisRuleAssemblies>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Migrated rules for VulcanTests (6).ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AstLowererTests\AstLowererPrincipalTests.cs" />
+    <Compile Include="AstLowererTests\AstLowererSchemaTests.cs" />
+    <Compile Include="AstLowererTests\AstLowererPackageTests.cs" />
+    <Compile Include="AstLowererTests\AstLowererCloneTableTests.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Ssis2008EmitterTests\Ssis2008EmitterTemplateTests.cs" />
+    <Compile Include="Ssis2008EmitterTests\XmlComparer.cs" />
+    <Compile Include="Ssis2008EmitterTests\DtprojComparer.cs" />
+    <Compile Include="Ssis2008EmitterTests\DtsxComparer.cs" />
+    <Compile Include="Ssis2008EmitterTests\Ssis2008EmitterEtlTests.cs" />
+    <Compile Include="Ssis2008EmitterTests\Ssis2008EmitterPackageTests.cs" />
+    <Compile Include="Ssis2008EmitterTests\SsisComparer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ssis2008EmitterTests\Ssis2008EmitterTaskTests.cs" />
+    <Compile Include="AstLowererTests\AstLowererTableTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AstLowererTests\AstComparer.cs" />
+    <Compile Include="StreamExtensions.cs" />
+    <Compile Include="TemplateTests\TemplateTransformationTests.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="UtilityTest\SimpleTreeObject.cs" />
+    <Compile Include="UtilityTest\TreeNodeTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utility\Utility\Utility.csproj">
+      <Project>{77278D18-0512-4493-8FB0-51FE92D48FC4}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AstFramework\AstFramework.csproj">
+      <Project>{3E372F75-2C05-4A25-AF5C-9776AB95BE56}</Project>
+      <Name>AstFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AstLowerer\AstLowerer.csproj">
+      <Project>{5C036BEF-AEE6-4DBE-AC7E-5DF99652D53F}</Project>
+      <Name>AstLowerer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SSIS2008Emitter\Ssis2008Emitter.csproj">
+      <Project>{1F702A15-96E4-4343-9922-34A0D671249A}</Project>
+      <Name>Ssis2008Emitter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VulcanAst\VulcanAst.csproj">
+      <Project>{1556D101-51A7-4493-8E16-5F40F9105CC3}</Project>
+      <Name>VulcanAst</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VulcanEngine\VulcanEngine.csproj">
+      <Project>{68775410-5104-407B-B552-6703EE4158EF}</Project>
+      <Name>VulcanEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VulcanLogging\VulcanLogging.csproj">
+      <Project>{A1597502-7D61-4A2B-875A-F98DBD90CB3F}</Project>
+      <Name>VulcanLogging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vulcan\Vulcan.csproj">
+      <Project>{7531A881-611E-4560-8B9B-30CB44DA966D}</Project>
+      <Name>Vulcan</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\BasicAndEmpty_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\Types_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\Types_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Table\BasicAndEmpty_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\IsNullPatcher\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\IsNullPatcher\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Basic_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Basic_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Basic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xslt\DtsxCanonicalizer.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xslt\DtsxRemoveCreationDate.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xslt\DtsxRemoveVariableValue.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xslt\DtsxRemoveVersionGUID.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xslt\SsasCanonicalizer.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xslt\SsrsCanonicalizer.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Schema_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Schema_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\CustomExtensions_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\CustomExtensions_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\LateArriving_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\LateArriving_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\Properties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\Properties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\Scd_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\Scd_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\IdentityKey\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\IdentityKey\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\UniqueKey\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\UniqueKey\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\UniqueKey\Properties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\UniqueKey\Properties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\UniqueKey\ColumnProperties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\UniqueKey\ColumnProperties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PrimaryKey\Properties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PrimaryKey\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PrimaryKey\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PrimaryKey\ColumnProperties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PrimaryKey\ColumnProperties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PrimaryKey\Properties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\IdentityKey\Properties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\IdentityKey\ColumnProperties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\IdentityKey\ColumnProperties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\IdentityKey\Properties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Index\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Index\Properties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Index\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Index\ColumnProperties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Index\ColumnProperties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Index\Properties_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\StaticSource\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\StaticSource\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Package_BasicAndEmpty_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Package_NoEmit_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Package_NoEmit_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_ApplicationRole_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_ApplicationRole_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_DatabaseRole_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_DatabaseRole_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_NoEmit_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_NoEmit_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_SqlUser_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_SqlUser_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_WindowsGroup_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_WindowsGroup_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_WindowsUser_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Principal\Principal_WindowsUser_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_BasicAndEmpty_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_BasicAndEmpty_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_CustomExtensions_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_CustomExtensions_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_NoEmit_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_NoEmit_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_Permissions_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Schema\Schema_Permissions_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\PermissionBasic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Table\PermissionBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\StaticSource\NoEmitMergePackage_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\StaticSource\NoEmitMergePackage_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\PermissionBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\Column\PermissionBasic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicAndEmpty_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicAndEmpty_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\AddColumn_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\AddColumn_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Default_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Default_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneIndexesFalse_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneIndexesFalse_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneIndexesTrue_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneIndexesTrue_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneKeysFalse_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneKeysTrue_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneKeysFalse_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneKeysTrue_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\AddColumns_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\IsNullPatcher\MultipleColumns_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\IsNullPatcher\MultipleColumns_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Package_BasicAndEmpty_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\AddColumns_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllTrue_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllTrue_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllTrueAndAddColumns_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllTrueAndAddColumns_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\IsNullPatcher\ValidateExternalMetadata_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\IsNullPatcher\ValidateExternalMetadata_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\PrimaryKey\AddPrimaryKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\PrimaryKey\AddPrimaryKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\UniqueKey\AddUniqueKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\LateArriving\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\LateArriving\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\UniqueKey\AddUniqueKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\IdentityKey\AddIdentityKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\IdentityKey\AddIdentityKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\MultipleKeys\AddMultipleKeys_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\MultipleKeys\AddMultipleKeys_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\IdentityKey\AddColumnsAndIdentityKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\UniqueKey\AddColumnsAndUniqueKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\IdentityKey\AddColumnsAndIdentityKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\MultipleKeys\AddColumnsAndMultipleKeys_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\MultipleKeys\AddColumnsAndMultipleKeys_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\PrimaryKey\AddColumnsAndPrimaryKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\PrimaryKey\AddColumnsAndPrimaryKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\UniqueKey\AddColumnsAndUniqueKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllFalse_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllFalse_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllFalseAndAddColumns_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllFalseAndAddColumns_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\PrimaryKey\CloneAllFalseAndAddPrimaryKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\PrimaryKey\CloneAllFalseAndAddPrimaryKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\PrimaryKey\CloneAllTrueAndAddPrimaryKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\PrimaryKey\CloneAllTrueAndAddPrimaryKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\UniqueKey\CloneAllTrueAndAddUniqueKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\UniqueKey\CloneAllTrueAndAddUniqueKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\UniqueKey\CloneAllFalseAndAddUniqueKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\UniqueKey\CloneAllFalseAndAddUniqueKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\IdentityKey\CloneAllTrueAndAddIdentityKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\IdentityKey\CloneAllTrueAndAddIdentityKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\IdentityKey\CloneAllFalseAndAddIdentityKey_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\IdentityKey\CloneAllFalseAndAddIdentityKey_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneAllTrueAndAddMultipleKeys_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneAllTrueAndAddMultipleKeys_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneAllFalseAndAddMultipleKeys_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\MultipleKeys\CloneAllFalseAndAddMultipleKeys_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllTrueAndAddEverything_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllTrueAndAddEverything_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllFalseAndAddEverything_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\CloneAllFalseAndAddEverything_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneAllFalseAndAddIndexes_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneAllFalseAndAddIndexes_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneAllTrueAndAddIndexes_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\FullTable\Indexes\CloneAllTrueAndAddIndexes_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\Indexes\AddIndexes_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\Indexes\AddIndexes_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\AddEverything_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\AddEverything_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\Indexes\AddColumnsAndIndexes_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\CloneTable\BasicTable\Indexes\AddColumnsAndIndexes_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\LateArriving\InputsAndOutputs_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\LateArriving\InputsAndOutputs_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Scd\BasicDestination_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Scd\BasicDestination_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersBasic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersDefault_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersDefault_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersOutput_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersOutput_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\Event_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\Event_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\PrecedenceConstraint_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\PrecedenceConstraint_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\Columns_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\Columns_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\UpdateTargetTable_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\UpdateTargetTable_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\DelayValidation_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\DelayValidation_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\DisableSCD_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\DisableSCD_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\IsolationLevel_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\IsolationLevel_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\Event_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\Event_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\PrecedenceConstraint_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\PrecedenceConstraint_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\UnspecifiedColumnDefaultUsageType_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\UnspecifiedColumnDefaultUsageType_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\SCD_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\SCD_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\Scd\BasicMerge_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Scd\BasicMerge_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\QueryProperties_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\QueryProperties_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\QueryProperties_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\QueryProperties_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Results_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Results_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Results_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Results_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Events_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Events_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Events_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Everything_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Everything_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Everything_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\PrecedenceConstraints_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\PrecedenceConstraints_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\PrecedenceConstraints_POST\PackageConfigurations\Connection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Events_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Everything_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\PrecedenceConstraints_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecutePackage\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecutePackage\Basic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecutePackage\Basic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xslt\DtsxRemoveCreatorInformation.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xslt\DtsxRemoveConnectionManagerProperties.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\PrecedenceConstraints_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\PrecedenceConstraints_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\PrecedenceConstraints_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Events_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Events_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Events_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xslt\DtsxRemoveEventID.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\VariableExpression_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Variables_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\VariableExpression_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\VariableExpression_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Variables_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Variables_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersReadOnly_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\ParametersReadOnly_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Integration\BuildDataflow.GenericTest" />
+    <None Include="Integration\BuildTaskTests.GenericTest" />
+    <None Include="Integration\BuildTestTables.GenericTest" />
+    <None Include="Integration\BuildVulcanDataWarehouse.GenericTest" />
+    <None Include="Integration\Build\BuildAndDeployDatabase.vproj" />
+    <None Include="Integration\Build\BuildAndDeployTestTables.vproj" />
+    <None Include="Integration\Build\MasterBuild.msbuild" />
+    <None Include="Integration\Connections\connections.vproj" />
+    <None Include="Integration\Dataflow\dataflow.vproj" />
+    <None Include="Integration\ETLLookup.GenericTest" />
+    <None Include="Integration\ETLMerge.GenericTest" />
+    <None Include="Integration\ETLStagingTest.GenericTest" />
+    <None Include="Integration\Tables\Tables.vproj" />
+    <None Include="Integration\Tasks\tasks.vproj" />
+    <None Include="Integration\VulcanIntegrationTest.orderedtest" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Templates\Package_POST\ETL\ETLtblFakeSale\ETLtblFakeSale.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Templates\Package_POST\ETL\ETLtblFakeSale\ETLtblFakeSale.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlDefault_57d78b8b86d34c1f9ae91799e5d4847e.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlDelayValidationFalse_9d7db9be4e0b47fa912ccec10f7d1286.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlDelayValidationTrue_6875bca8af3b474292919c1f04b0bffb.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelChaos_3f277c39d3f84e2995266e907cc1e1e3.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelReadCommitted_73ffdfee843a424ab34c259818dbe5ef.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelReadUncommitted_514d832ab8884a51a5d9f1c1a6351cae.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelRepeatableRead_8e1e20eb31b84c55b4c46359c6b6a169.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelSerializable_afe5fa5843a84aa895a2ae4e8625823d.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelSnapshot_fec2a8c8a552457b9dd56ecda3213985.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlIsolationLevelUnspecified_df4cae4402224f1ea57ed5e832dd81f2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlResultSetFull_5c060bec50bc406b9a42407e03196263.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlResultSetNone_1ddd90a444e241e29813120f20e773e7.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlResultSetSingleRow_5f2d2baead1d4402a979c63bf61359b6.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\CoreProperties_POST\ETL\Package1\ExecuteSqlResultSetXml_7cfcb84887e140eb82f3023a519753f9.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_POST\Tables\Product\Product.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_POST\Tables\Product\Product.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_POST\Tables\Product\Production_Product_74ffd313d17c444a9914251577a2936f.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_POST\Tables\Product\Production_Product_1a2db13793fc494daa751698dc785d4c.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_POST\Tables\Product\Product.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_POST\Tables\Product\Product.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\RowCount_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\RowCount_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="Migrated rules for VulcanTests %284%29.ruleset" />
+    <None Include="Migrated rules for VulcanTests %285%29.ruleset" />
+    <None Include="Migrated rules for VulcanTests %286%29.ruleset" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\SpacedTable_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\NoUpdate_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\Merge\NoUpdate_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="AstLowererTests\Package\Staging\Basic_POST.xml" />
+    <Content Include="AstLowererTests\Package\Staging\Basic_PRE.xml" />
+    <Content Include="AstLowererTests\Package\Staging\StagingTable_POST.xml" />
+    <Content Include="AstLowererTests\Package\Staging\StagingTable_PRE.xml" />
+    <Content Include="Integration\Connections\DataWarehouse.xml" />
+    <Content Include="Integration\Connections\FakeDataSource.xml" />
+    <Content Include="Integration\Connections\Server.xml" />
+    <Content Include="Integration\Connections\Staging.xml" />
+    <Content Include="Integration\Connections\Stg_FakeDataSource.xml" />
+    <Content Include="Integration\Connections\VulcanLog.xml" />
+    <Content Include="Integration\Connections\VulcanTransient.xml" />
+    <Content Include="Integration\Dataflow\ETLLookupTest.xml" />
+    <Content Include="Integration\Tables\CloneDimSimple.xml" />
+    <Content Include="Integration\Tables\DimSimple.xml" />
+    <Content Include="Integration\Tables\FactSimple.xml" />
+    <Content Include="Integration\Tables\TableDriver.xml" />
+    <Content Include="Integration\Tables\tblSimple.xml" />
+    <Content Include="Integration\Tables\tblTestPropertyBag.xml" />
+    <Content Include="Integration\Tasks\ETLMergeTest.xml" />
+    <Content Include="Integration\Tasks\ETLStagingTest.xml" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\RowCount_POST\PackageConfigurations\Conn1.dtsConfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\RowCount_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Table\SpacedTable_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xslt\DtsxRemoveLastModifiedProductVersion.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Templates\Package_POST\PackageConfigurations\TestConnection1.dtsConfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Templates\Package_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateTests\Package\PackageTemplate_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateTests\Package\PackageTemplate_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\CommitPersistentVariable\Basic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\CommitPersistentVariable\Basic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\CommitPersistentVariable\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Basic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Basic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\ConstraintModeLinear_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\ConstraintModeLinear_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\ConstraintModeLinear_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\ConstraintModeParallel_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\ConstraintModeParallel_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\ConstraintModeParallel_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\DelayValidation_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\DelayValidation_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\DelayValidation_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\IsolationLevelChaos_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\IsolationLevelChaos_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\IsolationLevelChaos_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Log_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Log_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Log_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Log_POST\PackageConfigurations\TestConnection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\TransactionModeNoTransaction_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\TransactionModeNoTransaction_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\TransactionModeNoTransaction_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Log_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Log_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Log_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\Log_POST\PackageConfigurations\TestConnection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\TransactionModeRequiredTransaction_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\TransactionModeRequiredTransaction_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\TransactionModeRequiredTransaction_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\ConstraintModeLinear_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\ConstraintModeLinear_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\ConstraintModeParallel_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\ConstraintModeParallel_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\DelayValidation_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\DelayValidation_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\IsolationLevelChaos_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\IsolationLevelChaos_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\TransactionModeNoTransaction_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\TransactionModeNoTransaction_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\TransactionModeRequiredTransaction_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\TransactionModeRequiredTransaction_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\ConstraintModeLinear_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\ConstraintModeParallel_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\DelayValidation_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\IsolationLevelChaos_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\TransactionModeNoTransaction_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Package\TransactionModeRequiredTransaction_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Events_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Events_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\PrecedenceConstraints_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\PrecedenceConstraints_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\VariableExpression_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\VariableExpression_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Variables_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Variables_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Events_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\PrecedenceConstraints_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\VariableExpression_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\Container\Variables_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Basic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Basic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DelayValidation_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DelayValidation_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DelayValidation_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\IsolationLevelChaos_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\IsolationLevelChaos_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\IsolationLevelChaos_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Events_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Events_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Events_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\PrecedenceConstraints_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\PrecedenceConstraints_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\PrecedenceConstraints_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\CommitPersistentVariable\Basic_POST\PackageConfigurations\TestConnection1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xslt\DtsxRemoveVersionBuild.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\Permission_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\StoredProcedure\Permission_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceParameters_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceParameters_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceParameters_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceParameters_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\DerivedColumnBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\DerivedColumnBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\DerivedColumnBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\DerivedColumnBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\Transformations\QuerySourceBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ExecuteSql\Basic_POST\ETL\Package1\ExecuteSql_a930fddf72a94ba3bd93a699cd770fdd.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ConditionalSplitBasic_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ConditionalSplitBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ConditionalSplitBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DerivedColumnErrorRowDisposition_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DerivedColumnErrorRowDisposition_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DerivedColumnErrorRowDisposition_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_POST\PackageConfigurations\Conn1.dtsConfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ConditionalSplitBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DerivedColumnErrorRowDisposition_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_POST\ETL\Package1\Package1.dtproj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_POST\ETL\Package1\Package1.dtsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_POST\PackageConfigurations\Conn1.dtsConfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\DestinationFastLoad_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\LookupBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\LookupBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\LookupBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\LookupBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\MulticastBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\MulticastBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\MulticastBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\MulticastBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\OleDbCommandBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\OleDbCommandBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\OleDbCommandBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\OleDbCommandBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\SortBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\SortBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\SortBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\SortBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\UnionAllBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\UnionAllBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\UnionAllBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\UnionAllBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ScdBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ScdBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ScdBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\ScdBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TermLookupBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TermLookupBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TermLookupBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TermLookupBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\XmlSourceBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\XmlSourceBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\XmlSourceBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\EtlFragmentBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\EtlFragmentBasic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\EtlFragmentBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\EtlFragmentBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TransformationTemplateInstanceBasic_POST\PackageConfigurations\Conn1.dtsConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TransformationTemplateInstanceBasic_POST\ETL\Package1\Package1.dtproj" />
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TransformationTemplateInstanceBasic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ETL\TransformationTemplateInstanceBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\TransformationTemplateInstanceBasic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\TransformationTemplateInstanceBasic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateTests\Transformation\DerivedColumn_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateTests\Transformation\DerivedColumn_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Table\StaticSource\DimReferences_POST.xml" />
+    <EmbeddedResource Include="AstLowererTests\Table\StaticSource\DimReferences_PRE.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ForLoop\Basic_POST\ETL\Package1\Package1.dtproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ForLoop\Basic_POST\ETL\Package1\Package1.dtsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ssis2008EmitterTests\Tasks\ForLoop\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AstLowererTests\Package\RetryContainer\Basic_POST.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AstLowererTests\Package\RetryContainer\Basic_PRE.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TemplateTests\Table\" />
+    <Folder Include="TemplateTests\Task\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

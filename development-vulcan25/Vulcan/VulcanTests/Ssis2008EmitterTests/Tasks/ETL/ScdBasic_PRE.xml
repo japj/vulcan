@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="AdventureWorks" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>SELECT ProductID, Name, ModifiedDate, ProductNumber, MakeFlag, FinishedGoodsFlag, Color, SafetyStockLevel FROM Production.Product</Body>
+              </Query>
+            </QuerySource>
+            <Scd Name="SCD1" ConnectionName="Conn1" IncomingRowChangeType="1">
+              <Query>SELECT [Color], [FinishedGoodsFlag], [MakeFlag], [Name], [ProductNumber], [SafetyStockLevel],[SellStartDate],[SellEndDate] FROM [Production].[Product]</Query>
+              <CurrentRowWhere>[SellStartDate] IS NOT NULL AND [SellEndDate] IS NULL</CurrentRowWhere>
+              <Mappings>
+                <Mapping MappingType="Key" QueryColumnName="Name"/>
+                <Mapping MappingType="FixedAttribute" QueryColumnName="Color"/>
+                <Mapping MappingType="ChangingAttribute" QueryColumnName="FinishedGoodsFlag"/>
+                <Mapping MappingType="HistoricalAttribute" QueryColumnName="MakeFlag"/>
+                <Mapping MappingType="HistoricalAttribute" QueryColumnName="ProductNumber"/>
+                <Mapping MappingType="ChangingAttribute" QueryColumnName="SafetyStockLevel"/>
+              </Mappings>
+            </Scd>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AstLowerer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SubpathTemplateSchemaFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VulcanTemplate.xsd</Value>
+    </Setting>
+    <Setting Name="SubpathTSqlEmitterContent" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TSqlEmitter.Content</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" Server="localhost" Database="tempdb" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Tables>
+    <Table Name="TestTable" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" />
+        <Column Name="Column2" Type="Int32" ScdType="Historical" />
+      </Columns>
+      <Keys>
+        <Identity Name="IK1">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Identity>
+      </Keys>
+    </Table>
+  </Tables>
+  <Packages>
+    <Package Name="Test_AstLower_Scd_Package" Type="ETL">
+      <Tasks>
+        <ETL Name="Test_AstLower_Scd_Etl">
+          <Transformations>
+            <QuerySource Name="QuerySource" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body>
+                  SELECT 1 AS Column1, 2 AS Column2
+                </Body>
+              </Query>
+            </QuerySource>
+            <Scd ConnectionName="TestConnection1" EnableInferredMember="false" FailOnFixedAttributeChange="true" FailOnLookupFailure="false" IncomingRowChangeType="1" UpdateChangingAttributeHistory="false" ValidateExternalMetadata="true" DefaultErrorRowDisposition="IgnoreFailure" Name="Scd">
+              <Query>SELECT Column1,Column2,_scdFrom,_scdTo,VersionNumber FROM TestTable</Query>
+              <CurrentRowWhere>[_scdFrom] IS NOT NULL AND [_scdFrom] IS NULL</CurrentRowWhere>
+              <Mappings>
+                <Mapping QueryColumnName="Column2" MappingType="HistoricalAttribute" />
+              </Mappings>
+            </Scd>
+            <OleDBCommand ConnectionName="TestConnection1" ValidateExternalMetadata="false" DefaultErrorRowDisposition="IgnoreFailure" Name="ChangeCommand">
+              <Query QueryType="Standard">
+                <Mappings>
+                  <Mapping SourceName="Column1" TargetName="Param_0" />
+                </Mappings>
+                <Body>UPDATE TestTable SET WHERE Column1 = ? AND _scdTo IS NULL</Body>
+              </Query>
+              <InputPath OutputPathName="Scd.ChangingAttribute" />
+            </OleDBCommand>
+            <DerivedColumns ValidateExternalMetadata="true" DefaultErrorRowDisposition="IgnoreFailure" Name="HistoricalDerivedColumns">
+              <Columns>
+                <Column Type="DateTime2" Length="0" Precision="0" Scale="7" Codepage="0" ReplaceExisting="false" Name="_scdTo">(DT_DBTIMESTAMP2,7)(@[System::StartTime])</Column>
+              </Columns>
+              <InputPath OutputPathName="Scd.HistoricalAttribute" />
+            </DerivedColumns>
+            <OleDBCommand ConnectionName="TestConnection1" ValidateExternalMetadata="false" DefaultErrorRowDisposition="IgnoreFailure" Name="HistoricalCommand">
+              <Query QueryType="Standard">
+                <Mappings>
+                  <Mapping SourceName="_scdTo" TargetName="Param_0" />
+                  <Mapping SourceName="Column1" TargetName="Param_1" />
+                </Mappings>
+                <Body>UPDATE TestTable SET _scdTo = ? WHERE _scdTo IS NULL AND Column1 = ?</Body>
+              </Query>
+            </OleDBCommand>
+            <UnionAll ValidateExternalMetadata="true" DefaultErrorRowDisposition="IgnoreFailure" Name="InsertUnionAll">
+              <InputPaths>
+                <InputPath OutputPathName="Scd.New" />
+                <InputPath OutputPathName="HistoricalCommand.Output" />
+              </InputPaths>
+            </UnionAll>
+            <DerivedColumns ValidateExternalMetadata="true" DefaultErrorRowDisposition="IgnoreFailure" Name="InsertDerivedColumns">
+              <Columns>
+                <Column Type="DateTime2" Length="0" Precision="0" Scale="7" Codepage="0" ReplaceExisting="false" Name="_scdFrom">(DT_DBTIMESTAMP2,7)(@[System::StartTime])</Column>
+                <Column Type="DateTime2" Length="0" Precision="0" Scale="7" Codepage="0" ReplaceExisting="false" Name="_scdTo">NULL(DT_DBTIMESTAMP2,7)</Column>
+              </Columns>
+              <InputPath OutputPathName="InsertUnionAll.Output" />
+            </DerivedColumns>
+            <Destination TableName="TestTable" AccessMode="Table" TableLock="false" CheckConstraints="true" KeepIdentity="true" KeepNulls="true" RowsPerBatch="0" MaximumInsertCommitSize="0" DisableScd="true" ValidateExternalMetadata="false" DefaultErrorRowDisposition="IgnoreFailure" Name="InsertDestination" />
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

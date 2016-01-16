@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Table Name="TestTable1" ConnectionName="DataWarehouse">
+    <Columns>
+      <Column Name="TestID" Type="INT64" />
+      <Column Name="TestColumn" Type="INT64" IsNullable="true" Default="4010"/>
+      
+      <HashedKey Name="Test_SK" Constraint="CK_TestTable1_Name" />
+      <Column Name="ComputedColumn" Type="INT64" Computed="AS (Convert(bigint,TestID)) PERSISTED NOT NULL" />
+      
+      <Column Name="Name" Type="WSTR" Length="255" IsNullable="true" />
+      <Column Name="DecValue" Type="DECIMAL" Precision="38" Scale="7" />
+      <Column Name="CustomValue" Type="CUSTOM" CustomType="nvarchar(15)" Default="'Test'" />
+      <Column Name="Date" Type="DATETIME" IsNullable="true" Default="SYSUTCDATETIME()"/>
+    </Columns>
+    <Keys>
+      <PrimaryKey Name="PK_TestTable1" Clustered="true">
+        <Column ColumnName="TestID" />
+      </PrimaryKey>
+      <UniqueKey Name="CK_TestTable1_Name">
+        <Column ColumnName="Name" />
+      </UniqueKey>
+    </Keys>
+    <Sources>
+      <StaticSource>
+        <Row>1,-1,N'Name1',3.0,N'N',SYSUTCDATETIME()</Row>
+        <Row>2,-1,N'Name2',3.0,N'N',SYSUTCDATETIME()</Row>
+        <Row>3,-1,N'Name3',3.0,N'N',SYSUTCDATETIME()</Row>
+        <Row>4,-1,N'Name4',3.0,N'N',SYSUTCDATETIME()</Row>
+        <Row>5,-1,N'Name5',3.0,N'N',SYSUTCDATETIME()</Row>
+      </StaticSource>
+      <QuerySource Name="TestTable1QuerySource" ConnectionName="DataWarehouse">
+        SELECT TestColumn=-1,Name=N'Name6',DecValue=3.0,CustomValue=N'N',Date=SYSUTCDATETIME()
+      </QuerySource>
+      <DynamicSource Name="TestTable1Updater">
+        <Package Name="TestTable1UpdaterPackage" Type="ETL" DefaultPlatform="SSIS08">
+          <ETL Name="ETL">
+            <QuerySource>
+              <Connection ConnectionName="DataWarehouse" />
+              <Query>SELECT a=1,b=2,c=3</Query>
+            </QuerySource>
+            <Transformations>
+              <DerivedColumns Name="derived">
+                <Column Name="foo" Type="INT32">1</Column>
+              </DerivedColumns>
+            </Transformations>
+          </ETL>
+        </Package>
+      </DynamicSource>
+    </Sources>
+  </Table>
+</Vulcan>

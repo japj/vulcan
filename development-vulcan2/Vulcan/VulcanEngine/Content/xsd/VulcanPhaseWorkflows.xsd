@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VulcanPhaseWorkflow"
+    targetNamespace="http://schemas.microsoft.com/detego/2007/07/07/VulcanPhaseWorkflows.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://schemas.microsoft.com/detego/2007/07/07/VulcanPhaseWorkflows.xsd"
+    xmlns:mstns="http://schemas.microsoft.com/detego/2007/07/07/VulcanPhaseWorkflows.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:element name="PhaseWorkflows">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PhaseWorkflow" type="workflowType" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="DefaultWorkflow" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="workflowType">
+		<xs:sequence>
+			<xs:element name="Phases" type="phaseGroupType" />
+			<xs:element name="IRFlowVectors" type="irFlowVectorGroupType" />
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="phaseGroupType">
+		<xs:sequence>
+			<xs:element name="Phase" type="phaseType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="phaseType">
+		<xs:sequence>
+			<xs:element name="Parameters" type="phaseParameterGroupType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="PhaseName" type="xs:string" use="required" />
+		<xs:attribute name="WorkflowUniqueName" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="phaseParameterGroupType">
+		<xs:sequence>
+			<xs:element name="Parameter" type="phaseParameterType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="phaseParameterType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Name" type="xs:string" use="required" />
+				<xs:attribute name="Type" type="unifiedTypeFacet" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="irFlowVectorGroupType">
+		<xs:sequence>
+			<xs:element name="IRFlowVector" type="irFlowVectorType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="irFlowVectorType">
+		<xs:sequence></xs:sequence>
+		<xs:attribute name="SourceWorkflowUniqueName" type="xs:string" use="required" />
+		<xs:attribute name="SinkWorkflowUniqueName" type="xs:string" use="required" />
+	</xs:complexType>
+
+  <xs:simpleType name="unifiedTypeFacet">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Int32" />
+      <xs:enumeration value="Int64" />
+      <xs:enumeration value="String" />
+      <xs:enumeration value="Boolean" />
+      <xs:enumeration value="Object" />
+      <xs:enumeration value="DateTime" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

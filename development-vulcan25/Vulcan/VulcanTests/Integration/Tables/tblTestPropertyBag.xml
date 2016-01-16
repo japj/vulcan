@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <Table Name="tblTestPropertyBag" ConnectionName="DataWarehouse">
+        <Columns>
+          <Column Name="A" Type="String" Length="512" IsNullable="true" />
+          <Column Name="B" Type="String" Length="512" IsNullable="true" />
+          <Column Name="C" Type="String" Length="512" IsNullable="true" />
+          <Column Name="D" Type="String" Length="512" IsNullable="true" />
+          <Column Name="E" Type="String" Length="512" IsNullable="true" />
+        </Columns>
+    </Table>
+  </Tables>
+</Vulcan>

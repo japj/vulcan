@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Packages>
+        <Package Name="ETLFakeDataSourceDriver" Type="Driver" Log="true" LogConnectionName="VulcanLog">
+
+            <Variables>
+                <Variable Name="varDeltaStartTime" TypeCode="String" Value=""/>
+                <Variable Name="varDeltaEndTime" TypeCode="String" Value=""/>
+                <Variable Name="varDataSourceMovementID" TypeCode="String" Value="00000000-0000-0000-0000-000000000000"/>
+            </Variables>
+
+            <Events>
+                <Event Name="Log Movement Failed" EventType="OnError">
+                    <Tasks>
+                        <ExecuteSQL Name="Log Movement Failed" ConnectionName="Staging">
+                            <Query QueryType="Expression">
+                                <Body>
+                                    "UPDATE dbo.tblDataSourceMovementLog
+                                    SET EndTime_UTC=SYSUTCDATETIME()
+                                    ,Status='Failed'
+                                    ,_VulcanUpdateTime_UTC=SYSUTCDATETIME()
+                                    WHERE DataSourceMovementID='"+@[User::varDataSourceMovementID]+"'
+
+                                    UPDATE dbo.tblTableMovementLog
+                                    SET Status='Failed'
+                                    ,_VulcanUpdateTime_UTC=SYSUTCDATETIME()
+                                    WHERE Status&lt;>'Failed'
+                                    AND DataSourceMovementID='"+@[User::varDataSourceMovementID]+"'"
+                                </Body>
+                            </Query>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Event>
+            </Events>
+
+            <Tasks>
+                <Container Name="Pre_Movement">
+                    <Tasks>
+                        <ExecuteSQL Name="Get varDeltaStartTime" ConnectionName="Staging" ResultSet="SingleRow">
+                            <Query>
+                                <Body>
+                                    DECLARE @DeltaStartTime DATETIME
+
+                                    SELECT @DeltaStartTime=CONVERT(datetime2,'1753-01-01',126)
+
+                                    SELECT TOP 1 @DeltaStartTime=DATEADD(SECOND,-1,MaxUpdateTime)
+                                    FROM dbo.tblDataSourceMovementLog
+                                    WHERE SourceDataSourceID='AC7A61BA-8C5D-414C-A928-C76C7F14338D'
+                                    AND DestinationDataSourceID='F078D119-62D5-4569-BBB1-B211AFFB4158'
+                                    AND [Status]='Succeeded'
+                                    ORDER BY _VulcanUpdateTime_UTC DESC
+
+                                    SELECT CONVERT(NVARCHAR(255),@DeltaStartTime,126)
+                                </Body>
+                            </Query>
+                            <Results>
+                                <Result Name="0" VariableName="varDeltaStartTime" Direction="ReturnValue"/>
+                            </Results>
+                        </ExecuteSQL>
+
+                        <ExecuteSQL Name="Get varDeltaEndTime" ConnectionName="FakeDataSource" ResultSet="SingleRow">
+                            <Query>
+                                <Body>
+                                    DECLARE @DeltaEndTime DATETIME
+
+                                    SELECT @DeltaEndTime=CONVERT(datetime2,'1753-01-01',126)
+
+                                    SELECT @DeltaEndTime=MAX(MaxUpdateTime)
+                                    FROM
+                                    (
+                                    SELECT MAX(UpdateTime) AS MaxUpdateTime
+                                    FROM tblFakeCustomer
+                                    UNION ALL
+                                    SELECT MAX(UpdateTime) AS MaxUpdateTime
+                                    FROM tblFakeSale
+                                    ) A
+
+                                    SELECT CONVERT(NVARCHAR(255),@DeltaEndTime,126)
+                                </Body>
+                            </Query>
+                            <Results>
+                                <Result Name="0" VariableName="varDeltaEndTime" Direction="ReturnValue"/>
+                            </Results>
+                        </ExecuteSQL>
+
+                        <ExecuteSQL Name="Log Movement Start" ConnectionName="Staging" ResultSet="SingleRow">
+                            <Query QueryType="Expression">
+                                <Body>
+                                    "DECLARE @varDataSourceMovementID UNIQUEIDENTIFIER
+                                    SELECT @varDataSourceMovementID=NEWID()
+
+                                    INSERT INTO [dbo].[tblDataSourceMovementLog]
+                                    ([DataSourceMovementID]
+                                    ,[ExecutionGuid]
+                                    ,[SourceDataSourceID]
+                                    ,[DestinationDataSourceID]
+                                    ,[StartTime_UTC]
+                                    ,[EndTime_UTC]
+                                    ,[MaxUpdateTime]
+                                    ,[Status]
+                                    ,[_VulcanInsertTime_UTC]
+                                    ,[_VulcanUpdateTime_UTC])
+                                    VALUES
+                                    (@varDataSourceMovementID
+                                    ,'"+@[User::_patchedExecutionGuid]+"'
+                                    ,'AC7A61BA-8C5D-414C-A928-C76C7F14338D'
+                                    ,'F078D119-62D5-4569-BBB1-B211AFFB4158'
+                                    ,SYSUTCDATETIME()
+                                    ,NULL
+                                    ,CONVERT(datetime2,'"+@[User::varDeltaEndTime]+"',126)
+                                    ,'In progress'
+                                    ,SYSUTCDATETIME()
+                                    ,SYSUTCDATETIME())
+
+                                    SELECT CONVERT(NVARCHAR(255),@varDataSourceMovementID)"
+                                </Body>
+                            </Query>
+                            <Results>
+                                <Result Name="0" VariableName="varDataSourceMovementID" Direction="ReturnValue"/>
+                            </Results>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+
+                <Container Name="Movement">
+                    <Tasks>
+                        <ExecutePackage Name="ETLtblFakeCustomer" RelativePath="ETL\ETLtblFakeCustomer\ETLtblFakeCustomer.dtsx" />
+                        <ExecutePackage Name="ETLtblFakeSale" RelativePath="ETL\ETLtblFakeSale\ETLtblFakeSale.dtsx" />
+
+                        <Container Name="Merge Movement" ConstraintMode="Linear" TransactionMode="StartOrJoin">
+                            <Tasks>
+                                <Merge SourceTableName="_Staging_tblFakeCustomer" TargetConstraintName="tblFakeCustomer.PK_tblFakeCustomer_ID" Name="Merge to tblFakeCustomer">
+                                    <Columns>
+                                        <Column ColumnName="_InsertTime_UTC" ColumnUsage="Insert"/>
+                                        <Column ColumnName="_UpdateTime_UTC" ColumnUsage="UpdateInsert"/>
+                                    </Columns>
+                                </Merge>
+                                <Merge SourceTableName="_Staging_tblFakeSale" TargetConstraintName="tblFakeSale.PK_tblFakeSale_ID" Name="Merge to tblFakeSale">
+                                    <Columns>
+                                        <Column ColumnName="_InsertTime_UTC" ColumnUsage="Insert"/>
+                                        <Column ColumnName="_UpdateTime_UTC" ColumnUsage="UpdateInsert"/>
+                                    </Columns>
+                                </Merge>
+                            </Tasks>
+                        </Container>
+                    </Tasks>
+                </Container>
+
+                <Container Name="Post_Movement">
+                    <Tasks>
+                        <ExecuteSQL Name="Log Movement End" ConnectionName="Staging">
+                            <Query QueryType="Expression">
+                                <Body>
+                                    "UPDATE dbo.tblDataSourceMovementLog
+                                    SET EndTime_UTC=SYSUTCDATETIME()
+                                    ,Status='Succeeded'
+                                    ,_VulcanUpdateTime_UTC=SYSUTCDATETIME()
+                                    WHERE DataSourceMovementID='"+@[User::varDataSourceMovementID]+"'"
+                                </Body>
+                            </Query>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+            </Tasks>
+
+        </Package>
+    </Packages>
+</Vulcan>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="AdventureWorks" Provider="SQLNCLI10" Authentication="Windows" RetainSameConnection="true"/>
+  </Connections>
+  <Schemas>
+    <Schema Name="Production" ConnectionName="Conn1" />
+  </Schemas>
+  <Tables>
+    <Table Name="Product" SchemaName="Production" ConnectionName="Conn1">
+      <Columns>
+        <Column Name="ProductID" Type="Int64" IsNullable="true"/>
+      </Columns>
+    </Table>
+  </Tables>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1" DelayValidation="true">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>SELECT * from Production.Product</Body>
+              </Query>
+            </QuerySource>
+            <Destination Name="Destination1" TableName="Product"/>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

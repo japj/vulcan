@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Packages>
+        <Package Name="ETLFakeDataSourceDriver" Type="Driver" Log="true" LogConnectionName="VulcanLog">
+            <Variables>
+                <Variable Name="varDataSourceMovementID" TypeCode="String" Value="00000000-0000-0000-0000-000000000000"/>
+            </Variables>
+
+            <Events>
+                <Event Name="Log Movement Failed" EventType="OnError">
+                    <Tasks>
+                        <ExecuteSQL Name="Log Movement Failed" ConnectionName="Staging">
+                            <Query QueryType="Expression">
+                                <Body>
+                                    "UPDATE dbo.tblDataSourceMovementLog
+                                    SET EndTime_UTC=SYSUTCDATETIME()
+                                    ,Status='Failed'
+                                    ,_VulcanUpdateTime_UTC=SYSUTCDATETIME()
+                                    WHERE DataSourceMovementID='"+@[User::varDataSourceMovementID]+"'"
+                                </Body>
+                            </Query>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Event>
+            </Events>
+
+            <Tasks>
+                <Container Name="Pre_Movement">
+                    <Tasks>
+                        <ExecuteSQL Name="Log Movement Start" ConnectionName="Staging" ResultSet="SingleRow">
+                            <Query QueryType="Expression">
+                                <Body>
+                                    "DECLARE @varDataSourceMovementID UNIQUEIDENTIFIER
+                                    SELECT @varDataSourceMovementID=NEWID()
+
+                                    INSERT INTO [dbo].[tblDataSourceMovementLog]
+                                    ([DataSourceMovementID]
+                                    ,[ExecutionGuid]
+                                    ,[SourceDataSourceID]
+                                    ,[DestinationDataSourceID]
+                                    ,[StartTime_UTC]
+                                    ,[EndTime_UTC]
+                                    ,[MaxUpdateTime]
+                                    ,[Status]
+                                    ,[_VulcanInsertTime_UTC]
+                                    ,[_VulcanUpdateTime_UTC])
+                                    VALUES
+                                    (@varDataSourceMovementID
+                                    ,'"+@[User::_patchedExecutionGuid]+"'
+                                    ,'AC7A61BA-8C5D-414C-A928-C76C7F14338D'
+                                    ,'F078D119-62D5-4569-BBB1-B211AFFB4158'
+                                    ,SYSUTCDATETIME()
+                                    ,NULL
+                                    ,NULL
+                                    ,'In progress'
+                                    ,SYSUTCDATETIME()
+                                    ,SYSUTCDATETIME())
+
+                                    SELECT CONVERT(NVARCHAR(255),@varDataSourceMovementID)"
+                                </Body>
+                            </Query>
+                            <Results>
+                                <Result Name="0" VariableName="varDataSourceMovementID" Direction="ReturnValue"/>
+                            </Results>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+
+                <Container Name="Movement">
+                    <Tasks>
+                        <ExecutePackage Name="ETLtblFakeCustomer" RelativePath="ETL\ETLtblFakeCustomer\ETLtblFakeCustomer.dtsx" />
+                        <ExecutePackage Name="ETLtblFakeSale" RelativePath="ETL\ETLtblFakeSale\ETLtblFakeSale.dtsx" />
+                    </Tasks>
+                </Container>
+
+                <Container Name="Post_Movement">
+                    <Tasks>
+                        <ExecuteSQL Name="Log Movement End" ConnectionName="Staging">
+                            <Query QueryType="Expression">
+                                <Body>
+                                    "UPDATE dbo.tblDataSourceMovementLog
+                                    SET EndTime_UTC=SYSUTCDATETIME()
+                                    ,Status='Succeeded'
+                                    ,_VulcanUpdateTime_UTC=SYSUTCDATETIME()
+                                    WHERE DataSourceMovementID='"+@[User::varDataSourceMovementID]+"'"
+                                </Body>
+                            </Query>
+                        </ExecuteSQL>
+                    </Tasks>
+                </Container>
+            </Tasks>
+
+        </Package>
+    </Packages>
+</Vulcan>

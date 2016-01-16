@@ -1,0 +1,902 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts" DTS:ExecutableType="SSIS.Package.2">
+  <DTS:Property DTS:Name="PackageFormatVersion">3</DTS:Property>
+  <DTS:Property DTS:Name="VersionComments"></DTS:Property>
+  <DTS:Property DTS:Name="CreatorName">ScottVarigence1\Scott</DTS:Property>
+  <DTS:Property DTS:Name="CreatorComputerName">SCOTTVARIGENCE1</DTS:Property>
+  <DTS:Property DTS:Name="CreationDate" DTS:DataType="7">12/16/2009 2:13:13 AM</DTS:Property>
+  <DTS:Property DTS:Name="PackageType">0</DTS:Property>
+  <DTS:Property DTS:Name="ProtectionLevel">1</DTS:Property>
+  <DTS:Property DTS:Name="MaxConcurrentExecutables">-1</DTS:Property>
+  <DTS:Property DTS:Name="PackagePriorityClass">0</DTS:Property>
+  <DTS:Property DTS:Name="VersionMajor">1</DTS:Property>
+  <DTS:Property DTS:Name="VersionMinor">0</DTS:Property>
+  <DTS:Property DTS:Name="VersionBuild">0</DTS:Property>
+  <DTS:Property DTS:Name="VersionGUID">{D373849B-1043-4B6E-B111-9E4BF465C9F9}</DTS:Property>
+  <DTS:Property DTS:Name="EnableConfig">-1</DTS:Property>
+  <DTS:Property DTS:Name="CheckpointFileName"></DTS:Property>
+  <DTS:Property DTS:Name="SaveCheckpoints">0</DTS:Property>
+  <DTS:Property DTS:Name="CheckpointUsage">0</DTS:Property>
+  <DTS:Property DTS:Name="SuppressConfigurationWarnings">0</DTS:Property>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">Connection1</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{459116A3-47F7-41D3-A322-865CEA8FF71D}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">OLEDB</DTS:Property>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="Retain">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">Data Source=localhost;Initial Catalog=tempdb;Provider=SQLOLEDB;Integrated Security=SSPI;</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlDefault_57d78b8b86d34c1f9ae91799e5d4847e.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{F0B30869-668B-4A2B-B769-A6D8F9F95C36}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlDefault_57d78b8b86d34c1f9ae91799e5d4847e.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlDefault_57d78b8b86d34c1f9ae91799e5d4847e.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlDelayValidationFalse_9d7db9be4e0b47fa912ccec10f7d1286.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{8B19DA79-8643-452C-AA3D-AE9D4974228D}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlDelayValidationFalse_9d7db9be4e0b47fa912ccec10f7d1286.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlDelayValidationFalse_9d7db9be4e0b47fa912ccec10f7d1286.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlDelayValidationTrue_6875bca8af3b474292919c1f04b0bffb.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{B985B10E-8D62-4D14-B4F9-81508D8C857B}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlDelayValidationTrue_6875bca8af3b474292919c1f04b0bffb.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlDelayValidationTrue_6875bca8af3b474292919c1f04b0bffb.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelChaos_3f277c39d3f84e2995266e907cc1e1e3.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{546AB4EB-D210-49CD-8D8D-8EDD8AF36C1A}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelChaos_3f277c39d3f84e2995266e907cc1e1e3.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelChaos_3f277c39d3f84e2995266e907cc1e1e3.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelReadCommitted_73ffdfee843a424ab34c259818dbe5ef.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{BB8B6A7B-DE1B-4F3E-9FCD-B19219042A64}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelReadCommitted_73ffdfee843a424ab34c259818dbe5ef.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelReadCommitted_73ffdfee843a424ab34c259818dbe5ef.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelReadUncommitted_514d832ab8884a51a5d9f1c1a6351cae.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{9905C662-0014-4765-8209-F24145DA906F}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelReadUncommitted_514d832ab8884a51a5d9f1c1a6351cae.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelReadUncommitted_514d832ab8884a51a5d9f1c1a6351cae.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelRepeatableRead_8e1e20eb31b84c55b4c46359c6b6a169.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{69E6E47F-3F23-4502-907B-7A2D195EA230}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelRepeatableRead_8e1e20eb31b84c55b4c46359c6b6a169.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelRepeatableRead_8e1e20eb31b84c55b4c46359c6b6a169.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelSerializable_afe5fa5843a84aa895a2ae4e8625823d.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{B4AD06B1-AAC8-42E4-88C8-5914E54C2EF8}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelSerializable_afe5fa5843a84aa895a2ae4e8625823d.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelSerializable_afe5fa5843a84aa895a2ae4e8625823d.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelSnapshot_fec2a8c8a552457b9dd56ecda3213985.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{EE453F60-C9A7-4851-B324-9520D240F084}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelSnapshot_fec2a8c8a552457b9dd56ecda3213985.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelSnapshot_fec2a8c8a552457b9dd56ecda3213985.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelUnspecified_df4cae4402224f1ea57ed5e832dd81f2.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{48981BFF-8EA7-4BD7-9887-1F4CD9CCE2B9}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlIsolationLevelUnspecified_df4cae4402224f1ea57ed5e832dd81f2.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlIsolationLevelUnspecified_df4cae4402224f1ea57ed5e832dd81f2.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetFull_5c060bec50bc406b9a42407e03196263.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4BA2EC69-E13B-418A-ACEC-A7545E40B38C}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlResultSetFull_5c060bec50bc406b9a42407e03196263.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlResultSetFull_5c060bec50bc406b9a42407e03196263.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetNone_1ddd90a444e241e29813120f20e773e7.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{A3481CDA-072E-418B-B392-E1607FCBC5AC}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlResultSetNone_1ddd90a444e241e29813120f20e773e7.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlResultSetNone_1ddd90a444e241e29813120f20e773e7.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetSingleRow_5f2d2baead1d4402a979c63bf61359b6.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{D79DB62D-EE08-4264-9DF2-A53426CCE9C6}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlResultSetSingleRow_5f2d2baead1d4402a979c63bf61359b6.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlResultSetSingleRow_5f2d2baead1d4402a979c63bf61359b6.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:ConnectionManager>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetXml_7cfcb84887e140eb82f3023a519753f9.sql</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{B4416DBA-3EE0-4D85-9586-2CBA5CFF43B6}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">FILE</DTS:Property>
+    <DTS:PropertyExpression DTS:Name="ConnectionString">@[User::_ssisRootDir] + "\\ETL\\Package1\\ExecuteSqlResultSetXml_7cfcb84887e140eb82f3023a519753f9.sql"</DTS:PropertyExpression>
+    <DTS:ObjectData>
+      <DTS:ConnectionManager>
+        <DTS:Property DTS:Name="FileUsageType">0</DTS:Property>
+        <DTS:Property DTS:Name="ConnectionString">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e\ETL\Package1\ExecuteSqlResultSetXml_7cfcb84887e140eb82f3023a519753f9.sql</DTS:Property>
+      </DTS:ConnectionManager>
+    </DTS:ObjectData>
+  </DTS:ConnectionManager>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">0</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">User::_ssisRootDir</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable">\Package.Variables[User::_ssisRootDir].Properties[Value]</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">_ssisRootDir</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{D541D29A-2181-4C4C-A521-3CAF8950EAE9}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">1</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">C:\PackageConfigurations\Connection1.dtsConfig</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable"></DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">Connection1</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{B21FCD26-890D-4C68-B688-D52F1C57EDEE}</DTS:Property>
+    <DTS:Property DTS:Name="Description">Connection1</DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">0</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">User::_patchedExecutionGuid</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable">\Package.Variables[User::_executionGuid].Properties[Value]</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">_executionGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{A0BE2A53-FC55-4E61-84F2-3126B421C84C}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Configuration>
+    <DTS:Property DTS:Name="ConfigurationType">0</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationString">System::PackageID</DTS:Property>
+    <DTS:Property DTS:Name="ConfigurationVariable">\Package.Variables[User::_parentPackageGuid].Properties[Value]</DTS:Property>
+    <DTS:Property DTS:Name="ObjectName">_parentPackageGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4780797F-6B53-441D-AB6D-9F02FDA4D71B}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Configuration>
+  <DTS:Property DTS:Name="LastModifiedProductVersion">10.0.2531.0</DTS:Property>
+  <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+  <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+  <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+  <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+  <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+  <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+  <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+  <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+  <DTS:Property DTS:Name="LocaleID">1033</DTS:Property>
+  <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+  <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8"></DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_executionGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{052048F4-FA2F-47AD-A81D-B3B4911CED82}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8"></DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_parentPackageGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{BE31A51D-D153-4DFB-80FF-691B1126C6BD}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression">@[User::_executionGuid] == "" ? @[System::ExecutionInstanceGUID] : @[User::_executionGuid]</DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">-1</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8">{50F8633E-BE1D-4E95-927F-4F27690F9E11}</DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_patchedExecutionGuid</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{FC06B31D-6F3C-409A-92AA-0B0827D3278C}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:Variable>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Property DTS:Name="EvaluateAsExpression">0</DTS:Property>
+    <DTS:Property DTS:Name="Namespace">User</DTS:Property>
+    <DTS:Property DTS:Name="ReadOnly">0</DTS:Property>
+    <DTS:Property DTS:Name="RaiseChangedEvent">0</DTS:Property>
+    <DTS:Property DTS:Name="IncludeInDebugDump">2345</DTS:Property>
+    <DTS:VariableValue DTS:DataType="8">D:\varigence\trunk\vulcan\TestResults\TestResults[2]\Out\VulcanTests.Ssis2008EmitterTests_Tasks.ExecuteSql.CoreProperties_PRE.xml_bf047366-6493-48f0-83ec-e1512aadb26e</DTS:VariableValue>
+    <DTS:Property DTS:Name="ObjectName">_ssisRootDir</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{974D149D-B250-4475-AC1A-ED7D5B9A2F7C}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:Variable>
+  <DTS:LoggingOptions>
+    <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+    <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+    <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlDefault</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{E22202A6-9175-437C-90C1-DA0FF4A34EF6}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlDefault_57d78b8b86d34c1f9ae91799e5d4847e.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlDelayValidationFalse</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{FAEC1DB6-3D60-4E23-BDF7-A81AC65A8EB9}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlDelayValidationFalse_9d7db9be4e0b47fa912ccec10f7d1286.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">-1</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlDelayValidationTrue</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{9A99007F-DA41-4F1C-A40D-DC8E73F3B8DF}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlDelayValidationTrue_6875bca8af3b474292919c1f04b0bffb.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">-1</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelUnspecified</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{3DDC643F-6C7E-48DB-BB98-EBFB21ED00CC}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelUnspecified_df4cae4402224f1ea57ed5e832dd81f2.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">16</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelChaos</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{B3C6FD70-193E-4EFE-BF51-DC30E29B71D7}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelChaos_3f277c39d3f84e2995266e907cc1e1e3.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">256</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelReadUncommitted</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{EE8A3B86-01FE-40EA-82CD-2520E45F9E12}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelReadUncommitted_514d832ab8884a51a5d9f1c1a6351cae.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">4096</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelReadCommitted</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{C101C6E6-1B8F-4994-97AA-CCF70370B33A}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelReadCommitted_73ffdfee843a424ab34c259818dbe5ef.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">65536</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelRepeatableRead</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4D243667-07E0-43C6-86C9-472B2A911A59}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelRepeatableRead_8e1e20eb31b84c55b4c46359c6b6a169.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelSerializable</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{168B3A13-9B01-4C6A-BBF1-CFBD5D7FE8F2}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelSerializable_afe5fa5843a84aa895a2ae4e8625823d.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">16777216</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlIsolationLevelSnapshot</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{94CB9267-F49B-4482-9FA6-2FA4268A26BC}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlIsolationLevelSnapshot_fec2a8c8a552457b9dd56ecda3213985.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetNone</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{442072DD-D3AE-4D5A-AC7D-B0E118D92337}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlResultSetNone_1ddd90a444e241e29813120f20e773e7.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetSingleRow</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{B65C75F6-A1BD-4F0A-897A-542F0FFD5590}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlResultSetSingleRow_5f2d2baead1d4402a979c63bf61359b6.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetFull</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{58630C0D-943E-4119-B9D2-9A35B6D922A3}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlResultSetFull_5c060bec50bc406b9a42407e03196263.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:Executable DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+    <DTS:Property DTS:Name="ExecutionLocation">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecutionAddress"></DTS:Property>
+    <DTS:Property DTS:Name="TaskContact"></DTS:Property>
+    <DTS:Property DTS:Name="ForceExecValue">0</DTS:Property>
+    <DTS:Property DTS:Name="ExecValue" DTS:DataType="3">0</DTS:Property>
+    <DTS:Property DTS:Name="ForceExecutionResult">-1</DTS:Property>
+    <DTS:Property DTS:Name="Disabled">0</DTS:Property>
+    <DTS:Property DTS:Name="FailPackageOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="FailParentOnFailure">0</DTS:Property>
+    <DTS:Property DTS:Name="MaxErrorCount">1</DTS:Property>
+    <DTS:Property DTS:Name="ISOLevel">1048576</DTS:Property>
+    <DTS:Property DTS:Name="LocaleID">-1</DTS:Property>
+    <DTS:Property DTS:Name="TransactionOption">1</DTS:Property>
+    <DTS:Property DTS:Name="DelayValidation">0</DTS:Property>
+    <DTS:LoggingOptions>
+      <DTS:Property DTS:Name="LoggingMode">0</DTS:Property>
+      <DTS:Property DTS:Name="FilterKind">1</DTS:Property>
+      <DTS:Property DTS:Name="EventFilter" DTS:DataType="8"></DTS:Property>
+    </DTS:LoggingOptions>
+    <DTS:Property DTS:Name="ObjectName">ExecuteSqlResultSetXml</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{F17B7220-6729-419D-A14C-E154D9E3DCE9}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName">Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</DTS:Property>
+    <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+    <DTS:ObjectData>
+      <SQLTask:SqlTaskData SQLTask:Connection="{459116A3-47F7-41D3-A322-865CEA8FF71D}" SQLTask:TimeOut="0" SQLTask:IsStoredProc="False" SQLTask:BypassPrepare="True" SQLTask:SqlStmtSourceType="FileConnection" SQLTask:SqlStatementSource="ExecuteSqlResultSetXml_7cfcb84887e140eb82f3023a519753f9.sql" SQLTask:CodePage="1252" SQLTask:ResultType="ResultSetType_XML" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask"/>
+    </DTS:ObjectData>
+  </DTS:Executable>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{E22202A6-9175-437C-90C1-DA0FF4A34EF6}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{FAEC1DB6-3D60-4E23-BDF7-A81AC65A8EB9}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlDelayValidationFalse</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{DFCEDE4A-4109-4C9C-B862-0826EC8937A6}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{FAEC1DB6-3D60-4E23-BDF7-A81AC65A8EB9}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{9A99007F-DA41-4F1C-A40D-DC8E73F3B8DF}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlDelayValidationTrue</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{BB839E4C-39CD-4C2A-AA96-185F6CBC5139}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{9A99007F-DA41-4F1C-A40D-DC8E73F3B8DF}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{3DDC643F-6C7E-48DB-BB98-EBFB21ED00CC}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelUnspecified</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{0FFE2606-7AEB-4790-9D9C-8A7D3B4EB817}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{3DDC643F-6C7E-48DB-BB98-EBFB21ED00CC}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{B3C6FD70-193E-4EFE-BF51-DC30E29B71D7}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelChaos</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{9F1D30A3-8322-44D5-872E-277C7CC318D4}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{B3C6FD70-193E-4EFE-BF51-DC30E29B71D7}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{EE8A3B86-01FE-40EA-82CD-2520E45F9E12}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelReadUncommitted</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{F832775E-68F3-47CB-9345-5EE62ADE43B0}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{EE8A3B86-01FE-40EA-82CD-2520E45F9E12}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{C101C6E6-1B8F-4994-97AA-CCF70370B33A}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelReadCommitted</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{66994594-72C2-4605-A7AE-27C972043AA4}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{C101C6E6-1B8F-4994-97AA-CCF70370B33A}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{4D243667-07E0-43C6-86C9-472B2A911A59}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelRepeatableRead</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{A8ADF71C-C6C3-47D2-B377-C5AAD4A63CEA}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{4D243667-07E0-43C6-86C9-472B2A911A59}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{168B3A13-9B01-4C6A-BBF1-CFBD5D7FE8F2}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelSerializable</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{05922EDC-974C-48A0-B9F2-500F8294DF98}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{168B3A13-9B01-4C6A-BBF1-CFBD5D7FE8F2}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{94CB9267-F49B-4482-9FA6-2FA4268A26BC}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlIsolationLevelSnapshot</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{4C5A4EA8-83AB-4AAA-8A97-D7D167A841D7}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{94CB9267-F49B-4482-9FA6-2FA4268A26BC}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{442072DD-D3AE-4D5A-AC7D-B0E118D92337}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlResultSetNone</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{79C73CEA-4305-4ECB-9A00-70ED6E6416A1}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{442072DD-D3AE-4D5A-AC7D-B0E118D92337}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{B65C75F6-A1BD-4F0A-897A-542F0FFD5590}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlResultSetSingleRow</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{50E6F425-6D8C-4BDF-9427-E75A8F429499}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{B65C75F6-A1BD-4F0A-897A-542F0FFD5590}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{58630C0D-943E-4119-B9D2-9A35B6D922A3}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlResultSetFull</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{24EF80BE-8D4C-4F01-887D-93650E44D403}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:PrecedenceConstraint>
+    <DTS:Property DTS:Name="Value">0</DTS:Property>
+    <DTS:Property DTS:Name="EvalOp">2</DTS:Property>
+    <DTS:Property DTS:Name="LogicalAnd">-1</DTS:Property>
+    <DTS:Property DTS:Name="Expression"></DTS:Property>
+    <DTS:Executable IDREF="{58630C0D-943E-4119-B9D2-9A35B6D922A3}" DTS:IsFrom="-1"/>
+    <DTS:Executable IDREF="{F17B7220-6729-419D-A14C-E154D9E3DCE9}" DTS:IsFrom="0"/>
+    <DTS:Property DTS:Name="ObjectName">__DefaultLinear_Sink_ExecuteSqlResultSetXml</DTS:Property>
+    <DTS:Property DTS:Name="DTSID">{C4D848F3-09EE-4CAC-94F3-68EAFA9CD214}</DTS:Property>
+    <DTS:Property DTS:Name="Description"></DTS:Property>
+    <DTS:Property DTS:Name="CreationName"></DTS:Property>
+  </DTS:PrecedenceConstraint>
+  <DTS:Property DTS:Name="ObjectName">Package1</DTS:Property>
+  <DTS:Property DTS:Name="DTSID">{FF1DA7A0-2BF8-4B93-A040-A5AC040BF55A}</DTS:Property>
+  <DTS:Property DTS:Name="Description"></DTS:Property>
+  <DTS:Property DTS:Name="CreationName">SSIS.Package.2</DTS:Property>
+  <DTS:Property DTS:Name="DisableEventHandlers">0</DTS:Property>
+</DTS:Executable>

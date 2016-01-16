@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="BuildTaskTests" storage="c:\codeplex\development-vulcan25\tests\vulcantest\buildtasktests.generictest" id="a7b23caa-2bfc-47fe-93bf-a564a726d0fb" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Command filename="%WINDIR%\Microsoft.net\Framework64\v3.5\msbuild.exe" arguments="%VULCANTESTROOT%\Tasks\tasks.vproj" workingDirectory="%TestOutputDirectory%" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

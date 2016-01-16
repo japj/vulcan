@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="tempdb" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Tables>
+    <Table Name="Work Item History" ConnectionName="Conn1" CompressionType="Page">
+      <Columns>
+        <Column Name="__ID" Type="Int32" IsNullable="false"/>
+        <Column Name="Logical Tracking ID" Type="String" Length="80"/>
+        <Column Name="Created By" Type="Int32"/>
+        <Column Name="Area" Type="Int32"/>
+        <Column Name="Iteration" Type="Int32"/>
+        <Column Name="Team Project" Type="Int32"/>
+        <Column Name="System_RevisedDate" Type="DateTime" CustomType="datetime"/>
+      </Columns>
+      <Keys>
+        <PrimaryKey Name="PK__Work Item Histor__7D439ABD">
+          <Columns>
+            <Column ColumnName="__ID" />
+          </Columns>
+        </PrimaryKey>
+        <UniqueKey Name="UK_LogicalTracking ID">
+          <Columns>
+            <Column ColumnName="Logical Tracking ID" SortOrder="Asc" />
+          </Columns>
+        </UniqueKey>
+      </Keys>
+      <Indexes>
+        <Index Name="IX _ Foo">
+          <Columns>
+            <Column ColumnName="Team Project" SortOrder="Asc" />
+          </Columns>
+          <Leafs>
+            <Leaf ColumnName="Created By"/>
+          </Leafs>
+        </Index>
+      </Indexes>
+    </Table>
+  </Tables>
+</Vulcan>

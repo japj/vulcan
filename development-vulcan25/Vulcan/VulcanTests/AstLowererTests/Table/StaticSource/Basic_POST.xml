@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="StaticSource" Type="StaticSource">
+      <Tasks>
+        <Staging Name="InsertStaging">
+          <Tables>
+            <Table Name="TestTable1" ConnectionName="TestConnection1">
+              <Columns>
+                <Column Name="Column1" Type="Int32" />
+                <Column Name="Column2" Type="Int32" />
+              </Columns>
+            </Table>
+          </Tables>
+          <Tasks>
+            <ExecuteSQL Name="InsertRows" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body></Body>
+              </Query>
+            </ExecuteSQL>
+          </Tasks>
+        </Staging>
+      </Tasks>
+    </Package>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

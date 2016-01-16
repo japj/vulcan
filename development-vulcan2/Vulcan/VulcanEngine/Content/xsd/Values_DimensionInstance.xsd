@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/Values.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/Values.xsd"
+    xmlns:mstns="http://tempuri.org/Values.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:simpleType name="DimensionInstanceListFacet">
+		<xs:restriction base="xs:string">
+<!--			<xs:enumeration value="Time" />
+			 TODO: Add pattern for any text - effectively xs:any 
+			<xs:pattern value="" />-->
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

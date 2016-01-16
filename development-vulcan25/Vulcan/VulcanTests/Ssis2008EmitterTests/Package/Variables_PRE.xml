@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Variables>
+        <Variable Name="testBool" TypeCode="Boolean" Value="True"/>
+        <Variable Name="testByte" TypeCode="Byte" Value="1"/>
+        <Variable Name="testChar" TypeCode="Char" Value="a"/>
+        <Variable Name="testDateTime" TypeCode="DateTime" Value="10/10/2010"/>
+        <!--Commented out due to bug 1264-->
+        <!--<Variable Name="testDBNull" TypeCode="DBNull" Value="{!System.DBNull.Value.ToString()!}"/>-->
+        <Variable Name="testDouble" TypeCode="Double" Value="111.111"/>
+        <Variable Name="testInt16" TypeCode="Int16" Value="{!System.Int16.MaxValue.ToString()!}"/>
+        <Variable Name="testInt32" TypeCode="Int32" Value="{!System.Int32.MaxValue.ToString()!}"/>
+        <Variable Name="testInt64" TypeCode="Int64" Value="{!System.Int64.MaxValue.ToString()!}"/>
+        <Variable Name="testObject" TypeCode="Object" Value=""/>
+        <Variable Name="testSByte" TypeCode="SByte" Value="101"/>
+        <Variable Name="testSingle" TypeCode="Single" Value="101"/>
+        <Variable Name="testString" TypeCode="String" Value="Test Value"/>
+        <Variable Name="testUInt32" TypeCode="UInt32" Value="{!System.UInt32.MaxValue.ToString()!}"/>
+        <Variable Name="testUInt64" TypeCode="UInt64" Value="{!System.UInt64.MaxValue.ToString()!}"/>
+      </Variables>
+    </Package>
+  </Packages>
+</Vulcan>

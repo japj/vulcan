@@ -1,0 +1,57 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Vulcan.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SubpathETLProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ETL\Bin</Value>
+    </Setting>
+    <Setting Name="DetegoPackageConfigurationRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\PackageConfigurations</Value>
+    </Setting>
+    <Setting Name="SubpathVulcanConfigSchemaFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TOOLS\VULCAN\Common\XML\Schemas\VulcanConfig.xsd</Value>
+    </Setting>
+    <Setting Name="SubpathDimensionProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dimensions\Bin</Value>
+    </Setting>
+    <Setting Name="SubpathVulcanTemplateFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TOOLS\VULCAN\Common\XML\Templates</Value>
+    </Setting>
+    <Setting Name="SubpathTemplateSchemaFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TOOLS\VULCAN\Common\XML\Schemas\VulcanTemplate.xsd</Value>
+    </Setting>
+    <Setting Name="DetegoProjectLocationRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\detego</Value>
+    </Setting>
+    <Setting Name="SubpathFactTableProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FactTables\Bin</Value>
+    </Setting>
+    <Setting Name="SubpathTempFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TOOLS\VULCAN\Temp</Value>
+    </Setting>
+    <Setting Name="SubpathDTProjectTemplateFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TOOLS\VULCAN\Common\XML\ProjectTemplates\DataTransformationsProject.dtproj</Value>
+    </Setting>
+    <Setting Name="SubpathDimensionLibrary" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Dimensions\XML</Value>
+    </Setting>
+    <Setting Name="BreakOnError" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ShowDebug" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowNotifications" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SubpathDataWarehouseInitProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DataWarehouseInit\Bin</Value>
+    </Setting>
+    <Setting Name="CleanupFilesOnError" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SubpathTestProjectLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Test\Bin</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

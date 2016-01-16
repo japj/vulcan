@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Packages>
+        <Package Name="StagingDriver" Type="Driver">
+            <Tasks>
+                <ExecutePackage Name="tblDataSource" RelativePath="Tables\tblDataSource\tblDataSource.dtsx" />
+                <ExecutePackage Name="tblDataSource StaticSource" RelativePath="StaticSources\tblDataSource\tblDataSource.dtsx" />
+                <ExecutePackage Name="tblTableMovementLog" RelativePath="Tables\tblTableMovementLog\tblTableMovementLog.dtsx" />
+                <ExecutePackage Name="tblDataSourceMovementLog" RelativePath="Tables\tblDataSourceMovementLog\tblDataSourceMovementLog.dtsx" />
+            </Tasks>
+        </Package>
+    </Packages>
+</Vulcan>

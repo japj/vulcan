@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Tables>
+    <Table Name="tblFakeSale" ConnectionName="FakeDataSource" CompressionType="Page">
+      <Columns>
+        <Column Name="ID" Type="Int64" IsNullable="false" />
+        <TableReference Name="FakeCustomerID" TableName="tblFakeCustomer" />
+        <Column Name="SaleAmount" Type="Decimal" IsNullable="false" Default="0.00"/>
+        <Column Name="SaleTime" Type="Custom" CustomType="datetimeoffset" IsNullable="false"  Default="SYSDATETIMEOFFSET()"/>
+        <Column Name="InsertTime" Type="Custom" CustomType="datetime2" IsNullable="false"  Default="SYSUTCDATETIME()"/>
+        <Column Name="UpdateTime" Type="Custom" CustomType="datetime2" IsNullable="false"  Default="SYSUTCDATETIME()"/>
+      </Columns>
+      <Keys>
+        <Identity Name="PK_tblFakeSale_ID">
+          <Columns>
+            <Column ColumnName="ID"/>
+          </Columns>
+        </Identity>
+      </Keys>
+      <CustomExtensions Name="tblFakeSale_Extensions">
+        <Tasks>
+          <StoredProc Name="usp_growTblFakeSale" ConnectionName="FakeDataSource">
+            <Columns>
+              <Column Name="DeltaSize" Type="Int64" />
+                <Column Name="DelayLength" Type="WStr" Length="255" Default="'00:00:00:005'"/>
+            </Columns>
+            <Body>
+
+              DECLARE @i BIGINT
+              DECLARE @rand float
+
+              SET @i = 0;
+              WHILE @i &lt; @DeltaSize
+                BEGIN
+                SET @rand = RAND()
+                SET @i = @i + 1
+
+                IF(@rand > 0.5)
+                BEGIN
+                INSERT INTO
+                [tblFakeSale]
+                (
+                FakeCustomerID,
+                SaleAmount,
+                SaleTime
+                )
+                VALUES
+                (
+                (SELECT TOP 1 [ID] FROM tblFakeCustomer ORDER BY NEWID()) ,
+                RAND() * (100/RAND()),
+                SYSDATETIMEOFFSET()
+                )
+                END
+
+                ELSE
+                BEGIN
+                UPDATE
+                [tblFakeSale]
+                SET
+                SaleAmount = RAND() * (100/RAND()),
+                SaleTime = SYSDATETIMEOFFSET(),
+                UpdateTime = SYSUTCDATETIME()
+                WHERE tblFakeSale.ID = (SELECT TOP (1) ID FROM [tblFakeSale] ORDER BY NEWID())
+                END
+
+                WaitFor Delay @DelayLength
+                END
+            </Body>
+          </StoredProc>
+        </Tasks>
+      </CustomExtensions>
+    </Table>
+  </Tables>
+</Vulcan>

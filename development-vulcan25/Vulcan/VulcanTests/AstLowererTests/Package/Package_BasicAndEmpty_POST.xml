@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="TestPackage" Type="Test">
+      <!--<Variables>
+        <Variable Name="_packageStartTime" TypeCode="DateTime" Value="GETUTCDATE()" EvaluateAsExpression="true"/>
+      </Variables>-->
+    </Package>
+  </Packages>
+</Vulcan>

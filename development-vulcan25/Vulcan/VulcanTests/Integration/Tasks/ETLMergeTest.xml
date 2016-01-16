@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="ETLMergeTest" Type="ETL" ConstraintMode="Linear">
+      <Tasks>
+        <Container Name="LookupTest" ConstraintMode="Linear">
+          <Tasks>
+            <Staging Name="SimpleStaging" ConstraintMode="Linear" ExecuteDuringDesignTime="true">
+              <Tables>
+                <CloneTable Name="tblSimpleStage" TableName="tblSimple" ConnectionName="DataWarehouse" />
+                <CloneTable Name="tblSimpleBackup" TableName="tblSimple" ConnectionName="DataWarehouse" />
+              </Tables>
+              <Variables>
+                <Variable Name="tblSimpleEngCount" TypeCode="Int32" Value="0"/>
+              </Variables>
+              <Tasks>
+                <Container Name="PreTest">
+                  <Tasks>
+                    <ExecuteSQL Name="Check if table exists" ConnectionName="DataWarehouse">
+                      <Query>
+                        <Body>
+                          IF NOT EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'tblSimpleStage') AND type IN (N'U'))
+                          RAISERROR(N'TEST FAILED: tblSimpleStage table was not created! .',18,1)
+                          GO
+
+                          IF NOT EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'tblSimpleBackup') AND type IN (N'U'))
+                          RAISERROR(N'TEST FAILED: tblSimpleBackup table was not created! .',18,1)
+                          GO
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+
+                    <ExecuteSQL Name="Check Staging Column Counts" ConnectionName="DataWarehouse">
+                      <Query>
+                        <Body>
+                          IF (SELECT COUNT(*) from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'tblSimpleStage') &lt;= 0
+                          RAISERROR(N'TEST FAILED: tblSimpleStage has 0 or fewer columns! .',18,1)
+                          GO
+
+                          IF (SELECT COUNT(*) from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'tblSimpleBackup') &lt;= 0
+                          RAISERROR(N'TEST FAILED: tblSimpleBackup has 0 or fewer columns! .',18,1)
+                          GO
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+
+                    <ExecuteSQL Name="Get tblSimple ENG Count" ConnectionName="DataWarehouse" ResultSet="SingleRow">
+                      <Query>
+                        <Body>
+                          SELECT
+                          COUNT(*)
+                          FROM tblSimple
+                          WHERE ISOLanguageCode = 'eng'
+                        </Body>
+                      </Query>
+                      <Results>
+                        <Result Name="0" VariableName="tblSimpleEngCount" Direction="Output" />
+                      </Results>
+                    </ExecuteSQL>
+
+                    <ETL Name="Backup tblSimple" DelayValidation="true">
+                      <Transformations>
+                        <QuerySource ConnectionName="DataWarehouse" Name="tblSimple">
+                          <Query>
+                            <Body>
+                              SELECT
+                              *
+                              FROM tblSimple
+                            </Body>
+                          </Query>
+                        </QuerySource>
+                        <Destination Name="tblSimpleBackup" TableName="tblSimpleBackup">
+                          <Mappings>
+                            <Mapping SourceName="VersionNumber" />
+                          </Mappings>
+                        </Destination>
+                      </Transformations>
+                    </ETL>
+                  </Tasks>
+                </Container>
+
+                <Container Name ="Basic Merge Test">
+                  <Variables>
+                    <Variable Name="tblSimpleRusCount" TypeCode="Int32" Value="0" />
+                  </Variables>
+
+                  <Tasks>
+                    <ETL Name="Simple Merge test to duplicate tblSimple to add Russian" DelayValidation="true">
+                      <Transformations>
+                        <QuerySource ConnectionName="DataWarehouse" Name="tblSimple">
+                          <Query>
+                            <Body>
+                              SELECT
+                              *
+                              FROM tblSimple
+                              WHERE ISOLanguageCode = 'eng'
+                            </Body>
+                          </Query>
+                        </QuerySource>
+
+                        <DerivedColumns Name="ReplacePrimaryKey" DefaultErrorRowDisposition="IgnoreFailure">
+                          <Columns>
+                            <Column Name="ISOLanguageCode" Type="String" Length="3" ReplaceExisting="true">"rus"</Column>
+                          </Columns>
+                        </DerivedColumns>
+
+                        <DerivedColumns Name="ReplaceValueString" DefaultErrorRowDisposition="IgnoreFailure">
+                          <InputPath OutputPathName="ReplacePrimaryKey.Output" />
+                          <Columns>
+                            <Column ReplaceExisting="true" Name="ValueString" Type="String" Length="255">"Русский язык"</Column>
+                          </Columns>
+                        </DerivedColumns>
+                        <Destination Name="tblSimpleStage" TableName="tblSimpleStage">
+                          <Mappings>
+                            <Mapping SourceName="VersionNumber" />
+                          </Mappings>
+                        </Destination>
+                      </Transformations>
+                    </ETL>
+                    <Merge SourceTableName="tblSimpleStage" TargetConstraintName="tblSimple.PK_tblSimple_ISOLanguageCode_ISOCountryCode" Name="Merge to tblSimple" UnspecifiedColumnDefaultUsageType="CompareUpdateInsert">
+                    </Merge>
+
+                    <ExecuteSQL Name="Check For RUS row counts" ConnectionName="DataWarehouse" ResultSet="SingleRow">
+                      <Query>
+                        <Body>
+                          SELECT COUNT(*) from tblSimple
+                          WHERE ISOLanguageCode = 'rus'
+                          AND ValueString = N'Русский язык'
+                        </Body>
+                      </Query>
+                      <Results>
+                        <Result Name="0" VariableName="tblSimpleRusCount" Direction="Output" />
+                      </Results>
+                    </ExecuteSQL>
+
+                    <ExecuteSQL Name="CompareCount" ConnectionName="DataWarehouse" ResultSet="None">
+                      <Query QueryType="Expression">
+                        <Body>
+                          @[User::tblSimpleEngCount] == @[User::tblSimpleRusCount] ? "SELECT 'A'" :"'RAISERROR(N'TEST FAILED: Rus language is missing rows ',18,1)"
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+                  </Tasks>
+                </Container>
+
+                <Staging Name="Advanced Merge Test" ExecuteDuringDesignTime="true">
+                  <Tables>
+                    <CloneTable Name="tblSimpleStageAdvanced" TableName="tblSimple" ConnectionName="DataWarehouse" />
+                  </Tables>
+                  <Tasks>
+                    <ETL Name="SimpleStageAdvanced" DelayValidation="true">
+                      <Transformations>
+                        <QuerySource Name="Get ENG rows" ConnectionName="DataWarehouse">
+                          <Query>
+                            <Body>
+                              SELECT
+                              *
+                              FROM tblSimple
+                              WHERE ISOLanguageCode = 'eng'
+                            </Body>
+                          </Query>
+                        </QuerySource>
+                        <DerivedColumns Name="Replace Columns">
+                          <Columns>
+                            <Column Name="ISOLanguageCode" ReplaceExisting="true" Type="String" Length="3">"zho"</Column>
+                            <Column Name="ValueString" ReplaceExisting="true" Type="String" Length="255">"ERROR"</Column>
+                          </Columns>
+                        </DerivedColumns>
+                        <Destination Name="tblSimpleStageAdvanced" TableName="tblSimpleStageAdvanced">
+                          <Mappings>
+                            <Mapping SourceName="VersionNumber" />
+                          </Mappings>
+                        </Destination>
+                      </Transformations>
+                    </ETL>
+                    <Merge SourceTableName="tblSimpleStageAdvanced" TargetConstraintName="tblSimple.PK_tblSimple_ISOLanguageCode_ISOCountryCode" Name="Merge Advanced tblSimple" UnspecifiedColumnDefaultUsageType="CompareUpdateInsert">
+                      <Columns>
+                        <Column ColumnName="ValueString" ColumnUsage="Exclude" />
+                      </Columns>
+                    </Merge>
+                    <ExecuteSQL Name="Check ZHO ValueString" ConnectionName="DataWarehouse" ExecuteDuringDesignTime="false">
+                      <Query>
+                        <Body>
+                          IF
+                          (
+                          SELECT COUNT(*) from tblSimple
+                          WHERE ISOLanguageCode = 'zho'
+                          AND ValueString IS NOT NULL
+                          ) != 0
+                          RAISERROR(N'TEST FAILED: tblSimple - Advanced Merge did not Exclude ValueString for Chinese!',18,1)
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+                  </Tasks>
+                </Staging>
+                <Container Name="Restore tblSimple" TransactionMode="Join">
+                  <Tasks>
+                    <ExecuteSQL Name="Clean tblSimple" ConnectionName="DataWarehouse" ExecuteDuringDesignTime="false">
+                      <Query>
+                        <Body>
+                          DELETE FROM tblSimple
+                        </Body>
+                      </Query>
+                    </ExecuteSQL>
+                    <Merge SourceTableName="tblSimpleBackup" TargetConstraintName="tblSimple.PK_tblSimple_ISOLanguageCode_ISOCountryCode" Name="Restore tblSimple" UnspecifiedColumnDefaultUsageType="CompareUpdateInsert"/>
+                  </Tasks>
+                </Container>
+              </Tasks>
+            </Staging>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

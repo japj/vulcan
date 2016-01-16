@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Tables>
+        <Table Name="tblTableMovementLog" ConnectionName="Staging" CompressionType="Page">
+            <Columns>
+                <Column Name="TableMovementID" Type="Custom" CustomType="UNIQUEIDENTIFIER" IsNullable="false" Default="NEWID()"/>
+                <Column Name="DataSourceMovementID" Type="Custom" CustomType="UNIQUEIDENTIFIER" IsNullable="false"/>
+                <Column Name="ExecutionGuid" Type="Custom" CustomType="UNIQUEIDENTIFIER" IsNullable="false"/>
+                <TableReference Name="SourceDataSourceID" TableName="tblDataSource" />
+                <TableReference Name="DestinationDataSourceID" TableName="tblDataSource" />
+                <Column Name="SourceTableSchema" Type="WStr" Length="255" IsNullable="false" />
+                <Column Name="SourceTableName" Type="WStr" Length="255" IsNullable="false" />
+                <Column Name="DestinationTableSchema" Type="WStr" Length="255" IsNullable="false" />
+                <Column Name="DestinationTableName" Type="WStr" Length="255" IsNullable="false" />
+
+                <Column Name="StartTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false" Default="SYSUTCDATETIME()"/>
+                <Column Name="EndTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="true" Default="NULL"/>
+                <Column Name="NumberOfRowsMoved" Type="Int64" IsNullable="true"  Default="NULL"/>
+                <Column Name="MaxUpdateTime" Type="Custom" CustomType="datetime2" IsNullable="true"/>
+                <Column Name="Status" Type="WStr" Length="255" IsNullable="false">
+                    <Annotations>
+                        <Annotation AnnotationType="CodeComment">
+                            Succeeded, Failed, In progress
+                        </Annotation>
+                    </Annotations>
+                </Column>
+
+                <Column Name="_VulcanInsertTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false" Default="SYSUTCDATETIME()"/>
+                <Column Name="_VulcanUpdateTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false" Default="SYSUTCDATETIME()"/>
+            </Columns>
+            <Keys>
+                <PrimaryKey Name="PK_tblTableMovementLog_TableMovementID" Clustered="true">
+                    <Columns>
+                        <Column ColumnName="TableMovementID"/>
+                    </Columns>
+                </PrimaryKey>
+            </Keys>
+        </Table>
+
+        <Table Name="tblDataSourceMovementLog" ConnectionName="Staging" CompressionType="Page">
+            <Columns>
+                <Column Name="DataSourceMovementID" Type="Custom" CustomType="UNIQUEIDENTIFIER" IsNullable="false" Default="NEWID()"/>
+                <Column Name="ExecutionGuid" Type="Custom" CustomType="UNIQUEIDENTIFIER" IsNullable="false"/>
+                <TableReference Name="SourceDataSourceID" TableName="tblDataSource" />
+                <TableReference Name="DestinationDataSourceID" TableName="tblDataSource" />
+
+                <Column Name="StartTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false" Default="SYSUTCDATETIME()"/>
+                <Column Name="EndTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="true" Default="NULL"/>
+                <Column Name="MaxUpdateTime" Type="Custom" CustomType="datetime2" IsNullable="true"/>
+                <Column Name="Status" Type="WStr" Length="255" IsNullable="false">
+                    <Annotations>
+                        <Annotation AnnotationType="CodeComment">
+                            Succeeded, Failed, In progress
+                        </Annotation>
+                    </Annotations>
+                </Column>
+
+                <Column Name="_VulcanInsertTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false" Default="SYSUTCDATETIME()"/>
+                <Column Name="_VulcanUpdateTime_UTC" Type="Custom" CustomType="datetime2" IsNullable="false" Default="SYSUTCDATETIME()"/>
+            </Columns>
+            <Keys>
+                <PrimaryKey Name="PK_tblDataSourceMovementLog_DataSourceMovementID" Clustered="true">
+                    <Columns>
+                        <Column ColumnName="DataSourceMovementID"/>
+                    </Columns>
+                </PrimaryKey>
+            </Keys>
+        </Table>
+    </Tables>
+</Vulcan>

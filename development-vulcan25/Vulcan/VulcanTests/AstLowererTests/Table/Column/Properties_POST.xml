@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [Column1] int NOT NULL
+              ,	[Column1HK] AS (CONVERT(varbinary(32),HASHBYTES('SHA1', HASHBYTES('SHA1',CONVERT(binary varying(64),Column1))))) PERSISTED NOT NULL UNIQUE
+              ,	[Column2] int
+              ,	[Column3] int NOT NULL DEFAULT 42
+              ,	[Column4] int DEFAULT 42
+              ,	[Column5] AS Column3*2
+              ,	[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [UK_TestTable1_Column1]  UNIQUE NONCLUSTERED
+              (
+              [Column1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

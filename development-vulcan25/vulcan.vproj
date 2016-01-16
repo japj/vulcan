@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Vulcan">
+	
+	<ItemGroup>
+		<Compile Include="Vulcan\Vulcan.sln"/>
+	</ItemGroup>
+
+	<Target Name="Vulcan">
+		<Message Importance="high" Text="Building Vulcan for all platforms" />
+		<MSBuild Projects="%(Compile.FullPath)" Properties="Platform=Any CPU;Configuration=Debug"/>
+		<MSBuild Projects="%(Compile.FullPath)" Properties="Platform=Any CPU;Configuration=Release"/>
+		<MSBuild Projects="%(Compile.FullPath)" Properties="Platform=x86;Configuration=Debug"/>
+		<MSBuild Projects="%(Compile.FullPath)" Properties="Platform=x86;Configuration=Release"/>
+	</Target>
+	
+</Project>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB"/>
+  </Connections>
+  <Packages>
+    <Package Name="TestPackage1" Type="StoredProcedure">
+      <Tasks>
+        <ExecuteSQL Name="ExecSql1" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SELECT * FROM sys.tables
+            </Body>
+          </Query>
+        </ExecuteSQL>
+        <ExecuteSQL Name="TestMerge1" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              MERGE [TestTargetTable1] AS TARGET
+              USING (SELECT * FROM [TestTable1]) AS SOURCE
+              ON (TARGET.[TestColumn1] = SOURCE.[TestColumn1])
+              WHEN MATCHED
+
+              THEN UPDATE SET
+              TARGET.[TestColumn1] = SOURCE.[TestColumn1]
+              WHEN NOT MATCHED BY TARGET THEN
+              INSERT ([TestColumn1]) VALUES (SOURCE.[TestColumn1]);
+            </Body>
+          </Query>
+          <PrecedenceConstraints>
+            <Inputs>
+              <Input OutputPathName="ExecSql1.Output"/>
+            </Inputs>
+          </PrecedenceConstraints>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+    <Package Name="TestTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTargetTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTargetTable1]
+              GO
+
+              CREATE TABLE [TestTargetTable1]
+              (
+              -- Columns Definition
+              [TestColumn1] int NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [PK] PRIMARY KEY CLUSTERED
+              (
+              [TestColumn1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+    <Package Name="TestTargetTable1" Type="Table">
+      <Tasks>
+        <ExecuteSQL Name="CreateTable" ConnectionName="TestConnection1">
+          <Query QueryType="Standard">
+            <Body>
+              SET ANSI_NULLS ON
+              SET QUOTED_IDENTIFIER ON
+              GO
+
+              -------------------------------------------------------------------
+              IF EXISTS (SELECT * from sys.objects WHERE object_id = OBJECT_ID(N'[TestTable1]') AND type IN (N'U'))
+              DROP TABLE [TestTable1]
+              GO
+
+              CREATE TABLE [TestTable1]
+              (
+              -- Columns Definition
+              [TestColumn1] int NOT NULL
+              ,[VersionNumber] rowversion NOT NULL
+
+              -- Constraints
+              ,CONSTRAINT [PK] PRIMARY KEY CLUSTERED
+              (
+              [TestColumn1] Asc) WITH(PAD_INDEX = OFF,IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+
+              )
+              ON [PRIMARY]
+              WITH (DATA_COMPRESSION = NONE)
+              GO
+
+              -------------------------------------------------------------------
+            </Body>
+          </Query>
+        </ExecuteSQL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

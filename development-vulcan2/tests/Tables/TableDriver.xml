@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Package Name="TableDriver" DefaultPlatform="SSIS08" Type="" Log="false" TransactionMode="Join" Owner="vsabella">
+    <ExecutePackage Name="Execute" RelativePath="TestTable1\TestTable1.dtsx"/>
+    <ExecutePackage Name="Execute" RelativePath="TestTable2\TestTable2.dtsx"/>
+  </Package>
+</Vulcan>

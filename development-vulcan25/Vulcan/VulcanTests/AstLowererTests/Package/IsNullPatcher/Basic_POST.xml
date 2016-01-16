@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Packages>
+    <Package Name="Test_AstLower_IsNullPatcher" Type="ETL">
+      <Tasks>
+        <ETL Name="Test_AstLower_IsNullPatcher">
+          <Transformations>
+            <QuerySource Name="QuerySource" ConnectionName="TestConnection1">
+              <Query QueryType="Standard">
+                <Body>
+                  SELECT 1 AS TestColumn1, 0 AS TestColumn2
+                </Body>
+              </Query>
+            </QuerySource>
+            <DerivedColumns Name="Patch Nulls">
+              <Columns>
+                <Column Name="TestColumn2" Type="Object" ReplaceExisting="true">ISNULL(TestColumn2) ? -1 : TestColumn2</Column>
+              </Columns>
+            </DerivedColumns>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

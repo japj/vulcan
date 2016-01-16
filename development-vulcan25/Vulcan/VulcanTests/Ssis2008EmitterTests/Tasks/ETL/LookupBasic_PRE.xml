@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Conn1" Type="OleDB" Server="localhost" Database="master" Provider="SQLNCLI10" Authentication="Windows"/>
+  </Connections>
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <ETL Name="ETL1">
+          <Transformations>
+            <QuerySource Name="Query1" ConnectionName="Conn1">
+              <Query>
+                <Body>SELECT name, schema_id, create_date FROM sys.tables</Body>
+              </Query>
+            </QuerySource>
+            <Lookup Name="Lookup1" ConnectionName="Conn1">
+              <Query>
+                <Body>SELECT schema_id, name FROM sys.schemas</Body>
+              </Query>
+              <Inputs>
+                <Input LocalColumnName="schema_id" RemoteColumnName="schema_id"/>
+              </Inputs>
+              <Outputs>
+                <Output LocalColumnName="schema_name" RemoteColumnName="name"/>
+              </Outputs>
+            </Lookup>
+          </Transformations>
+        </ETL>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

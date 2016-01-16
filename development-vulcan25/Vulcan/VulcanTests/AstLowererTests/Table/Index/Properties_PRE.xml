@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Tables>
+    <Table Name="TestTable1" ConnectionName="TestConnection1">
+      <Columns>
+        <Column Name="Column1" Type="Int32" />
+        <Column Name="Column2" Type="Int32" />
+      </Columns>
+      <Indexes>
+        <Index Name="IX_Basic">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+
+        <Index Name="IX_Clustered_False" Clustered="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_Clustered_True" Clustered="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+
+        <Index Name="IX_DropExisting_False" DropExisting="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_DropExisting_True" DropExisting="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        
+        <Index Name="IX_IgnoreDupKey_False" IgnoreDupKey="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+          <Index Name="IX_IgnoreDupKey_True" IgnoreDupKey="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+
+        <Index Name="IX_Online_False" Online="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_Online_True" Online="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        
+        <Index Name="IX_PadIndex_False" PadIndex="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_PadIndex_True" PadIndex="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        
+        <Index Name="IX_SortInTempdb_False" SortInTempdb="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_SortInTempdb_True" SortInTempdb="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+
+        <Index Name="IX_Unique_False" Unique="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_Unique_True" Unique="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+
+        <Index Name="IX_All_False" Clustered="false" DropExisting="false" IgnoreDupKey="false" Online="false" PadIndex="false" SortInTempdb="false" Unique="false">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+        <Index Name="IX_All_True" Clustered="true" DropExisting="true" IgnoreDupKey="true" Online="true" PadIndex="true" SortInTempdb="true" Unique="true">
+          <Columns>
+            <Column ColumnName="Column1" />
+          </Columns>
+        </Index>
+      </Indexes>
+    </Table>
+  </Tables>
+</Vulcan>

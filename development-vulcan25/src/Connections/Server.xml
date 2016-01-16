@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="Server" Type="OleDB" Authentication="Windows" Server="localhost" Provider="SQLNCLI10.1" />
+    <Connection Name="ServerADO" Type="AdoNet" Authentication="Windows" Server="localhost" Provider="SQLNCLI10.1" />
+  </Connections>
+</Vulcan>

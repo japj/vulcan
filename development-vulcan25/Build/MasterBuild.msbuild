@@ -1,0 +1,8 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <UsingTask TaskName="VulcanEngine.MSBuild.VulcanTask" AssemblyFile="..\tools\vulcan\anycpu_d\VulcanEngine.dll" />
+  <PropertyGroup>
+    <OutputPath>..\..\bin</OutputPath>
+    <TemplatePath>..\Templates</TemplatePath>
+  </PropertyGroup>
+</Project>
+

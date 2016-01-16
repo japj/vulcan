@@ -1,0 +1,1 @@
+<DTSConfiguration><DTSConfigurationHeading><DTSConfigurationFileInfo /></DTSConfigurationHeading><Configuration ConfiguredType="Property" Path="\Package.Connections[Conn1].Properties[ConnectionString]" ValueType="String"><ConfiguredValue>Server=localhost;Provider=SQLNCLI10;Database=master;Trusted_Connection=yes;</ConfiguredValue></Configuration></DTSConfiguration>

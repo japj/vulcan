@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Project xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+  <ProductVersion>9.0.2047.0</ProductVersion>
+  <SchemaVersion>9.0.1.0</SchemaVersion>
+  <Database>
+    <Name>placeholder.database</Name>
+    <FullPath>placeholder.database</FullPath>
+  </Database>
+  <Cubes />
+  <Dimensions />
+  <DataSources />
+  <DTSPackages>
+    <DtsPackage>
+      <Name>ETLtblFakeSale.dtsx</Name>
+      <FullPath>ETLtblFakeSale.dtsx</FullPath>
+      <References>
+      </References>
+    </DtsPackage>
+  </DTSPackages>
+  <MiningModels />
+  <Miscellaneous />
+</Project>

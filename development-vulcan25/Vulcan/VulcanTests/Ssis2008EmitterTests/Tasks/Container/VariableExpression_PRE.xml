@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Package1" Type="ETL">
+      <Tasks>
+        <Container Name="Container1">
+          <Variables>
+            <Variable Name="testBool" TypeCode="Boolean" EvaluateAsExpression="true" Value="0 &lt; 1 ? true : false"/>
+            <Variable Name="testByte" TypeCode="Byte" EvaluateAsExpression="true"  Value="0 > 1 ? 1 : 2"/>
+            <Variable Name="testChar" TypeCode="Char" EvaluateAsExpression="true"  Value="0 > 1 ? &quot;A&quot; : &quot;B&quot;"/>
+            <Variable Name="testDateTime" TypeCode="DateTime" EvaluateAsExpression="true" Value="0 > 1 ? (DT_DBTIMESTAMP) &quot;10/10/2010&quot; : (DT_DBTIMESTAMP) &quot;10/11/2010&quot;"/>
+            <!--Commented out due to bug 1264-->
+            <!--<Variable Name="testDBNull" TypeCode="DBNull" EvaluateAsExpression="true" Value="{!System.DBNull.Value.ToString()!}"/>-->
+            <Variable Name="testDouble" TypeCode="Double" EvaluateAsExpression="true" Value="0 > 1 ? (DT_R8) 111.111 : (DT_R8) 222.222"/>
+            <Variable Name="testInt16" TypeCode="Int16" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+            <Variable Name="testInt32" TypeCode="Int32" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+            <Variable Name="testInt64" TypeCode="Int64" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+            <!--Can't set expressions on Object variables-->
+            <!--<Variable Name="testObject" TypeCode="Object" EvaluateAsExpression="true" Value=""/>-->
+            <Variable Name="testSByte" TypeCode="SByte" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+            <Variable Name="testSingle" TypeCode="Single" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+            <Variable Name="testString" TypeCode="String" EvaluateAsExpression="true" Value="0 > 1 ? &quot;Test String A&quot; : &quot;Test String B&quot;"/>
+            <Variable Name="testUInt32" TypeCode="UInt32" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+            <Variable Name="testUInt64" TypeCode="UInt64" EvaluateAsExpression="true" Value="0 > 1 ? 100 : 200"/>
+          </Variables>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

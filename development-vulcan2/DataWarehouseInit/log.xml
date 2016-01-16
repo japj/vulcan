@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+		<Table Name="Log" ConnectionName="LogDataWarehouse">
+			<Columns>
+				<Column Name="LogID" Type="INT32"/>
+				<Column Name="StartTime" Type="CUSTOM" CustomType="datetime"/>
+				<Column Name="EndTime" Type="CUSTOM" CustomType="datetime" IsNullable="true"/>
+				<Column Name="ETLName" Type="WSTR" Length="255"/>
+				<Column Name="TaskName" Type="WSTR" Length="255" IsNullable="true"/>
+				<Column Name="Status" Type="WSTR" Length="255"/>
+				<Column Name="Notes" Type="WSTR" Length="255" IsNullable="true"/>
+				<Column Name="Variables" Type="CUSTOM" CustomType="xml" IsNullable="true"/>
+			</Columns>
+			<Keys>
+				<Identity Name="IK_Log" Clustered="true" PadIndex="false" IgnoreDupKey="false">
+					<Column ColumnName="LogID" SortOrder="ASC"/>
+				</Identity>
+			</Keys>
+		</Table>
+	
+		<Package Name="Log" Type="DataWarehouseInit">
+			<Variable Name="varRootDir" Type="String" Value="C:\Detego"/>
+			<ExecuteSQL Name="SetLogColumnConstraints" ConnectionName="LogDataWarehouse" ExecuteDuringDesignTime="false" Type="File">
+				<Body>
+					ALTER TABLE [dbo].[Log]  WITH CHECK ADD  CONSTRAINT [CK_Log_Status] CHECK  (([Status]='Success' OR [Status]='Failure' OR [Status]='In Progress'))
+					GO
+					ALTER TABLE [dbo].[Log] CHECK CONSTRAINT [CK_Log_Status]
+					GO
+					EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Allow only predefined values for this column' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Log', @level2type=N'CONSTRAINT',@level2name=N'CK_Log_Status'
+				</Body>
+			</ExecuteSQL>
+
+			<StoredProc Name="sp_LogStart" ConnectionName="LogDataWarehouse" ExecuteDuringDesignTime ="false">
+				<Columns>
+					<Column Name="ETLName" Type="WSTR" Length="255"/>
+					<Column Name="TaskName" Type="WSTR" Length="255"/>
+					<Column Name="VarScope" Type="CUSTOM" CustomType="nvarchar(MAX)"/>
+					<Column Name="LogID" Type="INT32" IsOutput="true"/>
+					<Column Name="LastSuccessfulRunLogID" Type="INT32" IsOutput="true"/>
+					<Column Name="IsAnotherInstanceCurrentlyRunning" Type="INT32" IsOutput="true"/>
+				</Columns>
+				<Body>
+					SET @LogID = -2;
+					INSERT INTO [Log] (StartTime, EndTime, ETLName, TaskName, Status, Notes, Variables) VALUES (GETDATE(), NULL, @ETLName, @TaskName, 'In Progress', NULL, CAST(@VarScope AS xml))
+					IF @@ERROR=0
+					SET @LogID = @@IDENTITY;
+
+					SELECT @LastSuccessfulRunLogID = LogID FROM [Log] WHERE ETLName = @ETLName AND TaskName = @TaskName AND Status = 'Success'
+					SELECT @IsAnotherInstanceCurrentlyRunning = LogID FROM [Log] WHERE ETLName = @ETLName AND TaskName = @TaskName AND Status = 'In Progress'
+					SELECT @LastSuccessfulRunLogID = ISNULL(@LastSuccessfulRunLogID,-1)
+					SELECT @IsAnotherInstanceCurrentlyRunning = ISNULL(@IsAnotherInstanceCurrentlyRunning,-1)
+				</Body>
+			</StoredProc>
+
+			<StoredProc Name="sp_LogSetValue" ConnectionName="LogDataWarehouse" ExecuteDuringDesignTime="false">
+				<Columns>
+					<Column Name="LogID" Type="INT32"/>
+					<Column Name="VarScope" Type="CUSTOM" CustomType="nvarchar(MAX)"/>
+					<Column Name="VarName" Type="CUSTOM" CustomType="nvarchar(MAX)"/>
+					<Column Name="Value" Type="CUSTOM" CustomType="nvarchar(MAX)"/>
+				</Columns>
+				<Body>
+
+					DECLARE @xmlVars xml;
+					DECLARE @query nvarchar(MAX);
+					SELECT TOP(1)
+					@xmlVars = Variables
+					FROM [Log]
+					WHERE LogID = @LogID;
+
+					SET @query = '
+					IF @xmlVars.exist(
+					''' + @VarScope + '/Variable[@Name="' + @VarName + '"]' + '''
+					) = 0
+					'
+					+ '
+					SET @xmlVars.modify(
+					''insert &lt;Variable Name="' + @VarName +'"&gt;&lt;/Variable&gt;' + 'into (' + @VarScope + ')[1]''
+					)
+					';
+
+					EXECUTE sp_executesql @query, N'@xmlVars xml OUTPUT', @xmlVars=@xmlVars OUTPUT;
+
+					SET @query = '
+					IF @xmlVars.exist(
+					''' + @VarScope + '/Variable[@Name="' + @VarName + '"]' + '/@Value''
+					) = 1
+					' +  '
+					SET @xmlVars.modify(
+					''replace value of (' + @VarScope + '/Variable[@Name="' + @VarName + '"]' + '/@Value)[1] with sql:variable("@Value")''
+					)
+					' + ' ELSE '
+					+ '
+					SET @xmlVars.modify(
+					''insert attribute Value {sql:variable("@Value")} into (' + @VarScope + '/Variable[@Name="' + @VarName + '"]' + ')[1]''
+					)
+					';
+
+					EXECUTE sp_executesql @query, N'@xmlVars xml OUTPUT, @Value nvarchar(MAX)', @xmlVars=@xmlVars OUTPUT, @Value=@Value;
+
+
+					UPDATE [Log]
+					SET Variables = @xmlVars
+					WHERE LogID = @LogID;
+
+				</Body>
+			</StoredProc>
+
+			<StoredProc Name="sp_LogGetValue" ConnectionName="LogDataWarehouse" ExecuteDuringDesignTime="false">
+				<Columns>
+					<Column Name="LogID" Type="INT32"/>
+					<Column Name="VarScope" Type="CUSTOM" CustomType="nvarchar(MAX)"/>
+					<Column Name="VarName" Type="CUSTOM" CustomType="nvarchar(MAX)"/>
+					<Column Name="Value" Type="CUSTOM" CustomType="nvarchar(MAX)" IsOutput="true"/>
+				</Columns>
+				<Body>
+					DECLARE @xmlVars xml;
+					DECLARE @query nvarchar(MAX);
+					SELECT TOP(1)
+					@xmlVars = Variables
+					FROM [Log]
+					WHERE LogID = @LogID;
+
+					SET @query = '
+					SET @Value = @xmlVars.value(''(' + @VarScope + '/Variable[@Name="' + @VarName + '"]' +'/@Value)[1]'', ''nvarchar(MAX)'')
+					';
+
+					EXECUTE sp_executesql @query, N'@xmlVars xml, @Value nvarchar(MAX) OUTPUT', @xmlVars=@xmlVars, @Value=@Value OUTPUT;
+				</Body>
+			</StoredProc>
+
+			<StoredProc Name="sp_LogGetValues" ConnectionName="LogDataWarehouse" ExecuteDuringDesignTime="false">
+				<Columns>
+					<Column Name="LogID" Type="INT32"/>
+					<Column Name="StartTime" Type="INT32" IsOutput="true"/>
+					<Column Name="EndTime" Type="INT32" IsOutput="true"/>
+					<Column Name="Status" Type="CUSTOM" CustomType="nvarchar(MAX)" IsOutput="true"/>
+					<Column Name="Notes" Type="CUSTOM" CustomType="nvarchar(MAX)" IsOutput="true"/>
+				</Columns>
+				<Body>
+					IF NOT EXISTS
+					(
+					SELECT TOP(1)
+					*
+					FROM Log
+					WHERE LogID = @LogID
+					)
+					BEGIN
+					SET @StartTime = CAST(GETDATE() AS int);
+					SET @EndTime = CAST(GETDATE() AS int);
+					SET @Notes = 'N/A';
+					SET @Status = 'Success';
+					END
+					ELSE
+					BEGIN
+					SELECT TOP(1)
+					@StartTime = CAST(StartTime AS int)
+					,@EndTime = CAST(EndTime AS int)
+					,@Status = Status
+					,@Notes = Notes
+					FROM Log
+					WHERE LogID = @LogID
+					END
+				</Body>
+			</StoredProc>
+			<StoredProc Name="sp_LogEnd" ConnectionName="LogDataWarehouse" ExecuteDuringDesignTime="false">
+				<Columns>
+					<Column Name="LogID" Type="INT32"/>
+				</Columns>
+				<Body>
+					UPDATE [Log] SET [EndTime] = GETDATE() WHERE LogID = @LogID
+					UPDATE [Log] SET Status = 'Success' WHERE LogID = @LogID AND Status &lt;&gt; 'Failure'
+				</Body>
+			</StoredProc>
+	</Package>
+</Vulcan>

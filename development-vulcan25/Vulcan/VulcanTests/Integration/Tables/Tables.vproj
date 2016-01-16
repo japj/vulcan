@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <Import Project="..\Build\MasterBuild.msbuild"/>
+  <ItemGroup>
+    <Sources Include="*.xml"/>
+    <Includes Include="..\Connections\**\*.xml" />
+  </ItemGroup>
+  <Target Name="Build">
+    <VulcanTask OutputPath="$(OutputPath)" Sources="@(Sources)" Includes="@(Includes)" />
+  </Target>
+</Project>
+

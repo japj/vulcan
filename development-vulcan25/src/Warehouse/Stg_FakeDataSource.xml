@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Packages>
+    <Package Name="Stg_FakeDataSource" Type="Warehouse">
+      <Tasks>
+        <Container Name="Stg_FakeDataSource Creation">
+          <Tasks>
+            <ExecuteSQL Name="Drop_Stg_FakeDataSource" ConnectionName="Server">
+              <Query>
+                <Body>
+                  EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'Stg_FakeDataSource'
+                  GO
+
+                  USE [master]
+                  GO
+
+                  IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'Stg_FakeDataSource')
+                  ALTER DATABASE [Stg_FakeDataSource] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+                  GO
+
+                  IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'Stg_FakeDataSource')
+                  DROP DATABASE [Stg_FakeDataSource]
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+            <ExecuteSQL Name="DDL_Stg_FakeDataSource" ConnectionName="Server" ExecuteDuringDesignTime="false" ResultSet="None">
+              <Query>
+                <Body>
+                  EXECUTE ('CREATE DATABASE [Stg_FakeDataSource]');
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+            <ExecuteSQL Name="CLR_Stg_FakeDataSource" ConnectionName="Server" ExecuteDuringDesignTime="false" ResultSet="None">
+              <Query>
+                <Body>
+                  USE [Stg_FakeDataSource]
+                  GO
+
+                  EXEC sp_configure 'clr enabled', 1
+                  GO
+
+                  RECONFIGURE
+                  GO
+                </Body>
+              </Query>
+            </ExecuteSQL>
+          </Tasks>
+        </Container>
+      </Tasks>
+    </Package>
+  </Packages>
+</Vulcan>

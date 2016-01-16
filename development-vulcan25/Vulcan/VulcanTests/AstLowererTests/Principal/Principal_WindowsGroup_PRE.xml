@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+  <Connections>
+    <Connection Name="TestConnection1" Type="OleDB" />
+  </Connections>
+  <Principals>
+    <Principal Type="WindowsGroup" ConnectionName="TestConnection1" Name="TestWindowsGroup"/>
+  </Principals>
+</Vulcan>

@@ -1,0 +1,8 @@
+<DTSConfiguration>
+  <DTSConfigurationHeading>
+    <DTSConfigurationFileInfo />
+  </DTSConfigurationHeading>
+  <Configuration ConfiguredType="Property" Path="\Package.Connections[Conn1].Properties[ConnectionString]" ValueType="String">
+    <ConfiguredValue>Data Source=localhost;Initial Catalog=master;Provider=SQLNCLI10;Trusted_Connection=yes;Integrated Security=SSPI;</ConfiguredValue>
+  </Configuration>
+</DTSConfiguration>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenericTest name="BuildTestTables" storage="c:\codeplex\development-vulcan25\vulcan\vulcantests\integration\buildtesttables.generictest" id="0aefc7c2-946e-4a7c-97c3-42ce90cd1428" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Css projectStructure="" iteration="" />
+  <Owners>
+    <Owner name="" />
+  </Owners>
+  <Execution id="3b95de30-309e-4e42-9a91-5afe4764edb8" />
+  <Command filename="%WINDIR%\Microsoft.net\Framework64\v3.5\msbuild.exe" arguments="%VULCANTESTROOT%\Build\BuildAndDeployTestTables.vproj" workingDirectory="%vulcantestroot%\Build" />
+  <SummaryXmlFile path="%TestOutputDirectory%\&lt;Enter summary file name here&gt;" />
+</GenericTest>

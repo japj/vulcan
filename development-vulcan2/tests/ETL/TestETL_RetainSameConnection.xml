@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vulcan xmlns="http://tempuri.org/vulcan2.xsd">
+    <Connection Name="Localhost_RetainSameConnection" RetainSameConnection="true" Type="OLEDB" ConnectionString="Data Source=localhost;Initial Catalog=DataWarehouse;Provider=SQLNCLI10.1;Integrated Security=SSPI;" />
+    <Package Name="TestETL_RetainSameConnection" Type="ETL">
+        <ExecuteSQL ConnectionName="Localhost_RetainSameConnection" Name="TestSQL">
+            <Body>
+                SELECT 1 AS Foo
+            </Body>
+        </ExecuteSQL>
+    </Package>
+</Vulcan>
